@@ -1,0 +1,2 @@
+# Girafic
+Educational portal
