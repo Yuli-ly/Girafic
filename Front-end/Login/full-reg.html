@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Регистрация</title>
+	<link rel="stylesheet" type="text/css" href="css/log.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	
+	<div class="container">
+        <img class="wave" src="img/wave.png">
+		<div class="img">
+			<img src="img/tree.png">
+		</div>
+		<div class="login-content">
+			<form action="login.html">
+				
+				<h2 class="title">Регистрация</h2>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-address-card"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>Фамилия</h5>
+           		   		<input type="text" class="input">
+           		   </div>
+           		</div>
+           		<div class="input-div one">
+                    <div class="i">
+                            <i class="fas fa-address-card"></i>
+                    </div>
+                    <div class="div">
+                            <h5>Имя</h5>
+                            <input type="text" class="input">
+                    </div>
+                </div>
+                <div class="input-div one">
+                    <div class="i">
+                            <i class="fas fa-address-card"></i>
+                    </div>
+                    <div class="div">
+                            <h5>Отчество</h5>
+                            <input type="text" class="input">
+                    </div>
+                </div>
+                <div class="input-div one">
+                    <div class="i">
+                            <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                            <h5>Логин</h5>
+                            <input type="text" class="input">
+                    </div>
+                </div>
+                <div class="input-div one">
+                    <div class="i">
+                            <i class="fas fa-university"></i>
+                    </div>
+                    <div class="div">
+                            <h5>Университет</h5>
+                            <input type="text" class="input">
+                    </div>
+                </div>
+                <div class="input-div one">
+                    <div class="i">
+                            <i class="fas fa-university"></i>
+                    </div>
+                    <div class="div">
+                            <h5>Факультет</h5>
+                            <input type="text" class="input">
+                    </div>
+                </div>
+
+
+                <div class="container-radio">
+                        <input type="radio" onclick="javascript:studentCheck()" name="status" id="student" value="1"> 
+                        <label for="student">Студент</label>
+                        <input type="radio" onclick="javascript:teacherCheck()" name="status" id="teacher" value="2"> 
+                        <label for="teacher">Преподаватель</label>
+                </div>
+
+                <div class="student">
+                    <div class="input-div one">
+                        <div class="i">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="div">
+                            <h5>Курс</h5>
+                            <input type="text" class="input">
+                        </div>
+                    </div>
+                    <div class="input-div one">
+                        <div class="i">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="div">
+                            <h5>Группа</h5>
+                            <input type="text" class="input">
+                        </div>
+                    </div>
+                    <div class="input-div one">
+                        <div class="i">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                        <div class="div">
+                            <h5>Средний балл</h5>
+                            <input type="text" class="input">
+                        </div>
+                    </div>
+                </div>    
+                <div class="teacher">
+                    <div class="input-div one">
+                        <div class="i">
+                                <i class="fas fa-university"></i>
+                        </div>
+                        <div class="div">
+                                <h5>Кафедра</h5>
+                                <input type="text" class="input">
+                        </div>
+                    </div>
+                    <div class="input-div one">
+                        <div class="i">
+                                <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="div">
+                                <h5>Должность</h5>
+                                <input type="text" class="input">
+                        </div>
+                    </div>
+                </div>
+				<input type="submit" class="btn" value="Регистрация">
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/log.js" defer></script>
+</body>
+</html>
