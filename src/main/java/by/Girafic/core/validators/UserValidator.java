@@ -1,6 +1,5 @@
 package by.Girafic.core.validators;
 import by.Girafic.core.userdata.FullName;
-import by.Girafic.core.validators.CheckResult;
 
 
 public class UserValidator
