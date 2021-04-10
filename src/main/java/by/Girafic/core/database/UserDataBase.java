@@ -7,6 +7,7 @@ public interface UserDataBase
 {
     boolean checkLoginOriginality(String login);
     boolean checkPasswordOriginality(String password);
+    int  getUserID(String login);
     UserType getUserType(int userID);
     StudentViewData getStudent(int userID);
     TeacherViewData getTeacher(int userID);

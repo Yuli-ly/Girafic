@@ -8,47 +8,6 @@ import by.Girafic.core.userdata.StudentViewData;
 import by.Girafic.core.userdata.StudentViewModifyData;
 import by.Girafic.core.userdata.TeacherViewData;
 
-public class StudentPresenter implements StudentBasicPresenter, ShowStudentAfterModify
+public interface StudentPresenter extends StudentBasicPresenter, ShowStudentAfterModify
 {
-    @Override
-    public boolean showProfile(StudentViewData student, int currentUserID)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean showProfile(TeacherViewData teacher, int currentUserID)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean showProfile(AdminViewData admin, int currentUserID)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean showCourse(CourseViewData course)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean showSection(SectionViewData section)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean showMaterial(MaterialViewData material)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean showStudentAfterModify(StudentViewModifyData student)
-    {
-        return false;
-    }
 }
