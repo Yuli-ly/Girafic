@@ -8,4 +8,12 @@ public class InteractorAccess
     {
         return null;
     }
+    public TeacherInteractor teacherLogin(LoginData ld)
+    {
+        return null;
+    }
+    public AdminInteractor adminLogin(LoginData ld)
+    {
+        return null;
+    }
 }
