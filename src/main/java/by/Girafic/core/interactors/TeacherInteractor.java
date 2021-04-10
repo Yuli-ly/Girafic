@@ -13,35 +13,35 @@ public class TeacherInteractor extends StudentInteractor
     {
         return true;
     }
-    public boolean modifyMaterial(MaterialModifyData material, int contentId)
+    public boolean modifyMaterial(MaterialModifyData material, int contentID)
     {
         return true;
     }
-    public boolean removeContent(int contentId)
+    public boolean removeContent(int contentID)
     {
         return true;
     }
-    public boolean addContentToSection(int sectionId,int contentId)
+    public boolean addContentToSection(int sectionID,int contentID)
     {
         return true;
     }
-    public boolean addSectionToCourse(int courseId,int contentId)
+    public boolean addSectionToCourse(int courseID,int contentID)
     {
         return true;
     }
-    public boolean removeSectionFromCourse(int courseId, int sectionId)
+    public boolean removeSectionFromCourse(int courseID, int sectionID)
     {
         return true;
     }
-    public boolean removeContentFromSection(int sectionId, int contentId)
+    public boolean removeContentFromSection(int sectionID, int contentID)
     {
         return true;
     }
-    public boolean addUserToCourse(int courseID,int userId)
+    public boolean addUserToCourse(int courseID,int userID)
     {
         return true;
     }
-    public boolean removeUserFromCourse(int courseID, int userId)
+    public boolean removeUserFromCourse(int courseID, int userID)
     {
         return true;
     }

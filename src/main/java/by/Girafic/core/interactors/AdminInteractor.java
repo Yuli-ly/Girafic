@@ -11,7 +11,7 @@ public class AdminInteractor extends TeacherInteractor
         return true;
     }
 
-    public boolean modifyStudent(StudentModifyData student, int userId)
+    public boolean modifyStudent(StudentModifyData student, int userID)
     {
         return true;
     }
@@ -21,7 +21,7 @@ public class AdminInteractor extends TeacherInteractor
         return true;
     }
 
-    public boolean modifyTeacher(TeacherModifyData teacher, int userId)
+    public boolean modifyTeacher(TeacherModifyData teacher, int userID)
     {
         return true;
     }
@@ -31,12 +31,12 @@ public class AdminInteractor extends TeacherInteractor
         return true;
     }
 
-    public boolean modifyAdmin(AdminModifyData teacher, int userId)
+    public boolean modifyAdmin(AdminModifyData teacher, int userID)
     {
         return true;
     }
 
-    public boolean removeUser(int userId)
+    public boolean removeUser(int userID)
     {
         return true;
     }

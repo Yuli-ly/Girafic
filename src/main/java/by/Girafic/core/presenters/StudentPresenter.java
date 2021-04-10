@@ -11,19 +11,19 @@ import by.Girafic.core.userdata.TeacherViewData;
 public class StudentPresenter implements StudentBasicPresenter, ShowStudentAfterModify
 {
     @Override
-    public boolean showProfile(StudentViewData student, int currentUserId)
+    public boolean showProfile(StudentViewData student, int currentUserID)
     {
         return false;
     }
 
     @Override
-    public boolean showProfile(TeacherViewData teacher, int currentUserId)
+    public boolean showProfile(TeacherViewData teacher, int currentUserID)
     {
         return false;
     }
 
     @Override
-    public boolean showProfile(AdminViewData admin, int currentUserId)
+    public boolean showProfile(AdminViewData admin, int currentUserID)
     {
         return false;
     }

@@ -9,9 +9,9 @@ import by.Girafic.core.userdata.TeacherViewData;
 
 public interface StudentBasicPresenter
 {
-    boolean showProfile(StudentViewData student,int currentUserId);
-    boolean showProfile(TeacherViewData teacher,int currentUserId);
-    boolean showProfile(AdminViewData admin, int currentUserId);
+    boolean showProfile(StudentViewData student,int currentUserID);
+    boolean showProfile(TeacherViewData teacher,int currentUserID);
+    boolean showProfile(AdminViewData admin, int currentUserID);
     boolean showCourse(CourseViewData course);
     boolean showSection(SectionViewData section);
     boolean showMaterial(MaterialViewData material);
