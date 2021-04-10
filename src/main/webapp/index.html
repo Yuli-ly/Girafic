@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
     <title>Авторизация</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/log.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -15,7 +17,7 @@
         <img src="img/tree.png">
     </div>
     <div class="login-content">
-        <form action="index.html">
+        <form action="login">
 
             <h2 class="title">Добро пожаловать</h2>
             <div class="input-div one">
@@ -24,24 +26,25 @@
                 </div>
                 <div class="div">
                     <h5>Логин</h5>
-                    <input type="text" class="input">
+                    <input type="text" class="input" name="login">
                 </div>
             </div>
             <div class="input-div pass">
                 <div class="i">
                     <i class="fas fa-lock"></i>
                 </div>
-                <div class="div">
+                <div class="password">
                     <h5>Пароль</h5>
-                    <input type="password" class="input">
+                    <input type="password" class="input" id="password-input" name="password">
+                    <a href="#" class="password-control"></a>
                 </div>
             </div>
             <a href="#">Забыли пароль?</a>
             <input type="submit" class="btn log" value="Войти">
-            <input type="submit" class="btn reg" value="Регистрация">
+            <button formaction="registration.html" class="btn reg">Регистрация</button>
         </form>
     </div>
 </div>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/log.js"></script>
 </body>
 </html>
