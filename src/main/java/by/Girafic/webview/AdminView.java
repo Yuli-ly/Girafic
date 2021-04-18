@@ -2,20 +2,22 @@ package by.Girafic.webview;
 
 import by.Girafic.core.contentdata.*;
 import by.Girafic.core.userdata.*;
-import by.Girafic.core.view.AdminView;
 import by.Girafic.core.view.ViewData;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-public class AdminWebView implements AdminView
+public class AdminView implements by.Girafic.core.view.AdminView
 {
-    private HttpServletResponse response;
+    private final HttpServletRequest request;
+    private final HttpServletResponse response;
+    private final HttpServlet servlet;
 
-    public AdminWebView(HttpServletResponse response)
+    public AdminView(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet)
     {
+        this.request = request;
         this.response = response;
+        this.servlet = servlet;
     }
 
     @Override
@@ -57,34 +59,22 @@ public class AdminWebView implements AdminView
     @Override
     public boolean showStudentProfile(ViewData<StudentViewData> student)
     {
+        new DefaultView(request,response,servlet).showProfile(student.field,student.changeability);
         return false;
     }
 
     @Override
     public boolean showTeacherProfile(ViewData<TeacherViewData> teacher)
     {
+        new DefaultView(request,response,servlet).showProfile(teacher.field,teacher.changeability);
         return false;
     }
 
     @Override
     public boolean showAdminProfile(ViewData<AdminViewData> admin)
     {
-        try
-        {
-            PrintWriter out = response.getWriter();
-            out.println("<html><body>");
-            out.println("<p>");
-            out.print("Changeable? ");
-            out.println(admin.changeability);
-            out.println(admin);
-            out.println("</p>");
-            out.println("</body></html>");
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return false;
+        new DefaultView(request,response,servlet).showProfile(admin.field,admin.changeability);
+        return true;
     }
 
     @Override

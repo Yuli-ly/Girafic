@@ -3,6 +3,9 @@ package by.Girafic.core.userdata;
 public class UserViewData
 {
     public int id;
+    public FullName fullName;
+    public String mail;
+    public String faculty;
 
     @Override
     public String toString()
@@ -23,7 +26,4 @@ public class UserViewData
         this.faculty = faculty;
     }
 
-    public FullName fullName;
-    public String mail;
-    public String faculty;
 }

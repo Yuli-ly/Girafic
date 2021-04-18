@@ -1,18 +1,17 @@
 package by.Girafic.webpresenters;
 
 import by.Girafic.core.contentdata.*;
-import by.Girafic.core.presenters.AdminPresenter;
 import by.Girafic.core.userdata.*;
 import by.Girafic.core.view.AdminView;
 import by.Girafic.core.view.ViewData;
 
-public class AdminWebPresenter implements AdminPresenter
+public class AdminPresenter implements by.Girafic.core.presenters.AdminPresenter
 {
-    private AdminView adminView;
+    private AdminView view;
 
-    public AdminWebPresenter(AdminView adminView)
+    public AdminPresenter(AdminView view)
     {
-        this.adminView = adminView;
+        this.view = view;
     }
 
     @Override
@@ -34,25 +33,30 @@ public class AdminWebPresenter implements AdminPresenter
     }
 
     @Override
-    public boolean showProfile(StudentViewData student, int currentUserID)
+    public boolean showError(String message)
     {
         return false;
+    }
+
+    @Override
+    public boolean showProfile(StudentViewData student, int currentUserID)
+    {
+        view.showStudentProfile(new ViewData<>(student,true));
+        return true;
     }
 
     @Override
     public boolean showProfile(TeacherViewData teacher, int currentUserID)
     {
-        return false;
+        view.showTeacherProfile(new ViewData<>(teacher,true));
+        return true;
     }
 
     @Override
     public boolean showProfile(AdminViewData admin, int currentUserID)
     {
-        if(admin.id == currentUserID)
-            adminView.showAdminProfile(new ViewData<>(admin,true));
-        else
-            adminView.showAdminProfile(new ViewData<>(admin,false));
-        return false;
+        view.showAdminProfile(new ViewData<>(admin,true));
+        return true;
     }
 
     @Override

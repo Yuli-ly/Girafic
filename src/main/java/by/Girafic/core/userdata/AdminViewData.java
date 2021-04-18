@@ -17,4 +17,9 @@ public class AdminViewData extends UserViewData
     {
         super(id, fullName, mail, faculty);
     }
+
+    public AdminViewData(int id,AdminModifyData a)
+    {
+        super(id, a.fullName, a.mail, a.faculty);
+    }
 }

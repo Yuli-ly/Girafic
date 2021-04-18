@@ -1,10 +1,13 @@
 package by.Girafic.core.database;
 
+import by.Girafic.core.commonds.LoginData;
 import by.Girafic.core.commonds.UserType;
 import by.Girafic.core.userdata.*;
 
 public interface UserDataBase
 {
+    boolean checkExistence(LoginData ld);
+    boolean checkExistence(int userID);
     boolean checkLoginOriginality(String login);
     boolean checkPasswordOriginality(String password);
     int  getUserID(String login);

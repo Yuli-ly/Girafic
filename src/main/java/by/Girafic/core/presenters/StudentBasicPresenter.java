@@ -9,6 +9,7 @@ import by.Girafic.core.userdata.TeacherViewData;
 
 public interface StudentBasicPresenter
 {
+    boolean showError(String message);
     boolean showProfile(StudentViewData student,int currentUserID);
     boolean showProfile(TeacherViewData teacher,int currentUserID);
     boolean showProfile(AdminViewData admin, int currentUserID);

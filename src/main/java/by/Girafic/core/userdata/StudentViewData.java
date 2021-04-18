@@ -11,6 +11,15 @@ public class StudentViewData extends UserViewData
         this.department = department;
     }
 
+    public StudentViewData(int userID,StudentModifyData s)
+    {
+        super(userID,s.fullName, s.mail, s.faculty);
+        this.course = s.course;
+        this.group = s.group;
+        this.gpa = s.gpa;
+        this.department = s.department;
+    }
+
     public int course;
     public double gpa;
     public String group;

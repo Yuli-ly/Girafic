@@ -14,10 +14,13 @@ ext {
     junitVersion = '5.7.0'
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 15
+targetCompatibility = 15
 
 dependencies {
+// https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api
+    implementation group: 'jakarta.servlet.jsp.jstl', name: 'jakarta.servlet.jsp.jstl-api', version: '2.0.0'
+
     compileOnly('jakarta.servlet:jakarta.servlet-api:5.0.0')
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")

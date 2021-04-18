@@ -11,10 +11,6 @@ public class UserModifyData
     public String mail;
     public String faculty;
 
-    public UserModifyData()
-    {
-    }
-
     public UserModifyData(UserType userType, FullName fullName, String login, String password, String mail, String faculty)
     {
         this.userType = userType;
