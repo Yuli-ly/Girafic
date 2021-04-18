@@ -29,7 +29,8 @@ public class AdminView implements by.Girafic.core.view.AdminView
     @Override
     public boolean showStudentAfterModify(StudentViewModifyData student)
     {
-        return false;
+        new DefaultView(request,response,servlet).showProfileAfterModify(student);
+        return true;
     }
 
     @Override

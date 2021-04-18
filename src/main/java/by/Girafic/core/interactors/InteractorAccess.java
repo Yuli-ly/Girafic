@@ -1,6 +1,7 @@
 package by.Girafic.core.interactors;
 
 import by.Girafic.core.commonds.LoginData;
+import by.Girafic.core.commonds.ModifyConfirmation;
 import by.Girafic.core.commonds.UserType;
 import by.Girafic.core.contentdata.CourseModifyData;
 import by.Girafic.core.contentdata.MaterialModifyData;
@@ -11,8 +12,11 @@ import by.Girafic.core.presenters.StudentPresenter;
 import by.Girafic.core.presenters.TeacherPresenter;
 import by.Girafic.core.userdata.AdminModifyData;
 import by.Girafic.core.userdata.StudentModifyData;
-import by.Girafic.core.userdata.StudentViewData;
+import by.Girafic.core.userdata.StudentViewModifyData;
 import by.Girafic.core.userdata.TeacherModifyData;
+import by.Girafic.core.validators.UserValidator;
+
+import static by.Girafic.core.commonds.ModifyConfirmation.successful;
 
 
 public class InteractorAccess
@@ -61,7 +65,20 @@ public class InteractorAccess
         @Override
         public boolean createStudent(StudentModifyData student)
         {
-            return false;
+            final String suc = "success";
+            // проверка каждого поля
+            userDataBase.createStudent(student);
+            StudentViewModifyData view = new StudentViewModifyData(
+                    successful(student.fullName),
+                    successful(student.login),
+                    successful(student.password),
+                    successful(student.mail),
+                    successful(student.faculty),
+                    successful(student.course),
+                    successful(student.gpa),
+                    successful(student.group));
+            presenter.showStudentAfterModify(view);
+            return true;
         }
 
         @Override

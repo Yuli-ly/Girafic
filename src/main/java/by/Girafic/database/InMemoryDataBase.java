@@ -14,26 +14,27 @@ import java.util.Map;
 
 public class InMemoryDataBase implements ContentDataBase, UserDataBase
 {
-    final private AdminModifyData admin = new AdminModifyData(UserType.Admin,
-            new FullName("admin","admin","admin"),
-            "admin",
-            "admin",
-            "admin@example.com","RF&CT");
-    final private StudentModifyData student = new StudentModifyData(UserType.Student,
-            new FullName("student","student","student"),
-            "student",
-            "student",
-            "student@example.com","RF&CT",2,10,"7","нет кафедры",new int[]{1,2,3});
-    final private TeacherModifyData teacher = new TeacherModifyData(UserType.Teacher,
-            new FullName("teacher","teacher","teacher"),
-            "teacher","teacher","teacher@gmail.com","RF&CT","1","teacher",new int[]{1,2,3});
 
+    int userAddIndex = 1;
     private final Map<Integer,UserModifyData> users = new LinkedHashMap<>();
     public InMemoryDataBase()
     {
-        users.put(1,admin);
-        users.put(2,teacher);
-        users.put(3,student);
+        AdminModifyData admin = new AdminModifyData(UserType.Admin,
+                new FullName("admin", "admin", "admin"),
+                "admin",
+                "admin",
+                "admin@example.com", "RF&CT");
+        users.put(userAddIndex++, admin);
+        TeacherModifyData teacher = new TeacherModifyData(UserType.Teacher,
+                new FullName("teacher", "teacher", "teacher"),
+                "teacher", "teacher", "teacher@gmail.com", "RF&CT", "1", "teacher", new int[]{1, 2, 3});
+        users.put(userAddIndex++, teacher);
+        StudentModifyData student = new StudentModifyData(UserType.Student,
+                new FullName("student", "student", "student"),
+                "student",
+                "student",
+                "student@example.com", "RF&CT", 2, 10, "7", "нет кафедры", new int[]{1, 2, 3});
+        users.put(userAddIndex++, student);
     }
 
     @Override
@@ -175,6 +176,7 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     @Override
     public boolean createStudent(StudentModifyData student)
     {
+        users.put(userAddIndex++,student);
         return false;
     }
 

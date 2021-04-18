@@ -23,6 +23,7 @@ public class AdminPresenter implements by.Girafic.core.presenters.AdminPresenter
     @Override
     public boolean showStudentAfterModify(StudentViewModifyData student)
     {
+        view.showStudentAfterModify(student);
         return false;
     }
 

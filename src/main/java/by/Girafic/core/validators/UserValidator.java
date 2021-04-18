@@ -5,39 +5,39 @@ import by.Girafic.core.userdata.FullName;
 public class UserValidator
 {
     private static CheckResult success = new CheckResult(true,"Успешно");
-    public CheckResult checkLogin(String login)
+    public static CheckResult checkLogin(String login)
     {
         return success;
     }
-    public CheckResult checkFullName(FullName fullName)
+    public static CheckResult checkFullName(FullName fullName)
     {
         return success;
     }
-    public CheckResult checkPassword(String password)
+    public static CheckResult checkPassword(String password)
     {
         return success;
     }
-    public CheckResult checkMail(String mail)
+    public static CheckResult checkMail(String mail)
     {
         return success;
     }
-    public CheckResult checkFaculty(String faculty)
+    public static CheckResult checkFaculty(String faculty)
     {
         return success;
     }
-    public CheckResult checkCourse(int course)
+    public static CheckResult checkCourse(int course)
     {
         return success;
     }
-    public CheckResult checkGPA(double gpa)
+    public static CheckResult checkGPA(double gpa)
     {
         return success;
     }
-    public CheckResult checkGroup(String group)
+    public static CheckResult checkGroup(String group)
     {
         return success;
     }
-    public CheckResult checkDepartment(String department)
+    public static CheckResult checkDepartment(String department)
     {
         return success;
     }

@@ -24,5 +24,6 @@
         <button>Выход</button>
         <button>Курсы</button>
     </div>
+    <a href="${pageContext.request.contextPath}/registrationTest.html">Регистрация</a>
 </body>
 </html>
