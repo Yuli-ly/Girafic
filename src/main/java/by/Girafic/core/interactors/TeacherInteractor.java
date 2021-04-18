@@ -1,48 +1,23 @@
 package by.Girafic.core.interactors;
 
+import by.Girafic.core.commonds.LoginData;
 import by.Girafic.core.contentdata.CourseModifyData;
 import by.Girafic.core.contentdata.MaterialModifyData;
+import by.Girafic.core.database.ContentDataBase;
+import by.Girafic.core.database.UserDataBase;
+import by.Girafic.core.presenters.StudentPresenter;
+import by.Girafic.core.presenters.TeacherPresenter;
 
-public class TeacherInteractor extends StudentInteractor
+public interface TeacherInteractor extends StudentInteractor
 {
-    public boolean createCourse(CourseModifyData course)
-    {
-        return true;
-    }
-    public boolean createMaterial(MaterialModifyData material)
-    {
-        return true;
-    }
-    public boolean modifyMaterial(MaterialModifyData material, int contentID)
-    {
-        return true;
-    }
-    public boolean removeContent(int contentID)
-    {
-        return true;
-    }
-    public boolean addContentToSection(int sectionID,int contentID)
-    {
-        return true;
-    }
-    public boolean addSectionToCourse(int courseID,int contentID)
-    {
-        return true;
-    }
-    public boolean removeSectionFromCourse(int courseID, int sectionID)
-    {
-        return true;
-    }
-    public boolean removeContentFromSection(int sectionID, int contentID)
-    {
-        return true;
-    }
-    public boolean addUserToCourse(int courseID,int userID)
-    {
-        return true;
-    }
-    public boolean removeUserFromCourse(int courseID, int userID)
-    {
-        return true;
-    }
+    boolean createCourse(CourseModifyData course);
+    boolean createMaterial(MaterialModifyData material);
+    boolean modifyMaterial(MaterialModifyData material, int contentID);
+    boolean removeContent(int contentID);
+    boolean addContentToSection(int sectionID,int contentID);
+    boolean addSectionToCourse(int courseID,int contentID);
+    boolean removeSectionFromCourse(int courseID, int sectionID);
+    boolean removeContentFromSection(int sectionID, int contentID);
+    boolean addUserToCourse(int courseID,int userID);
+    boolean removeUserFromCourse(int courseID, int userID);
 }

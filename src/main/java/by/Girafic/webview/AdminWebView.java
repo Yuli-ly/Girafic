@@ -9,11 +9,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class AdminViewImpl implements AdminView
+public class AdminWebView implements AdminView
 {
     private HttpServletResponse response;
 
-    public void setResponse(HttpServletResponse response)
+    public AdminWebView(HttpServletResponse response)
     {
         this.response = response;
     }

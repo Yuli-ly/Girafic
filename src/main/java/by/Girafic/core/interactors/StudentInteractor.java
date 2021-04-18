@@ -1,21 +1,14 @@
 package by.Girafic.core.interactors;
 
-public class StudentInteractor
+import by.Girafic.core.commonds.LoginData;
+import by.Girafic.core.database.ContentDataBase;
+import by.Girafic.core.database.UserDataBase;
+import by.Girafic.core.presenters.StudentPresenter;
+
+public interface StudentInteractor
 {
-    public boolean getStartPage()
-    {
-        return true;
-    }
-    public boolean getMyCourses()
-    {
-        return true;
-    }
-    public boolean getContent()
-    {
-        return true;
-    }
-    public boolean getProfile(int userid)
-    {
-        return true;
-    }
+    boolean getStartPage();
+    boolean getMyCourses();
+    boolean getContent();
+    boolean getProfile(int userid);
 }

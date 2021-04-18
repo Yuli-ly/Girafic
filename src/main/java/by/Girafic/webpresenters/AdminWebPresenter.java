@@ -6,11 +6,11 @@ import by.Girafic.core.userdata.*;
 import by.Girafic.core.view.AdminView;
 import by.Girafic.core.view.ViewData;
 
-public class AdminPresenterImpl implements AdminPresenter
+public class AdminWebPresenter implements AdminPresenter
 {
     private AdminView adminView;
 
-    public AdminPresenterImpl(AdminView adminView)
+    public AdminWebPresenter(AdminView adminView)
     {
         this.adminView = adminView;
     }
@@ -49,9 +49,9 @@ public class AdminPresenterImpl implements AdminPresenter
     public boolean showProfile(AdminViewData admin, int currentUserID)
     {
         if(admin.id == currentUserID)
-            adminView.showAdminProfile(new ViewData<AdminViewData>(admin,true));
+            adminView.showAdminProfile(new ViewData<>(admin,true));
         else
-            adminView.showAdminProfile(new ViewData<AdminViewData>(admin,false));
+            adminView.showAdminProfile(new ViewData<>(admin,false));
         return false;
     }
 
