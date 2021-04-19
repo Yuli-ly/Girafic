@@ -6,12 +6,14 @@ import by.Girafic.core.userdata.TeacherModifyData;
 
 public interface AdminInteractor extends TeacherInteractor
 {
-    boolean getStartPage();
-    boolean createStudent(StudentModifyData student);
-    boolean modifyStudent(StudentModifyData student, int userID);
-    boolean createTeacher(TeacherModifyData teacher);
-    boolean modifyTeacher(TeacherModifyData teacher, int userID);
-    boolean createAdmin(AdminModifyData admin);
-    boolean modifyAdmin(AdminModifyData teacher, int userID);
-    boolean removeUser(int userID);
+    void getStartPage();
+    void createStudent(StudentModifyData student);
+    void modifyStudent(StudentModifyData student, int userID);
+    void createTeacher(TeacherModifyData teacher);
+    void modifyTeacher(TeacherModifyData teacher, int userID);
+    void createAdmin(AdminModifyData admin);
+    void modifyAdmin(AdminModifyData teacher, int userID);
+    void removeUser(int userID);
+    void showUserForModification(int userID);
+
 }

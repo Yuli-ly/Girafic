@@ -6,5 +6,5 @@ import by.Girafic.core.userdata.StudentViewModifyData;
 
 public interface AdminPresenter extends TeacherPresenter, ShowStudentAfterModify
 {
-    boolean showAdminAfterModify(AdminViewModifyData admin);
+    void showAdminAfterModify(AdminViewModifyData admin);
 }

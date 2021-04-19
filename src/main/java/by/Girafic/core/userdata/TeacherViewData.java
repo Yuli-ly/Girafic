@@ -5,6 +5,16 @@ public class TeacherViewData extends UserViewData
     public String department;
     public String post;
 
+    public String getDepartment()
+    {
+        return department;
+    }
+
+    public String getPost()
+    {
+        return post;
+    }
+
     public TeacherViewData(int id, FullName fullName, String mail, String faculty, String department, String post)
     {
         super(id, fullName, mail, faculty);

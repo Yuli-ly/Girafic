@@ -11,6 +11,36 @@ public class UserModifyData
     public String mail;
     public String faculty;
 
+    public UserType getUserType()
+    {
+        return userType;
+    }
+
+    public FullName getFullName()
+    {
+        return fullName;
+    }
+
+    public String getLogin()
+    {
+        return login;
+    }
+
+    public String getPassword()
+    {
+        return password;
+    }
+
+    public String getMail()
+    {
+        return mail;
+    }
+
+    public String getFaculty()
+    {
+        return faculty;
+    }
+
     public UserModifyData(UserType userType, FullName fullName, String login, String password, String mail, String faculty)
     {
         this.userType = userType;

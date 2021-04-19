@@ -18,74 +18,63 @@ public class TeacherPresenter implements by.Girafic.core.presenters.TeacherPrese
     }
 
     @Override
-    public boolean showTeacherAfterModify(TeacherViewModifyData teacher)
+    public void showTeacherAfterModify(TeacherViewModifyData teacher)
     {
-         return false;
     }
 
     @Override
-    public boolean showError(String message)
+    public void showError(String message)
     {
-        return false;
     }
 
     @Override
-    public boolean showProfile(StudentViewData student, int currentUserID)
+    public void showProfile(StudentViewData student, int currentUserID)
     {
         view.showStudentProfile(new ViewData<>(student,false));
-        return true;
     }
 
     @Override
-    public boolean showProfile(TeacherViewData teacher, int currentUserID)
+    public void showProfile(TeacherViewData teacher, int currentUserID)
     {
         if(teacher.id == currentUserID)
             view.showTeacherProfile(new ViewData<>(teacher,true));
         else
             view.showTeacherProfile(new ViewData<>(teacher,false));
-        return true;
     }
 
     @Override
-    public boolean showProfile(AdminViewData admin, int currentUserID)
+    public void showProfile(AdminViewData admin, int currentUserID)
     {
         view.showAdminProfile(new ViewData<>(admin,false));
-        return true;
     }
 
     @Override
-    public boolean showCourse(CourseViewData course)
+    public void showCourse(CourseViewData course)
     {
-        return false;
     }
 
     @Override
-    public boolean showSection(SectionViewData section)
+    public void showSection(SectionViewData section)
     {
-        return false;
     }
 
     @Override
-    public boolean showMaterial(MaterialViewData material)
+    public void showMaterial(MaterialViewData material)
     {
-        return false;
     }
 
     @Override
-    public boolean showCourseAfterModify(CourseViewModifyData course)
+    public void showCourseAfterModify(CourseViewModifyData course)
     {
-        return false;
     }
 
     @Override
-    public boolean showSectionAfterModify(SectionViewModifyData section)
+    public void showSectionAfterModify(SectionViewModifyData section)
     {
-        return false;
     }
 
     @Override
-    public boolean showMaterialAfterModify(MaterialViewModifyData material)
+    public void showMaterialAfterModify(MaterialViewModifyData material)
     {
-        return false;
     }
 }

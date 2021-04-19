@@ -1,4 +1,4 @@
-package by.Girafic;
+package by.Girafic.controllers;
 
 import by.Girafic.core.interactors.InteractorAccess;
 

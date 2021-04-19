@@ -9,11 +9,11 @@ import by.Girafic.core.userdata.TeacherViewData;
 
 public interface StudentBasicPresenter
 {
-    boolean showError(String message);
-    boolean showProfile(StudentViewData student,int currentUserID);
-    boolean showProfile(TeacherViewData teacher,int currentUserID);
-    boolean showProfile(AdminViewData admin, int currentUserID);
-    boolean showCourse(CourseViewData course);
-    boolean showSection(SectionViewData section);
-    boolean showMaterial(MaterialViewData material);
+    void showError(String message);
+    void showProfile(StudentViewData student,int currentUserID);
+    void showProfile(TeacherViewData teacher,int currentUserID);
+    void showProfile(AdminViewData admin, int currentUserID);
+    void showCourse(CourseViewData course);
+    void showSection(SectionViewData section);
+    void showMaterial(MaterialViewData material);
 }

@@ -1,5 +1,6 @@
 package by.Girafic.core.userdata;
 import by.Girafic.core.commonds.ModifyConfirmation;
+import static by.Girafic.core.commonds.ModifyConfirmation.*;
 
 public class UserViewModifyData
 {
@@ -10,6 +11,40 @@ public class UserViewModifyData
         this.password = password;
         this.mail = mail;
         this.faculty = faculty;
+    }
+
+    public ModifyConfirmation<FullName> getFullName()
+    {
+        return fullName;
+    }
+
+    public ModifyConfirmation<String> getLogin()
+    {
+        return login;
+    }
+
+    public ModifyConfirmation<String> getPassword()
+    {
+        return password;
+    }
+
+    public ModifyConfirmation<String> getMail()
+    {
+        return mail;
+    }
+
+    public ModifyConfirmation<String> getFaculty()
+    {
+        return faculty;
+    }
+
+    public UserViewModifyData(UserModifyData data)
+    {
+        fullName = successful(data.fullName);
+        login = successful(data.login);
+        password = successful(data.password);
+        mail = successful(data.mail);
+        faculty = successful(data.faculty);
     }
 
     public ModifyConfirmation<FullName> fullName;

@@ -1,10 +1,7 @@
 package by.Girafic.webview;
 
 import by.Girafic.core.commonds.UserType;
-import by.Girafic.core.userdata.AdminViewData;
-import by.Girafic.core.userdata.StudentViewData;
-import by.Girafic.core.userdata.StudentViewModifyData;
-import by.Girafic.core.userdata.TeacherViewData;
+import by.Girafic.core.userdata.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -57,6 +54,33 @@ public class DefaultView
             e.printStackTrace();
         }
     }
+
+    public void showProfileAfterModify(TeacherViewModifyData teacher)
+    {
+        request.setAttribute("UserType",UserType.Teacher);
+        request.setAttribute("Teacher",teacher);
+        try
+        {
+            servlet.getServletContext().getRequestDispatcher("/profileAfterModify.jsp").forward(request,response);
+        } catch (ServletException | IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void showProfileAfterModify(AdminViewModifyData admin)
+    {
+        request.setAttribute("UserType",UserType.Admin);
+        request.setAttribute("Admin",admin);
+        try
+        {
+            servlet.getServletContext().getRequestDispatcher("/profileAfterModify.jsp").forward(request,response);
+        } catch (ServletException | IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
 
     public void showProfile(TeacherViewData teacher, boolean mutable)
     {

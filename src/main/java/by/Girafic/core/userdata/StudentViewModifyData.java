@@ -1,6 +1,8 @@
 package by.Girafic.core.userdata;
 
 import by.Girafic.core.commonds.ModifyConfirmation;
+import static by.Girafic.core.commonds.ModifyConfirmation.*;
+
 
 public class StudentViewModifyData extends UserViewModifyData
 {
@@ -12,9 +14,32 @@ public class StudentViewModifyData extends UserViewModifyData
         this.group = group;
     }
 
+    public StudentViewModifyData(StudentModifyData data)
+    {
+        super(successful(data.fullName),successful(data.login),successful(data.password),successful(data.mail),successful(data.faculty));
+        course = successful(data.course);
+        gpa = successful(data.gpa);
+        group = successful(data.group);
+    }
+
     public ModifyConfirmation<Integer> course;
     public ModifyConfirmation<Double> gpa;
     public ModifyConfirmation<String> group;
+
+    public ModifyConfirmation<Integer> getCourse()
+    {
+        return course;
+    }
+
+    public ModifyConfirmation<Double> getGpa()
+    {
+        return gpa;
+    }
+
+    public ModifyConfirmation<String> getGroup()
+    {
+        return group;
+    }
 
     @Override
     public String toString()

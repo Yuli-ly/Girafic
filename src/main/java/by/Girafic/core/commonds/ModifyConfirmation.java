@@ -20,6 +20,21 @@ public class ModifyConfirmation<T>
     public boolean success;
     public String message;
 
+    public T getField()
+    {
+        return field;
+    }
+
+    public boolean isSuccess()
+    {
+        return success;
+    }
+
+    public String getMessage()
+    {
+        return message;
+    }
+
     @Override
     public String toString()
     {

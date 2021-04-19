@@ -17,6 +17,31 @@ public class StudentModifyData extends UserModifyData
         this.courses = courses;
     }
 
+    public int getCourse()
+    {
+        return course;
+    }
+
+    public double getGpa()
+    {
+        return gpa;
+    }
+
+    public String getGroup()
+    {
+        return group;
+    }
+
+    public String getDepartment()
+    {
+        return department;
+    }
+
+    public int[] getCourses()
+    {
+        return courses;
+    }
+
     public String group;
     public String department;
     public int[] courses;

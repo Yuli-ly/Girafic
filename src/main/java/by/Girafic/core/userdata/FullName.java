@@ -14,6 +14,21 @@ public class FullName
                 '}';
     }
 
+    public String getSurname()
+    {
+        return surname;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public String getPatronymic()
+    {
+        return patronymic;
+    }
+
     public FullName(String surname, String name, String patronymic)
     {
         this.surname = surname;

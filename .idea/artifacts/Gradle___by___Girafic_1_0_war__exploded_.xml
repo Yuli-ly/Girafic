@@ -17,11 +17,11 @@
           <element id="dir-copy" path="$PROJECT_DIR$/build/resources/main" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Gradle: jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:2.0.0" />
           <element id="library" level="project" name="Gradle: jakarta.servlet:jakarta.servlet-api:5.0.0" />
           <element id="library" level="project" name="Gradle: jakarta.el:jakarta.el-api:4.0.0" />
           <element id="library" level="project" name="Gradle: jakarta.xml.bind:jakarta.xml.bind-api:3.0.0" />
           <element id="library" level="project" name="Gradle: com.sun.activation:jakarta.activation:2.0.0" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api/2.0.0/80e6440f16ae9e26e99f3c25cd31b41b477188ad/jakarta.servlet.jsp.jstl-api-2.0.0.jar" />
         </element>
       </element>
     </root>

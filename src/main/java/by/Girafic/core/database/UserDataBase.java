@@ -15,6 +15,9 @@ public interface UserDataBase
     StudentViewData getStudent(int userID);
     TeacherViewData getTeacher(int userID);
     AdminViewData getAdmin(int userID);
+    StudentModifyData getStudentForMod(int userID);
+    TeacherModifyData getTeacherForMod(int userID);
+    AdminModifyData getAdminForMod(int userID);
     boolean createStudent(StudentModifyData student);
     boolean createTeacher(TeacherModifyData teacher);
     boolean createAdmin(AdminModifyData admin);

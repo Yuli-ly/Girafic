@@ -8,7 +8,6 @@ import by.Girafic.core.database.ContentDataBase;
 import by.Girafic.core.database.UserDataBase;
 import by.Girafic.core.userdata.*;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -174,6 +173,30 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     }
 
     @Override
+    public StudentModifyData getStudentForMod(int userID)
+    {
+        if(users.containsKey(userID))
+            return (StudentModifyData) users.get(userID);
+        return null;
+    }
+
+    @Override
+    public TeacherModifyData getTeacherForMod(int userID)
+    {
+        if(users.containsKey(userID))
+            return (TeacherModifyData) users.get(userID);
+        return null;
+    }
+
+    @Override
+    public AdminModifyData getAdminForMod(int userID)
+    {
+        if(users.containsKey(userID))
+            return (AdminModifyData) users.get(userID);
+        return null;
+    }
+
+    @Override
     public boolean createStudent(StudentModifyData student)
     {
         users.put(userAddIndex++,student);
@@ -195,18 +218,33 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     @Override
     public boolean modifyStudent(StudentModifyData student, int userID)
     {
+        if(users.containsKey(userID))
+        {
+            users.replace(userID,student);
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean modifyTeacher(TeacherModifyData teacher, int userID)
     {
+        if(users.containsKey(userID))
+        {
+            users.replace(userID,teacher);
+            return true;
+        }
         return false;
     }
 
     @Override
-    public boolean modifyAdmin(AdminModifyData admin, int id)
+    public boolean modifyAdmin(AdminModifyData admin, int userID)
     {
+        if(users.containsKey(userID))
+        {
+            users.replace(userID,admin);
+            return true;
+        }
         return false;
     }
 

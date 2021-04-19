@@ -1,7 +1,6 @@
 package by.Girafic.core.interactors;
 
 import by.Girafic.core.commonds.LoginData;
-import by.Girafic.core.commonds.ModifyConfirmation;
 import by.Girafic.core.commonds.UserType;
 import by.Girafic.core.contentdata.CourseModifyData;
 import by.Girafic.core.contentdata.MaterialModifyData;
@@ -10,14 +9,7 @@ import by.Girafic.core.database.UserDataBase;
 import by.Girafic.core.presenters.AdminPresenter;
 import by.Girafic.core.presenters.StudentPresenter;
 import by.Girafic.core.presenters.TeacherPresenter;
-import by.Girafic.core.userdata.AdminModifyData;
-import by.Girafic.core.userdata.StudentModifyData;
-import by.Girafic.core.userdata.StudentViewModifyData;
-import by.Girafic.core.userdata.TeacherModifyData;
-import by.Girafic.core.validators.UserValidator;
-
-import static by.Girafic.core.commonds.ModifyConfirmation.successful;
-
+import by.Girafic.core.userdata.*;
 
 public class InteractorAccess
 {
@@ -26,8 +18,8 @@ public class InteractorAccess
 
     private class AdminInteractorImpl implements AdminInteractor
     {
-        private AdminPresenter presenter;
-        private LoginData ld;
+        private final AdminPresenter presenter;
+        private final LoginData ld;
 
         public AdminInteractorImpl(AdminPresenter presenter, LoginData ld)
         {
@@ -36,152 +28,147 @@ public class InteractorAccess
         }
 
         @Override
-        public boolean getStartPage()
+        public void getStartPage()
         {
-            final UserDataBase udb = InteractorAccess.this.userDataBase;
-            int thisUserID = udb.getUserID(ld.login);
-            presenter.showProfile(udb.getAdmin(thisUserID),thisUserID);
-            return true;
+            int thisUserID = userDataBase.getUserID(ld.login);
+            presenter.showProfile(userDataBase.getAdmin(thisUserID),thisUserID);
         }
 
         @Override
-        public boolean getMyCourses()
+        public void getMyCourses()
         {
-            return false;
         }
 
         @Override
-        public boolean getContent()
+        public void getContent()
         {
-            return false;
         }
 
         @Override
-        public boolean getProfile(int userid)
+        public void getProfile(int userid)
         {
-            return false;
         }
 
         @Override
-        public boolean createStudent(StudentModifyData student)
+        public void createStudent(StudentModifyData student)
         {
-            final String suc = "success";
             // проверка каждого поля
             userDataBase.createStudent(student);
-            StudentViewModifyData view = new StudentViewModifyData(
-                    successful(student.fullName),
-                    successful(student.login),
-                    successful(student.password),
-                    successful(student.mail),
-                    successful(student.faculty),
-                    successful(student.course),
-                    successful(student.gpa),
-                    successful(student.group));
-            presenter.showStudentAfterModify(view);
-            return true;
+            presenter.showStudentAfterModify(new StudentViewModifyData(student));
         }
 
         @Override
-        public boolean modifyStudent(StudentModifyData student, int userID)
+        public void modifyStudent(StudentModifyData student, int userID)
         {
-            return false;
+            //проверить все поля
+            userDataBase.modifyStudent(student,userID);
+            presenter.showStudentAfterModify(new StudentViewModifyData(student));
         }
 
         @Override
-        public boolean createTeacher(TeacherModifyData teacher)
+        public void createTeacher(TeacherModifyData teacher)
         {
-            return false;
+            // проверка каждого поля
+            userDataBase.createTeacher(teacher);
+            presenter.showTeacherAfterModify(new TeacherViewModifyData(teacher));
         }
 
         @Override
-        public boolean modifyTeacher(TeacherModifyData teacher, int userID)
+        public void modifyTeacher(TeacherModifyData teacher, int userID)
         {
-            return false;
+            //проверить все поля
+            userDataBase.modifyTeacher(teacher,userID);
+            presenter.showTeacherAfterModify(new TeacherViewModifyData(teacher));
         }
 
         @Override
-        public boolean createAdmin(AdminModifyData admin)
+        public void createAdmin(AdminModifyData admin)
         {
-            return false;
+            // проверка каждого поля
+            userDataBase.createAdmin(admin);
+            presenter.showAdminAfterModify(new AdminViewModifyData(admin));
         }
 
         @Override
-        public boolean modifyAdmin(AdminModifyData teacher, int userID)
+        public void modifyAdmin(AdminModifyData admin, int userID)
         {
-            return false;
+            // проверить все поля
+            userDataBase.modifyAdmin(admin,userID);
+            presenter.showAdminAfterModify(new AdminViewModifyData(admin));
         }
 
         @Override
-        public boolean removeUser(int userID)
+        public void removeUser(int userID)
         {
-            return false;
         }
 
         @Override
-        public boolean createCourse(CourseModifyData course)
+        public void showUserForModification(int userID)
         {
-            return false;
+            final UserDataBase udb = InteractorAccess.this.userDataBase;
+            switch (udb.getUserType(userID))
+            {
+                case Student ->presenter.showStudentAfterModify(new StudentViewModifyData(udb.getStudentForMod(userID)));
+                case Teacher -> presenter.showTeacherAfterModify(new TeacherViewModifyData(udb.getTeacherForMod(userID)));
+                case Admin -> presenter.showAdminAfterModify(new AdminViewModifyData(udb.getAdminForMod(userID)));
+            }
         }
 
         @Override
-        public boolean createMaterial(MaterialModifyData material)
+        public void createCourse(CourseModifyData course)
         {
-            return false;
         }
 
         @Override
-        public boolean modifyMaterial(MaterialModifyData material, int contentID)
+        public void createMaterial(MaterialModifyData material)
         {
-            return false;
         }
 
         @Override
-        public boolean removeContent(int contentID)
+        public void modifyMaterial(MaterialModifyData material, int contentID)
         {
-            return false;
         }
 
         @Override
-        public boolean addContentToSection(int sectionID, int contentID)
+        public void removeContent(int contentID)
         {
-            return false;
         }
 
         @Override
-        public boolean addSectionToCourse(int courseID, int contentID)
+        public void addContentToSection(int sectionID, int contentID)
         {
-            return false;
         }
 
         @Override
-        public boolean removeSectionFromCourse(int courseID, int sectionID)
+        public void addSectionToCourse(int courseID, int contentID)
         {
-            return false;
         }
 
         @Override
-        public boolean removeContentFromSection(int sectionID, int contentID)
+        public void removeSectionFromCourse(int courseID, int sectionID)
         {
-            return false;
         }
 
         @Override
-        public boolean addUserToCourse(int courseID, int userID)
+        public void removeContentFromSection(int sectionID, int contentID)
         {
-            return false;
         }
 
         @Override
-        public boolean removeUserFromCourse(int courseID, int userID)
+        public void addUserToCourse(int courseID, int userID)
         {
-            return false;
+        }
+
+        @Override
+        public void removeUserFromCourse(int courseID, int userID)
+        {
         }
     }
 
     private class TeacherInteractorImpl implements TeacherInteractor
     {
-        private TeacherPresenter presenter;
-        private LoginData ld;
+        private final TeacherPresenter presenter;
+        private final LoginData ld;
 
         public TeacherInteractorImpl(TeacherPresenter presenter, LoginData ld)
         {
@@ -190,97 +177,83 @@ public class InteractorAccess
         }
 
         @Override
-        public boolean getStartPage()
+        public void getStartPage()
         {
             final UserDataBase udb = InteractorAccess.this.userDataBase;
             int thisUserID = udb.getUserID(ld.login);
             presenter.showProfile(udb.getTeacher(thisUserID),thisUserID);
-            return true;
         }
 
         @Override
-        public boolean getMyCourses()
+        public void getMyCourses()
         {
-            return false;
         }
 
         @Override
-        public boolean getContent()
+        public void getContent()
         {
-            return false;
         }
 
         @Override
-        public boolean getProfile(int userid)
+        public void getProfile(int userid)
         {
-            return false;
         }
 
         @Override
-        public boolean createCourse(CourseModifyData course)
+        public void createCourse(CourseModifyData course)
         {
-            return false;
         }
 
         @Override
-        public boolean createMaterial(MaterialModifyData material)
+        public void createMaterial(MaterialModifyData material)
         {
-            return false;
         }
 
         @Override
-        public boolean modifyMaterial(MaterialModifyData material, int contentID)
+        public void modifyMaterial(MaterialModifyData material, int contentID)
         {
-            return false;
         }
 
         @Override
-        public boolean removeContent(int contentID)
+        public void removeContent(int contentID)
         {
-            return false;
         }
 
         @Override
-        public boolean addContentToSection(int sectionID, int contentID)
+        public void addContentToSection(int sectionID, int contentID)
         {
-            return false;
         }
 
         @Override
-        public boolean addSectionToCourse(int courseID, int contentID)
+        public void addSectionToCourse(int courseID, int contentID)
         {
-            return false;
         }
 
         @Override
-        public boolean removeSectionFromCourse(int courseID, int sectionID)
+        public void removeSectionFromCourse(int courseID, int sectionID)
         {
-            return false;
         }
 
         @Override
-        public boolean removeContentFromSection(int sectionID, int contentID)
+        public void removeContentFromSection(int sectionID, int contentID)
         {
-            return false;
         }
 
         @Override
-        public boolean addUserToCourse(int courseID, int userID)
+        public void addUserToCourse(int courseID, int userID)
         {
-            return false;
         }
 
         @Override
-        public boolean removeUserFromCourse(int courseID, int userID)
+        public void removeUserFromCourse(int courseID, int userID)
         {
-            return false;
         }
     }
 
     private class StudentInteractorImpl implements StudentInteractor
     {
-        private StudentPresenter presenter;
-        private LoginData ld;
+        private final StudentPresenter presenter;
+        private final LoginData ld;
 
         public StudentInteractorImpl(StudentPresenter presenter, LoginData ld)
         {
@@ -289,28 +262,25 @@ public class InteractorAccess
         }
 
         @Override
-        public boolean getStartPage()
+        public void getStartPage()
         {
             final UserDataBase udb = InteractorAccess.this.userDataBase;
             int thisUserID = udb.getUserID(ld.login);
             presenter.showProfile(udb.getStudent(thisUserID),thisUserID);
-            return true;
         }
 
         @Override
-        public boolean getMyCourses()
+        public void getMyCourses()
         {
-            return false;
         }
 
         @Override
-        public boolean getContent()
+        public void getContent()
         {
-            return false;
         }
 
         @Override
-        public boolean getProfile(int userid)
+        public void getProfile(int userid)
         {
             final UserDataBase udb = InteractorAccess.this.userDataBase;
             int thisUserID = udb.getUserID(ld.login);
@@ -323,7 +293,6 @@ public class InteractorAccess
 
                 case Admin -> presenter.showProfile(udb.getAdmin(userid),thisUserID);
             }
-            return true;
         }
     }
 

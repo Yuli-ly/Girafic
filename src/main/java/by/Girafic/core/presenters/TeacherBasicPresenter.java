@@ -6,7 +6,7 @@ import by.Girafic.core.contentdata.SectionViewModifyData;
 
 public interface TeacherBasicPresenter extends StudentBasicPresenter
 {
-    boolean showCourseAfterModify(CourseViewModifyData course);
-    boolean showSectionAfterModify(SectionViewModifyData section);
-    boolean showMaterialAfterModify(MaterialViewModifyData material);
+    void showCourseAfterModify(CourseViewModifyData course);
+    void showSectionAfterModify(SectionViewModifyData section);
+    void showMaterialAfterModify(MaterialViewModifyData material);
 }

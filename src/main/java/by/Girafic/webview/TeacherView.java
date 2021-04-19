@@ -24,65 +24,61 @@ public class TeacherView implements by.Girafic.core.view.TeacherView
     }
 
     @Override
-    public boolean showTeacherAfterModify(TeacherViewModifyData teacher)
+    public void showTeacherAfterModify(TeacherViewModifyData teacher)
     {
-        return false;
     }
 
     @Override
-    public boolean showStudentProfile(ViewData<StudentViewData> student)
+    public void showStudentProfile(ViewData<StudentViewData> student)
     {
         new DefaultView(request,response,servlet).showProfile(student.field,student.changeability);
-        return false;
     }
 
     @Override
-    public boolean showTeacherProfile(ViewData<TeacherViewData> teacher)
+    public void showTeacherProfile(ViewData<TeacherViewData> teacher)
     {
         new DefaultView(request,response,servlet).showProfile(teacher.field,teacher.changeability);
-        return false;
     }
 
     @Override
-    public boolean showAdminProfile(ViewData<AdminViewData> admin)
+    public void showAdminProfile(ViewData<AdminViewData> admin)
     {
         new DefaultView(request,response,servlet).showProfile(admin.field,admin.changeability);
-        return false;
     }
 
     @Override
-    public boolean showCourse(ViewData<CourseViewData> course)
+    public void showCourse(ViewData<CourseViewData> course)
     {
-        return false;
     }
 
     @Override
-    public boolean showMaterial(ViewData<MaterialViewData> material)
+    public void showMaterial(ViewData<MaterialViewData> material)
     {
-        return false;
     }
 
     @Override
-    public boolean showSection(ViewData<SectionViewData> section)
+    public void showSection(ViewData<SectionViewData> section)
     {
-        return false;
     }
 
     @Override
-    public boolean showCourseAfterModify(CourseViewModifyData course)
+    public void showError(String message)
     {
-        return false;
+        new DefaultView(request,response,servlet).showError(message);
     }
 
     @Override
-    public boolean showSectionAfterModify(SectionViewModifyData section)
+    public void showCourseAfterModify(CourseViewModifyData course)
     {
-        return false;
     }
 
     @Override
-    public boolean showMaterialAfterModify(SectionViewModifyData material)
+    public void showSectionAfterModify(SectionViewModifyData section)
     {
-        return false;
+    }
+
+    @Override
+    public void showMaterialAfterModify(SectionViewModifyData material)
+    {
     }
 }

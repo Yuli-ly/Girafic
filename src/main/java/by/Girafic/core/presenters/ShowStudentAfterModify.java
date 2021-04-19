@@ -4,5 +4,5 @@ import by.Girafic.core.userdata.StudentViewModifyData;
 
 public interface ShowStudentAfterModify
 {
-    public boolean showStudentAfterModify(StudentViewModifyData student);
+    void showStudentAfterModify(StudentViewModifyData student);
 }

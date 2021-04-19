@@ -10,14 +10,14 @@ import by.Girafic.core.presenters.TeacherPresenter;
 
 public interface TeacherInteractor extends StudentInteractor
 {
-    boolean createCourse(CourseModifyData course);
-    boolean createMaterial(MaterialModifyData material);
-    boolean modifyMaterial(MaterialModifyData material, int contentID);
-    boolean removeContent(int contentID);
-    boolean addContentToSection(int sectionID,int contentID);
-    boolean addSectionToCourse(int courseID,int contentID);
-    boolean removeSectionFromCourse(int courseID, int sectionID);
-    boolean removeContentFromSection(int sectionID, int contentID);
-    boolean addUserToCourse(int courseID,int userID);
-    boolean removeUserFromCourse(int courseID, int userID);
+    void createCourse(CourseModifyData course);
+    void createMaterial(MaterialModifyData material);
+    void modifyMaterial(MaterialModifyData material, int contentID);
+    void removeContent(int contentID);
+    void addContentToSection(int sectionID,int contentID);
+    void addSectionToCourse(int courseID,int contentID);
+    void removeSectionFromCourse(int courseID, int sectionID);
+    void removeContentFromSection(int sectionID, int contentID);
+    void addUserToCourse(int courseID,int userID);
+    void removeUserFromCourse(int courseID, int userID);
 }

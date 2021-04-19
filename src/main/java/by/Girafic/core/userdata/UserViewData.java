@@ -7,6 +7,26 @@ public class UserViewData
     public String mail;
     public String faculty;
 
+    public int getId()
+    {
+        return id;
+    }
+
+    public FullName getFullName()
+    {
+        return fullName;
+    }
+
+    public String getMail()
+    {
+        return mail;
+    }
+
+    public String getFaculty()
+    {
+        return faculty;
+    }
+
     @Override
     public String toString()
     {

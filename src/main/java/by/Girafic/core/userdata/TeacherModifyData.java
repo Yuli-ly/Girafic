@@ -4,6 +4,20 @@ import by.Girafic.core.commonds.UserType;
 
 public class TeacherModifyData extends UserModifyData
 {
+    public String getDepartment()
+    {
+        return department;
+    }
+
+    public String getPost()
+    {
+        return post;
+    }
+
+    public int[] getCourses()
+    {
+        return courses;
+    }
 
     public TeacherModifyData(UserType userType, FullName fullName, String login, String password, String mail, String faculty, String department, String post, int[] courses)
     {

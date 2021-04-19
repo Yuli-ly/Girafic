@@ -20,56 +20,48 @@ public class StudentPresenter implements by.Girafic.core.presenters.StudentPrese
     }
 
     @Override
-    public boolean showStudentAfterModify(StudentViewModifyData student)
+    public void showStudentAfterModify(StudentViewModifyData student)
     {
-        return false;
     }
 
     @Override
-    public boolean showError(String message)
+    public void showError(String message)
     {
-        return false;
     }
 
     @Override
-    public boolean showProfile(StudentViewData student, int currentUserID)
+    public void showProfile(StudentViewData student, int currentUserID)
     {
         if(student.id == currentUserID)
             view.showStudentProfile(new ViewData<>(student,true));
         else
             view.showStudentProfile(new ViewData<>(student,false));
-        return true;
     }
 
     @Override
-    public boolean showProfile(TeacherViewData teacher, int currentUserID)
+    public void showProfile(TeacherViewData teacher, int currentUserID)
     {
         view.showTeacherProfile(new ViewData<>(teacher,false));
-        return true;
     }
 
     @Override
-    public boolean showProfile(AdminViewData admin, int currentUserID)
+    public void showProfile(AdminViewData admin, int currentUserID)
     {
         view.showAdminProfile(new ViewData<>(admin,false));
-        return true;
     }
 
     @Override
-    public boolean showCourse(CourseViewData course)
+    public void showCourse(CourseViewData course)
     {
-        return false;
     }
 
     @Override
-    public boolean showSection(SectionViewData section)
+    public void showSection(SectionViewData section)
     {
-        return false;
     }
 
     @Override
-    public boolean showMaterial(MaterialViewData material)
+    public void showMaterial(MaterialViewData material)
     {
-        return false;
     }
 }

@@ -26,47 +26,46 @@ public class StudentView implements by.Girafic.core.view.StudentView
     }
 
     @Override
-    public boolean showStudentAfterModify(StudentViewModifyData student)
+    public void showStudentAfterModify(StudentViewModifyData student)
     {
-        return false;
     }
 
     @Override
-    public boolean showStudentProfile(ViewData<StudentViewData> student)
+    public void showStudentProfile(ViewData<StudentViewData> student)
     {
         new DefaultView(request,response,servlet).showProfile(student.field,student.changeability);
-        return false;
     }
 
     @Override
-    public boolean showTeacherProfile(ViewData<TeacherViewData> teacher)
+    public void showTeacherProfile(ViewData<TeacherViewData> teacher)
     {
         new DefaultView(request,response,servlet).showProfile(teacher.field,teacher.changeability);
-        return false;
     }
 
     @Override
-    public boolean showAdminProfile(ViewData<AdminViewData> admin)
+    public void showAdminProfile(ViewData<AdminViewData> admin)
     {
         new DefaultView(request,response,servlet).showProfile(admin.field,admin.changeability);
-        return false;
     }
 
     @Override
-    public boolean showCourse(ViewData<CourseViewData> course)
+    public void showCourse(ViewData<CourseViewData> course)
     {
-        return false;
     }
 
     @Override
-    public boolean showMaterial(ViewData<MaterialViewData> material)
+    public void showMaterial(ViewData<MaterialViewData> material)
     {
-        return false;
     }
 
     @Override
-    public boolean showSection(ViewData<SectionViewData> section)
+    public void showSection(ViewData<SectionViewData> section)
     {
-        return false;
+    }
+
+    @Override
+    public void showError(String message)
+    {
+        new DefaultView(request,response,servlet).showError(message);
     }
 }
