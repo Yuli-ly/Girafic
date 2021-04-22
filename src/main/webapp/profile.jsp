@@ -4,7 +4,8 @@
 <%--@elvariable id="login" type="java.lang.String"--%>
 <%--@elvariable id="password" type="java.lang.String"--%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<% request.setCharacterEncoding("UTF-8"); %>
+<%@ taglib prefix="c" uri="https://java.sun.com/jsp/jstl/core" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -32,6 +33,7 @@
         <input type="text" name="password" value="${password}">
         <input type="text" name="id">
         <input type="submit" name="Изменить пользователя">
+
     </form>
 </body>
 </html>
