@@ -27,6 +27,14 @@ public class TeacherModifyData extends UserModifyData
         this.courses = courses;
     }
 
+    public TeacherModifyData(UserModifyData data,String department,String post,int[] courses)
+    {
+        super(data);
+        this.department = department;
+        this.post = post;
+        this.courses = courses;
+    }
+
     public String department;
     public String post;
     public int[] courses;

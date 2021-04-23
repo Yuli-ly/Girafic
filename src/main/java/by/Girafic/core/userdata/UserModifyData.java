@@ -50,4 +50,13 @@ public class UserModifyData
         this.mail = mail;
         this.faculty = faculty;
     }
+    public UserModifyData(UserModifyData data)
+    {
+        this.userType = data.userType;
+        this.fullName = data.fullName;
+        this.login = data.login;
+        this.password = data.password;
+        this.mail = data.mail;
+        this.faculty = data.faculty;
+    }
 }

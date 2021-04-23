@@ -9,4 +9,8 @@ public class AdminModifyData extends UserModifyData
     {
         super(userType, fullName, login, password, mail, faculty);
     }
+    public AdminModifyData(UserModifyData data)
+    {
+        super(data);
+    }
 }

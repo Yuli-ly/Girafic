@@ -1,6 +1,7 @@
 package by.Girafic.controllers.servlets;
 
 import by.Girafic.controllers.util.GlobalValuesAccess;
+import by.Girafic.controllers.util.RequestParser;
 import by.Girafic.core.commonds.LoginData;
 import by.Girafic.core.interactors.InteractorAccess;
 import by.Girafic.webview.AdminView;
@@ -20,21 +21,15 @@ public class ProfileServlet extends HttpServlet
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     {
-        response.setContentType("text/html");
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-        int id = Integer.parseInt(request.getParameter("id"));
-
-        LoginData ld = new LoginData(login, password);
-
-        request.setAttribute("login", login);
-        request.setAttribute("password", password);
+        RequestParser parser = new RequestParser(request);
+        int id = parser.takeID();
+        LoginData ld = parser.takeLoginData();
+        parser.setLoginData(ld);
         try
         {
-
             if (interactorAccess.checkExistence(id) && interactorAccess.checkExistence(ld))
             {
-                switch (interactorAccess.getUserType(login))
+                switch (interactorAccess.getUserType(ld.login))
                 {
                     case Student -> interactorAccess.studentLogin(ld, new StudentView(request, response, this)).getProfile(id);
                     case Teacher -> interactorAccess.teacherLogin(ld, new TeacherView(request, response, this)).getProfile(id);
@@ -42,7 +37,7 @@ public class ProfileServlet extends HttpServlet
                 }
             } else
             {
-                new DefaultView(request, response, this).showError("Неверный логин или пароль, или запрашиваемого пользователя не существует");
+                new DefaultView(request, response, this).showError("Invalid username or password, or the requested user does not exist");
             }
         } catch (Exception e)
         {
