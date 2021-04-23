@@ -1,26 +1,23 @@
 package by.Girafic.webview;
 
-import by.Girafic.core.commonds.UserType;
 import by.Girafic.core.contentdata.CourseViewData;
 import by.Girafic.core.contentdata.MaterialViewData;
 import by.Girafic.core.contentdata.SectionViewData;
 import by.Girafic.core.userdata.AdminViewData;
 import by.Girafic.core.userdata.StudentViewData;
-import by.Girafic.core.userdata.StudentViewModifyData;
 import by.Girafic.core.userdata.TeacherViewData;
-import by.Girafic.core.view.ViewData;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
+
 
 public class StudentView implements by.Girafic.core.view.StudentView
 {
-    private HttpServletRequest request;
-    private HttpServletResponse response;
-    private HttpServlet servlet;
+    protected final HttpServletRequest request;
+    protected final HttpServletResponse response;
+    protected final HttpServlet servlet;
 
     public StudentView(HttpServletRequest request, HttpServletResponse response, HttpServlet servlet)
     {
@@ -28,51 +25,56 @@ public class StudentView implements by.Girafic.core.view.StudentView
         this.response = response;
         this.servlet = servlet;
     }
-
     @Override
-    public void showStudentAfterModify(StudentViewModifyData student)
+    public void showProfile(StudentViewData student, boolean mutable) throws ServletException, IOException
     {
+        request.setAttribute("Student",student);
+        request.setAttribute("mutable",mutable);
+        servlet.getServletContext().getRequestDispatcher("/studentProfile.jsp").forward(request,response);
     }
 
     @Override
-    public void showStudentProfile(ViewData<StudentViewData> student)
+    public void showProfile(TeacherViewData teacher,boolean mutable) throws ServletException, IOException
     {
-        new DefaultView(request,response,servlet).showProfile(student.field,student.changeability);
+        request.setAttribute("Teacher",teacher);
+        request.setAttribute("mutable",mutable);
+        servlet.getServletContext().getRequestDispatcher("/teacherProfile.jsp").forward(request,response);
     }
 
     @Override
-    public void showTeacherProfile(ViewData<TeacherViewData> teacher)
+    public void showProfile(AdminViewData admin,boolean mutable) throws ServletException, IOException
     {
-        new DefaultView(request,response,servlet).showProfile(teacher.field,teacher.changeability);
+        request.setAttribute("Admin",admin);
+        request.setAttribute("mutable",mutable);
+        servlet.getServletContext().getRequestDispatcher("/adminProfile.jsp").forward(request,response);
+    }
+    @Override
+    public void showContent(CourseViewData course,boolean mutable) throws ServletException, IOException
+    {
+        request.setAttribute("Course",course);
+        request.setAttribute("mutable",mutable);
+        servlet.getServletContext().getRequestDispatcher("/section.jsp").forward(request,response);
     }
 
     @Override
-    public void showAdminProfile(ViewData<AdminViewData> admin)
+    public void showContent(MaterialViewData material,boolean mutable) throws ServletException, IOException
     {
-        new DefaultView(request,response,servlet).showProfile(admin.field,admin.changeability);
+        request.setAttribute("Material",material);
+        request.setAttribute("mutable",mutable);
+        servlet.getServletContext().getRequestDispatcher("/material.jsp").forward(request,response);
     }
 
     @Override
-    public void showCourse(ViewData<CourseViewData> course)
+    public void showContent(SectionViewData section,boolean mutable) throws ServletException, IOException
     {
-        new DefaultView(request,response,servlet).showCourse(course);
+        request.setAttribute("Section",section);
+        request.setAttribute("mutable",mutable);
+        servlet.getServletContext().getRequestDispatcher("/section.jsp").forward(request,response);
     }
 
-    @Override
-    public void showMaterial(ViewData<MaterialViewData> material)
+    public void showError(String message) throws ServletException, IOException
     {
-        new DefaultView(request,response,servlet).showMaterial(material);
-    }
-
-    @Override
-    public void showSection(ViewData<SectionViewData> section)
-    {
-        new DefaultView(request,response,servlet).showSection(section);
-    }
-
-    @Override
-    public void showError(String message)
-    {
-        new DefaultView(request,response,servlet).showError(message);
+        request.setAttribute("Message",message);
+        servlet.getServletContext().getRequestDispatcher("/error.jsp").forward(request,response);
     }
 }

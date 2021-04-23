@@ -4,13 +4,16 @@ import by.Girafic.core.commonds.LoginData;
 import by.Girafic.core.commonds.UserType;
 import by.Girafic.core.contentdata.CourseModifyData;
 import by.Girafic.core.contentdata.MaterialModifyData;
+import by.Girafic.core.contentdata.SectionModifyData;
 import by.Girafic.core.database.ContentDataBase;
 import by.Girafic.core.database.UserDataBase;
-import by.Girafic.core.presenters.AdminPresenter;
-import by.Girafic.core.presenters.StudentBasicPresenter;
-import by.Girafic.core.presenters.StudentPresenter;
-import by.Girafic.core.presenters.TeacherPresenter;
 import by.Girafic.core.userdata.*;
+import by.Girafic.webview.AdminView;
+import by.Girafic.webview.StudentView;
+import by.Girafic.webview.TeacherView;
+import jakarta.servlet.ServletException;
+
+import java.io.IOException;
 
 public class InteractorAccess
 {
@@ -19,7 +22,7 @@ public class InteractorAccess
     private final DefaultInteractor defaultInteractor = new DefaultInteractor();
     private class DefaultInteractor
     {
-        public void showContent(StudentBasicPresenter presenter, int contentID, String login)
+        public void showContent(StudentView view, int contentID, String login) throws ServletException, IOException
         {
             if (contentDataBase.checkContentExistence(contentID))
             {
@@ -29,9 +32,9 @@ public class InteractorAccess
                     case Student -> {
                         switch (contentDataBase.getContentType(contentID))
                         {
-                            case Course -> presenter.showCourse(contentDataBase.getCourse(contentID),false);
-                            case Section -> presenter.showSection(contentDataBase.getSection(contentID),false);
-                            case Material -> presenter.showMaterial(contentDataBase.getMaterial(contentID),false);
+                            case Course -> view.showContent(contentDataBase.getCourse(contentID),false);
+                            case Section -> view.showContent(contentDataBase.getSection(contentID),false);
+                            case Material -> view.showContent(contentDataBase.getMaterial(contentID),false);
                         }
                     }
                     case Teacher, Admin -> {
@@ -39,307 +42,242 @@ public class InteractorAccess
                         // последующее разделение switch
                         switch (contentDataBase.getContentType(contentID))
                         {
-                            case Course -> presenter.showCourse(contentDataBase.getCourse(contentID),true);
-                            case Section -> presenter.showSection(contentDataBase.getSection(contentID),true);
-                            case Material -> presenter.showMaterial(contentDataBase.getMaterial(contentID),true);
+                            case Course -> view.showContent(contentDataBase.getCourse(contentID),true);
+                            case Section -> view.showContent(contentDataBase.getSection(contentID),true);
+                            case Material -> view.showContent(contentDataBase.getMaterial(contentID),true);
                         }
                     }
                 }
 
             } else
-                presenter.showError("No content " + contentID);
+                view.showError("No content " + contentID);
         }
 
-        public void showProfile(StudentBasicPresenter presenter, int userID, String login)
+        public void showProfile(StudentView view, int userID, String login) throws ServletException, IOException
         {
             int thisUserID = userDataBase.getUserID(login);
             if (userDataBase.checkUserExistence(userID))
             {
                 switch (userDataBase.getUserType(userID))
                 {
-
-                    case Student -> presenter.showProfile(userDataBase.getStudent(userID), thisUserID);
-
-                    case Teacher -> presenter.showProfile(userDataBase.getTeacher(userID), thisUserID);
-
-                    case Admin -> presenter.showProfile(userDataBase.getAdmin(userID), thisUserID);
+                    case Student -> view.showProfile(userDataBase.getStudent(userID), thisUserID==userID);
+                    case Teacher -> view.showProfile(userDataBase.getTeacher(userID), thisUserID==userID);
+                    case Admin -> view.showProfile(userDataBase.getAdmin(userID), thisUserID==userID);
                 }
             } else
-                presenter.showError("No user " + userID);
+                view.showError("No user " + userID);
         }
     }
 
-
-    private class AdminInteractorImpl implements AdminInteractor
+    private class AdminInteractorImpl extends TeacherInteractorImpl implements AdminInteractor
     {
-        private final AdminPresenter presenter;
-        private final LoginData ld;
+        private final AdminView view;
 
-        public AdminInteractorImpl(AdminPresenter presenter, LoginData ld)
+        public AdminInteractorImpl(AdminView view, LoginData ld)
         {
-            this.presenter = presenter;
-            this.ld = ld;
+            super(view,ld);
+            this.view = view;
         }
 
         @Override
-        public void getStartPage()
+        public void getStartPage() throws ServletException, IOException
         {
             int thisUserID = userDataBase.getUserID(ld.login);
-            presenter.showProfile(userDataBase.getAdmin(thisUserID),thisUserID);
+            view.showProfile(userDataBase.getAdmin(thisUserID),true);
         }
 
         @Override
-        public void getMyCourses()
+        public void getContent(int contentID) throws ServletException, IOException
         {
+            defaultInteractor.showContent(view,contentID, ld.login);
         }
 
         @Override
-        public void getContent(int contentID)
+        public void getProfile(int userid) throws ServletException, IOException
         {
-            defaultInteractor.showContent(presenter,contentID, ld.login);
+            defaultInteractor.showProfile(view,userid, ld.login);
         }
 
         @Override
-        public void getProfile(int userid)
-        {
-            defaultInteractor.showProfile(presenter,userid, ld.login);
-        }
-
-        @Override
-        public void createStudent(StudentModifyData student)
+        public void createUser(StudentModifyData student)
         {
             // проверка каждого поля
             userDataBase.createStudent(student);
-            presenter.showStudentAfterModify(new StudentViewModifyData(student));
+            view.showUserAfterModify(new StudentViewModifyData(student));
         }
 
         @Override
-        public void modifyStudent(StudentModifyData student, int userID)
+        public void modifyUser(StudentModifyData student, int userID)
         {
             //проверить все поля
             userDataBase.modifyStudent(student,userID);
-            presenter.showStudentAfterModify(new StudentViewModifyData(student));
+            view.showUserAfterModify(new StudentViewModifyData(student));
         }
 
         @Override
-        public void createTeacher(TeacherModifyData teacher)
+        public void createUser(TeacherModifyData teacher)
         {
             // проверка каждого поля
             userDataBase.createTeacher(teacher);
-            presenter.showTeacherAfterModify(new TeacherViewModifyData(teacher));
+            view.showUserAfterModify(new TeacherViewModifyData(teacher));
         }
 
         @Override
-        public void modifyTeacher(TeacherModifyData teacher, int userID)
+        public void modifyUser(TeacherModifyData teacher, int userID)
         {
             //проверить все поля
             userDataBase.modifyTeacher(teacher,userID);
-            presenter.showTeacherAfterModify(new TeacherViewModifyData(teacher));
+            view.showUserAfterModify(new TeacherViewModifyData(teacher));
         }
 
         @Override
-        public void createAdmin(AdminModifyData admin)
+        public void createUser(AdminModifyData admin) throws ServletException, IOException
         {
             // проверка каждого поля
             userDataBase.createAdmin(admin);
-            presenter.showAdminAfterModify(new AdminViewModifyData(admin));
+            view.showUserAfterModify(new AdminViewModifyData(admin));
         }
 
         @Override
-        public void modifyAdmin(AdminModifyData admin, int userID)
+        public void modifyUser(AdminModifyData admin, int userID) throws ServletException, IOException
         {
             // проверить все поля
             userDataBase.modifyAdmin(admin,userID);
-            presenter.showAdminAfterModify(new AdminViewModifyData(admin));
+            view.showUserAfterModify(new AdminViewModifyData(admin));
         }
 
         @Override
         public void removeUser(int userID)
         {
+            userDataBase.removeUser(userID);
         }
 
         @Override
-        public void showUserForModification(int userID)
+        public void showUserForModification(int userID) throws ServletException, IOException
         {
             final UserDataBase udb = InteractorAccess.this.userDataBase;
             switch (udb.getUserType(userID))
             {
-                case Student ->presenter.showStudentAfterModify(new StudentViewModifyData(udb.getStudentForMod(userID)));
-                case Teacher -> presenter.showTeacherAfterModify(new TeacherViewModifyData(udb.getTeacherForMod(userID)));
-                case Admin -> presenter.showAdminAfterModify(new AdminViewModifyData(udb.getAdminForMod(userID)));
+                case Student ->view.showUserAfterModify(new StudentViewModifyData(udb.getStudentForMod(userID)));
+                case Teacher -> view.showUserAfterModify(new TeacherViewModifyData(udb.getTeacherForMod(userID)));
+                case Admin -> view.showUserAfterModify(new AdminViewModifyData(udb.getAdminForMod(userID)));
             }
         }
 
-        @Override
-        public void createCourse(CourseModifyData course)
-        {
-        }
-
-        @Override
-        public void createMaterial(MaterialModifyData material)
-        {
-        }
-
-        @Override
-        public void modifyMaterial(MaterialModifyData material, int contentID)
-        {
-        }
-
-        @Override
-        public void removeContent(int contentID)
-        {
-        }
-
-        @Override
-        public void addContentToSection(int sectionID, int contentID)
-        {
-        }
-
-        @Override
-        public void addSectionToCourse(int courseID, int contentID)
-        {
-        }
-
-        @Override
-        public void removeSectionFromCourse(int courseID, int sectionID)
-        {
-        }
-
-        @Override
-        public void removeContentFromSection(int sectionID, int contentID)
-        {
-        }
-
-        @Override
-        public void addUserToCourse(int courseID, int userID)
-        {
-        }
-
-        @Override
-        public void removeUserFromCourse(int courseID, int userID)
-        {
-        }
     }
 
-    private class TeacherInteractorImpl implements TeacherInteractor
+    private class TeacherInteractorImpl extends StudentInteractorImpl implements TeacherInteractor
     {
-        private final TeacherPresenter presenter;
-        private final LoginData ld;
+        private final TeacherView view;
 
-        public TeacherInteractorImpl(TeacherPresenter presenter, LoginData ld)
+        public TeacherInteractorImpl(TeacherView view, LoginData ld)
         {
-            this.presenter = presenter;
-            this.ld = ld;
+            super(view,ld);
+            this.view = view;
         }
 
         @Override
-        public void getStartPage()
+        public void getStartPage() throws ServletException, IOException
         {
             int thisUserID = userDataBase.getUserID(ld.login);
-            presenter.showProfile(userDataBase.getTeacher(thisUserID),thisUserID);
+            view.showProfile(userDataBase.getTeacher(thisUserID),false);
         }
 
         @Override
-        public void getMyCourses()
+        public void createContent(CourseModifyData course) throws Exception
         {
+
         }
 
         @Override
-        public void getContent(int contentID)
+        public void createContent(MaterialModifyData material) throws Exception
         {
-            defaultInteractor.showContent(presenter,contentID, ld.login);
+
         }
 
         @Override
-        public void getProfile(int userid)
+        public void createContent(SectionModifyData section) throws Exception
         {
-            defaultInteractor.showProfile(presenter,userid,ld.login);
+
         }
 
         @Override
-        public void createCourse(CourseModifyData course)
+        public void modifyContent(MaterialModifyData material, int contentID) throws Exception
         {
+
         }
 
         @Override
-        public void createMaterial(MaterialModifyData material)
+        public void removeContent(int contentID) throws Exception
         {
+
         }
 
         @Override
-        public void modifyMaterial(MaterialModifyData material, int contentID)
+        public void addContentToSection(int sectionID, int contentID) throws Exception
         {
+
         }
 
         @Override
-        public void removeContent(int contentID)
+        public void addSectionToCourse(int courseID, int contentID) throws Exception
         {
+
         }
 
         @Override
-        public void addContentToSection(int sectionID, int contentID)
+        public void removeSectionFromCourse(int courseID, int sectionID) throws Exception
         {
+
         }
 
         @Override
-        public void addSectionToCourse(int courseID, int contentID)
+        public void removeContentFromSection(int sectionID, int contentID) throws Exception
         {
+
         }
 
         @Override
-        public void removeSectionFromCourse(int courseID, int sectionID)
+        public void addUserToCourse(int courseID, int userID) throws Exception
         {
+
         }
 
         @Override
-        public void removeContentFromSection(int sectionID, int contentID)
+        public void removeUserFromCourse(int courseID, int userID) throws Exception
         {
-        }
 
-        @Override
-        public void addUserToCourse(int courseID, int userID)
-        {
-        }
-
-        @Override
-        public void removeUserFromCourse(int courseID, int userID)
-        {
         }
     }
 
     private class StudentInteractorImpl implements StudentInteractor
     {
-        private final StudentPresenter presenter;
-        private final LoginData ld;
+        private final StudentView view;
+        protected final LoginData ld;
 
-        public StudentInteractorImpl(StudentPresenter presenter, LoginData ld)
+        public StudentInteractorImpl(StudentView view, LoginData ld)
         {
-            this.presenter = presenter;
+            this.view = view;
             this.ld = ld;
         }
 
         @Override
-        public void getStartPage()
+        public void getStartPage() throws ServletException, IOException
         {
             int thisUserID = userDataBase.getUserID(ld.login);
-            presenter.showProfile(userDataBase.getStudent(thisUserID),thisUserID);
+            view.showProfile(userDataBase.getStudent(thisUserID),false);
         }
 
         @Override
-        public void getMyCourses()
+        public void getContent(int contentID) throws ServletException, IOException
         {
+            defaultInteractor.showContent(view,contentID, ld.login);
         }
 
         @Override
-        public void getContent(int contentID)
+        public void getProfile(int userid) throws ServletException, IOException
         {
-            defaultInteractor.showContent(presenter,contentID, ld.login);
-        }
-
-        @Override
-        public void getProfile(int userid)
-        {
-            defaultInteractor.showProfile(presenter,userid, ld.login);
+            defaultInteractor.showProfile(view,userid, ld.login);
         }
     }
 
@@ -348,15 +286,15 @@ public class InteractorAccess
         this.contentDataBase = contentDataBase;
         this.userDataBase = userDataBase;
     }
-    public StudentInteractor studentLogin(LoginData ld,StudentPresenter presenter)
+    public StudentInteractor studentLogin(LoginData ld,StudentView presenter)
     {
         return new StudentInteractorImpl(presenter,ld);
     }
-    public TeacherInteractor teacherLogin(LoginData ld,TeacherPresenter presenter)
+    public TeacherInteractor teacherLogin(LoginData ld,TeacherView presenter)
     {
         return new TeacherInteractorImpl(presenter,ld);
     }
-    public AdminInteractor adminLogin(LoginData ld,AdminPresenter presenter)
+    public AdminInteractor adminLogin(LoginData ld,AdminView presenter)
     {
         return new AdminInteractorImpl(presenter,ld);
     }

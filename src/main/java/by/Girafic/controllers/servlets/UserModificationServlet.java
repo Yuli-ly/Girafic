@@ -6,40 +6,46 @@ import by.Girafic.core.commonds.UserType;
 import by.Girafic.core.interactors.InteractorAccess;
 import by.Girafic.core.userdata.FullName;
 import by.Girafic.core.userdata.StudentModifyData;
-import by.Girafic.webpresenters.AdminPresenter;
-
 import by.Girafic.webview.AdminView;
 import by.Girafic.webview.DefaultView;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.IOException;
+
 @WebServlet(name = "userModificationServlet", value = "/usermodification")
 public class UserModificationServlet extends HttpServlet
 {
     private final InteractorAccess interactorAccess = GlobalValuesAccess.getValues().interactorAccess;
+
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         response.setContentType("text/html");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         int userModID = Integer.parseInt(request.getParameter("id"));
-        LoginData ld = new LoginData(login,password);
+        LoginData ld = new LoginData(login, password);
 
-        request.setAttribute("login",login);
-        request.setAttribute("password",password);
-        request.setAttribute("id",userModID);
-        if(interactorAccess.checkExistence(ld))
+        request.setAttribute("login", login);
+        request.setAttribute("password", password);
+        request.setAttribute("id", userModID);
+        try
         {
-            interactorAccess.adminLogin(ld,new AdminPresenter(new AdminView(request,response,this))).showUserForModification(userModID);
+            if (interactorAccess.checkExistence(ld))
+                interactorAccess.adminLogin(ld, new AdminView(request, response, this)).showUserForModification(userModID);
+             else
+                new DefaultView(request, response, this).showError("Неверный логин или пароль Login or Password");
         }
-        else
+        catch (Exception e)
         {
-            new DefaultView(request,response,this).showError("Неверный логин или пароль Login or Password");
+            e.printStackTrace();
         }
     }
+
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     {
@@ -55,28 +61,37 @@ public class UserModificationServlet extends HttpServlet
         String faculty = request.getParameter("Faculty");
         int id = Integer.parseInt(request.getParameter("id"));
 
-        request.setAttribute("login",adminLogin);
-        request.setAttribute("password",adminPassword);
-        request.setAttribute("id",id);
-
-        switch (request.getParameter("Type"))
+        request.setAttribute("login", adminLogin);
+        request.setAttribute("password", adminPassword);
+        request.setAttribute("id", id);
+        try
         {
-            case "student" -> {
-                double gpa = Double.parseDouble(request.getParameter("GPA"));
-                int course = Integer.parseInt(request.getParameter("Course"));
-                String group = request.getParameter("Group");
-                String department = request.getParameter("Department");
-                interactorAccess.adminLogin(new LoginData(adminLogin, adminPassword),
-                        new AdminPresenter(new AdminView(request, response, this))).
-                        modifyStudent(new StudentModifyData(
-                                        UserType.Student,
-                                        new FullName(name, surname, patronymic), login, password, mail,
-                                        faculty, course, gpa, group, department, new int[]{}),
-                                id);
+
+            switch (request.getParameter("Type"))
+            {
+                case "student" -> {
+                    double gpa = Double.parseDouble(request.getParameter("GPA"));
+                    int course = Integer.parseInt(request.getParameter("Course"));
+                    String group = request.getParameter("Group");
+                    String department = request.getParameter("Department");
+                    interactorAccess.adminLogin(new LoginData(adminLogin, adminPassword),
+                            new AdminView(request, response, this)).
+                            modifyUser(new StudentModifyData(
+                                            UserType.Student,
+                                            new FullName(name, surname, patronymic), login, password, mail,
+                                            faculty, course, gpa, group, department, new int[]{}),
+                                    id);
+                }
+                case "teacher" -> {
+                }
+                case "admin" -> {
+                }
+                default -> {
+                }
             }
-            case "teacher"->{}
-            case "admin"->{}
-            default -> {}
+        } catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 }

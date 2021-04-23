@@ -6,7 +6,6 @@ import by.Girafic.core.commonds.UserType;
 import by.Girafic.core.interactors.InteractorAccess;
 import by.Girafic.core.userdata.FullName;
 import by.Girafic.core.userdata.StudentModifyData;
-import by.Girafic.webpresenters.AdminPresenter;
 import by.Girafic.webview.AdminView;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class RegistrationServlet extends HttpServlet
 {
     private final InteractorAccess interactorAccess = GlobalValuesAccess.getValues().interactorAccess;
+
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     {
@@ -30,24 +30,34 @@ public class RegistrationServlet extends HttpServlet
         String mail = request.getParameter("Mail");
         String patronymic = request.getParameter("Patronymic");
         String faculty = request.getParameter("Faculty");
-
-        switch (request.getParameter("Type"))
+        try
         {
-            case "student" -> {
-                double gpa = Double.parseDouble(request.getParameter("GPA"));
-                int course = Integer.parseInt(request.getParameter("Course"));
-                String group = request.getParameter("Group");
-                String department = request.getParameter("Department");
-                interactorAccess.adminLogin(new LoginData(adminLogin, adminPassword),
-                        new AdminPresenter(new AdminView(request, response, this)))
-                        .createStudent(new StudentModifyData(
-                                UserType.Student,
-                                new FullName(name, surname, patronymic), login, password, mail,
-                                faculty, course, gpa, group, department, new int[]{}));
+            switch (request.getParameter("Type"))
+            {
+                case "student" -> {
+                    double gpa = Double.parseDouble(request.getParameter("GPA"));
+                    int course = Integer.parseInt(request.getParameter("Course"));
+                    String group = request.getParameter("Group");
+                    String department = request.getParameter("Department");
+
+                    interactorAccess.adminLogin(new LoginData(adminLogin, adminPassword),
+                            new AdminView(request, response, this))
+                            .createUser(new StudentModifyData(
+                                    UserType.Student,
+                                    new FullName(name, surname, patronymic), login, password, mail,
+                                    faculty, course, gpa, group, department, new int[]{}));
+                }
+
+                case "teacher" -> {
+                }
+                case "admin" -> {
+                }
+                default -> {
+                }
             }
-            case "teacher"->{}
-            case "admin"->{}
-            default -> {}
+        } catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 }

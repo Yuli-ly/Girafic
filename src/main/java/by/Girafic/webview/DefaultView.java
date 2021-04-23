@@ -1,11 +1,7 @@
 package by.Girafic.webview;
 
 import by.Girafic.core.commonds.UserType;
-import by.Girafic.core.contentdata.CourseViewData;
-import by.Girafic.core.contentdata.MaterialViewData;
-import by.Girafic.core.contentdata.SectionViewData;
 import by.Girafic.core.userdata.*;
-import by.Girafic.core.view.ViewData;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,19 +20,6 @@ public class DefaultView
         this.request = request;
         this.response = response;
         this.servlet = servlet;
-    }
-
-    public void showProfile(StudentViewData student, boolean mutable)
-    {
-        request.setAttribute("Student",student);
-        request.setAttribute("mutable",mutable);
-        try
-        {
-            servlet.getServletContext().getRequestDispatcher("/studentProfile.jsp").forward(request,response);
-        } catch (ServletException | IOException e)
-        {
-            e.printStackTrace();
-        }
     }
 
     public void showProfileAfterModify(StudentViewModifyData student)
@@ -65,66 +48,15 @@ public class DefaultView
         }
     }
 
-    public void showProfileAfterModify(AdminViewModifyData admin)
+    public void showProfileAfterModify(AdminViewModifyData admin) throws ServletException, IOException
     {
         request.setAttribute("UserType",UserType.Admin);
         request.setAttribute("Admin",admin);
-        try
-        {
-            servlet.getServletContext().getRequestDispatcher("/profileAfterModify.jsp").forward(request,response);
-        } catch (ServletException | IOException e)
-        {
-            e.printStackTrace();
-        }
+        servlet.getServletContext().getRequestDispatcher("/profileAfterModify.jsp").forward(request,response);
     }
-
-
-    public void showProfile(TeacherViewData teacher, boolean mutable)
-    {
-        request.setAttribute("Teacher",teacher);
-        request.setAttribute("mutable",mutable);
-        try
-        {
-            servlet.getServletContext().getRequestDispatcher("/teacherProfile.jsp").forward(request,response);
-        } catch (ServletException | IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
-    public void showProfile(AdminViewData admin, boolean mutable)
-    {
-        request.setAttribute("Admin",admin);
-        request.setAttribute("mutable",mutable);
-        try
-        {
-            servlet.getServletContext().getRequestDispatcher("/adminProfile.jsp").forward(request,response);
-        } catch (ServletException | IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
-    public void showError(String message)
+    public void showError(String message) throws ServletException, IOException
     {
         request.setAttribute("Message",message);
-        try
-        {
-            servlet.getServletContext().getRequestDispatcher("/error.jsp").forward(request,response);
-        } catch (ServletException | IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
-    public void showCourse(ViewData<CourseViewData> course)
-    {
-
-    }
-
-    public void showMaterial(ViewData<MaterialViewData> material)
-    {
-
-    }
-
-    public void showSection(ViewData<SectionViewData> section)
-    {
+        servlet.getServletContext().getRequestDispatcher("/error.jsp").forward(request,response);
     }
 }

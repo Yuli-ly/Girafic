@@ -15,4 +15,8 @@ public class JspUtil
                 "&id=" + data.id +
                 "\">" + data.name + "</a>";
     }
+    public static String registrationLink(String path)
+    {
+        return path + "/registrationTest.html";
+    }
 }

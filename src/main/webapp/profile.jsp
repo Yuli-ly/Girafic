@@ -51,37 +51,5 @@
         <p>${user.faculty}</p>
         <p>${user.id}</p>
     </div>
-    <div class="btn">
-        <button>Выход</button>
-        <button>Курсы</button>
-    </div>
-    <%
-        switch ((UserType) request.getAttribute("UserType"))
-        {
-
-            case Student:
-            {
-                for (int i : ((StudentViewData) request.getAttribute("Student")).courses)
-                    out.println(createLinkToContent(path, login, password, i));
-            }
-            break;
-            case Teacher:
-            {
-                for(int i : ((TeacherViewData) request.getAttribute("Teacher")).courses)
-                    out.println(createLinkToContent(path,login,password,i));
-            }
-            break;
-            case Admin:
-            break;
-        }
-    %>
-    <a href="${pageContext.request.contextPath}/registrationTest.html">Регистрация</a>
-    <form action="usermodification" method="get">
-        <input type="text" name="login" value="${login}">
-        <input type="text" name="password" value="${password}">
-        <input type="text" name="id">
-        <input type="submit" name="Изменить пользователя">
-
-    </form>
 </body>
 </html>

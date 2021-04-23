@@ -1,8 +1,12 @@
 package by.Girafic.core.view;
 
 import by.Girafic.core.userdata.AdminViewModifyData;
+import by.Girafic.core.userdata.StudentViewModifyData;
+import by.Girafic.core.userdata.TeacherViewModifyData;
 
-public interface AdminView extends TeacherView,ShowStudentAfterModify
+public interface AdminView extends TeacherView
 {
-    void showAdminAfterModify(AdminViewModifyData admin);
+    void showUserAfterModify(AdminViewModifyData admin) throws Exception;
+    void showUserAfterModify(StudentViewModifyData student) throws Exception;
+    void showUserAfterModify(TeacherViewModifyData teacher) throws Exception;
 }
