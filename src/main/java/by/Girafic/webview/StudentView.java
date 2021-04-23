@@ -53,7 +53,7 @@ public class StudentView implements by.Girafic.core.view.StudentView
     {
         request.setAttribute("Course",course);
         request.setAttribute("mutable",mutable);
-        servlet.getServletContext().getRequestDispatcher("/section.jsp").forward(request,response);
+        servlet.getServletContext().getRequestDispatcher("/course.jsp").forward(request,response);
     }
 
     @Override
