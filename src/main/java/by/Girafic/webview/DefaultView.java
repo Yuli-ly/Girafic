@@ -28,11 +28,11 @@ public class DefaultView
 
     public void showProfile(StudentViewData student, boolean mutable)
     {
-        request.setAttribute("UserType", UserType.Student);
         request.setAttribute("Student",student);
+        request.setAttribute("mutable",mutable);
         try
         {
-            servlet.getServletContext().getRequestDispatcher("/profile.jsp").forward(request,response);
+            servlet.getServletContext().getRequestDispatcher("/studentProfile.jsp").forward(request,response);
         } catch (ServletException | IOException e)
         {
             e.printStackTrace();
@@ -81,23 +81,23 @@ public class DefaultView
 
     public void showProfile(TeacherViewData teacher, boolean mutable)
     {
-        request.setAttribute("UserType", UserType.Teacher);
         request.setAttribute("Teacher",teacher);
+        request.setAttribute("mutable",mutable);
         try
         {
-            servlet.getServletContext().getRequestDispatcher("/profile.jsp").forward(request,response);
+            servlet.getServletContext().getRequestDispatcher("/teacherProfile.jsp").forward(request,response);
         } catch (ServletException | IOException e)
         {
             e.printStackTrace();
         }
     }
-    public void showProfile(AdminViewData admin,boolean mutable)
+    public void showProfile(AdminViewData admin, boolean mutable)
     {
-        request.setAttribute("UserType", UserType.Admin);
         request.setAttribute("Admin",admin);
+        request.setAttribute("mutable",mutable);
         try
         {
-            servlet.getServletContext().getRequestDispatcher("/profile.jsp").forward(request,response);
+            servlet.getServletContext().getRequestDispatcher("/adminProfile.jsp").forward(request,response);
         } catch (ServletException | IOException e)
         {
             e.printStackTrace();

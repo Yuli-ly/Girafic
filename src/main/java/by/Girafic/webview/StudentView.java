@@ -37,15 +37,7 @@ public class StudentView implements by.Girafic.core.view.StudentView
     @Override
     public void showStudentProfile(ViewData<StudentViewData> student)
     {
-        request.setAttribute("Student",student.field);
-        request.setAttribute("changeability",student.changeability);
-        try
-        {
-            servlet.getServletContext().getRequestDispatcher("/studentProfile.jsp").forward(request,response);
-        } catch (ServletException | IOException e)
-        {
-            e.printStackTrace();
-        }
+        new DefaultView(request,response,servlet).showProfile(student.field,student.changeability);
     }
 
     @Override
