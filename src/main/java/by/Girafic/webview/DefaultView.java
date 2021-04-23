@@ -1,7 +1,11 @@
 package by.Girafic.webview;
 
 import by.Girafic.core.commonds.UserType;
+import by.Girafic.core.contentdata.CourseViewData;
+import by.Girafic.core.contentdata.MaterialViewData;
+import by.Girafic.core.contentdata.SectionViewData;
 import by.Girafic.core.userdata.*;
+import by.Girafic.core.view.ViewData;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,14 +29,7 @@ public class DefaultView
     public void showProfile(StudentViewData student, boolean mutable)
     {
         request.setAttribute("UserType", UserType.Student);
-        request.setAttribute("Mutable", mutable);
-        request.setAttribute("FullName", student.fullName);
-        request.setAttribute("Course", student.course);
-        request.setAttribute("Faculty", student.faculty);
-        request.setAttribute("Group", student.group);
-        request.setAttribute("Mail", student.mail);
-        request.setAttribute("Department", student.department);
-        request.setAttribute("GPA", student.gpa);
+        request.setAttribute("Student",student);
         try
         {
             servlet.getServletContext().getRequestDispatcher("/profile.jsp").forward(request,response);
@@ -85,12 +82,7 @@ public class DefaultView
     public void showProfile(TeacherViewData teacher, boolean mutable)
     {
         request.setAttribute("UserType", UserType.Teacher);
-        request.setAttribute("Mutable", mutable);
-        request.setAttribute("FullName", teacher.fullName);
-        request.setAttribute("Faculty", teacher.faculty);
-        request.setAttribute("Mail", teacher.mail);
-        request.setAttribute("Department", teacher.department);
-        request.setAttribute("Post",teacher.post);
+        request.setAttribute("Teacher",teacher);
         try
         {
             servlet.getServletContext().getRequestDispatcher("/profile.jsp").forward(request,response);
@@ -102,10 +94,7 @@ public class DefaultView
     public void showProfile(AdminViewData admin,boolean mutable)
     {
         request.setAttribute("UserType", UserType.Admin);
-        request.setAttribute("Mutable", mutable);
-        request.setAttribute("FullName", admin.fullName);
-        request.setAttribute("Faculty", admin.faculty);
-        request.setAttribute("Mail", admin.mail);
+        request.setAttribute("Admin",admin);
         try
         {
             servlet.getServletContext().getRequestDispatcher("/profile.jsp").forward(request,response);
@@ -124,5 +113,18 @@ public class DefaultView
         {
             e.printStackTrace();
         }
+    }
+    public void showCourse(ViewData<CourseViewData> course)
+    {
+
+    }
+
+    public void showMaterial(ViewData<MaterialViewData> material)
+    {
+
+    }
+
+    public void showSection(ViewData<SectionViewData> section)
+    {
     }
 }

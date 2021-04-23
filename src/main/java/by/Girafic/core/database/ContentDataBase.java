@@ -5,10 +5,11 @@ import by.Girafic.core.contentdata.*;
 
 public interface ContentDataBase
 {
-    ContentType getType(int contentID);
+    ContentType getContentType(int contentID);
     CourseViewData getCourse(int contentID);
     SectionViewData getSection(int contentID);
     MaterialViewData getMaterial(int contentID);
+    boolean checkContentExistence(int contentID);
     boolean createCourse(CourseModifyData course);
     boolean createSection(SectionModifyData section);
     boolean createMaterial(MaterialModifyData material);

@@ -10,7 +10,7 @@ import by.Girafic.core.view.ViewData;
 
 public class TeacherPresenter implements by.Girafic.core.presenters.TeacherPresenter
 {
-    private TeacherView view;
+    private final TeacherView view;
 
     public TeacherPresenter(TeacherView view)
     {
@@ -49,19 +49,23 @@ public class TeacherPresenter implements by.Girafic.core.presenters.TeacherPrese
     }
 
     @Override
-    public void showCourse(CourseViewData course)
+    public void showCourse(CourseViewData course,boolean changeability)
     {
+        view.showCourse(new ViewData<>(course,false));
     }
 
     @Override
-    public void showSection(SectionViewData section)
+    public void showSection(SectionViewData section, boolean changeability)
     {
+        view.showSection(new ViewData<>(section,changeability));
     }
 
     @Override
-    public void showMaterial(MaterialViewData material)
+    public void showMaterial(MaterialViewData material, boolean changeability)
     {
+        view.showMaterial(new ViewData<>(material,changeability));
     }
+
 
     @Override
     public void showCourseAfterModify(CourseViewModifyData course)

@@ -1,5 +1,6 @@
-package by.Girafic.controllers;
+package by.Girafic.controllers.servlets;
 
+import by.Girafic.controllers.util.GlobalValuesAccess;
 import by.Girafic.core.commonds.LoginData;
 import by.Girafic.core.commonds.UserType;
 import by.Girafic.core.interactors.InteractorAccess;

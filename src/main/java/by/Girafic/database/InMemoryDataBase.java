@@ -8,14 +8,16 @@ import by.Girafic.core.database.ContentDataBase;
 import by.Girafic.core.database.UserDataBase;
 import by.Girafic.core.userdata.*;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
+
 
 public class InMemoryDataBase implements ContentDataBase, UserDataBase
 {
 
     int userAddIndex = 1;
-    private final Map<Integer,UserModifyData> users = new LinkedHashMap<>();
+    int contentAddIndex;
+    private final Map<Integer,UserModifyData> users = new HashMap<>();
+    private final Map<Integer,ContentModifyData> content = new HashMap<>();
     public InMemoryDataBase()
     {
         AdminModifyData admin = new AdminModifyData(UserType.Admin,
@@ -26,56 +28,87 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
         users.put(userAddIndex++, admin);
         TeacherModifyData teacher = new TeacherModifyData(UserType.Teacher,
                 new FullName("teacher", "teacher", "teacher"),
-                "teacher", "teacher", "teacher@gmail.com", "RF&CT", "1", "teacher", new int[]{1, 2, 3});
+                "teacher", "teacher", "teacher@gmail.com", "RF&CT", "1", "teacher", new int[]{3});
         users.put(userAddIndex++, teacher);
         StudentModifyData student = new StudentModifyData(UserType.Student,
                 new FullName("student", "student", "student"),
                 "student",
                 "student",
-                "student@example.com", "RF&CT", 2, 10, "7", "нет кафедры", new int[]{1, 2, 3});
+                "student@example.com", "RF&CT", 2, 10, "7", "no department", new int[]{3});
         users.put(userAddIndex++, student);
+
+        MaterialModifyData material = new MaterialModifyData("Material 1","First material","bla-bla-bla");
+        content.put(1,material);
+        SectionModifyData section = new SectionModifyData("Section 1","First section",new int[]{1});
+        content.put(2,section);
+        CourseModifyData course = new CourseModifyData("Course 1","First course",new int[]{2},new int[]{2,3});
+        content.put(3,course);
+        contentAddIndex = 4;
     }
 
     @Override
-    public ContentType getType(int contentID)
+    public ContentType getContentType(int contentID)
     {
-        return null;
+        return content.get(contentID).getContentType();
     }
 
     @Override
     public CourseViewData getCourse(int contentID)
     {
+        if(content.containsKey(contentID))
+        {
+            CourseModifyData course = (CourseModifyData) content.get(contentID);
+            ArrayList<SectionViewData> sections = new ArrayList<>();
+            for(int i : course.sections)
+                sections.add(getSection(i));
+            return new CourseViewData(contentID,course,sections.toArray(new SectionViewData[]{}));
+        }
         return null;
     }
 
     @Override
     public SectionViewData getSection(int contentID)
     {
+        if(content.containsKey(contentID))
+        {
+            SectionModifyData section = (SectionModifyData) content.get(contentID);
+            ArrayList<ContentViewData> contents = new ArrayList<>();
+            for(int i : section.contents)
+                contents.add(new ContentViewData(i,content.get(i)));
+            return new SectionViewData(contentID,section, contents.toArray(new ContentViewData[]{}));
+        }
         return null;
     }
 
     @Override
     public MaterialViewData getMaterial(int contentID)
     {
+        if(content.containsKey(contentID))
+        {
+            return new MaterialViewData(contentID,(MaterialModifyData) content.get(contentID));
+        }
         return null;
     }
 
     @Override
     public boolean createCourse(CourseModifyData course)
     {
+        content.put(contentAddIndex++,course);
         return false;
     }
 
     @Override
     public boolean createSection(SectionModifyData section)
     {
+        content.put(contentAddIndex++,section);
         return false;
     }
 
     @Override
     public boolean createMaterial(MaterialModifyData material)
     {
-        return false;
+        content.put(contentAddIndex++,material);
+        return true;
     }
 
     @Override
@@ -99,11 +132,12 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     @Override
     public boolean removeContent(int contentID)
     {
-        return false;
+        content.remove(contentID);
+        return true;
     }
 
     @Override
-    public boolean checkExistence(LoginData ld)
+    public boolean checkUserExistence(LoginData ld)
     {
         for(Map.Entry<Integer,UserModifyData> user : users.entrySet())
         {
@@ -114,21 +148,27 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     }
 
     @Override
-    public boolean checkExistence(int userID)
+    public boolean checkUserExistence(int userID)
     {
         return users.containsKey(userID);
     }
 
     @Override
+    public boolean checkContentExistence(int contentID)
+    {
+        return content.containsKey(contentID);
+    }
+
+    @Override
     public boolean checkLoginOriginality(String login)
     {
-        return false;
+        return true;
     }
 
     @Override
     public boolean checkPasswordOriginality(String password)
     {
-        return false;
+        return true;
     }
 
     @Override
@@ -152,7 +192,13 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     public StudentViewData getStudent(int userID)
     {
         if(users.containsKey(userID))
-            return new StudentViewData(userID,(StudentModifyData) users.get(userID));
+        {
+            ArrayList<ContentLinkData> courses = new ArrayList<>();
+            StudentModifyData student = (StudentModifyData) users.get(userID);
+            for (int i : student.courses)
+                courses.add(new ContentLinkData(getCourse(i).title,i));
+            return new StudentViewData(userID,student,courses.toArray(new ContentLinkData[]{}));
+        }
         return null;
     }
 
@@ -160,7 +206,13 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     public TeacherViewData getTeacher(int userID)
     {
         if(users.containsKey(userID))
-            return new TeacherViewData(userID,(TeacherModifyData) users.get(userID));
+        {
+            ArrayList<ContentLinkData> courses = new ArrayList<>();
+            TeacherModifyData teacher = (TeacherModifyData) users.get(userID);
+            for (int i : teacher.courses)
+                courses.add(new ContentLinkData(getCourse(i).title,i));
+            return new TeacherViewData(userID,teacher,courses.toArray(new ContentLinkData[]{}));
+        }
         return null;
     }
 
@@ -251,6 +303,7 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     @Override
     public boolean removeUser(int userID)
     {
+        users.remove(userID);
         return false;
     }
 }

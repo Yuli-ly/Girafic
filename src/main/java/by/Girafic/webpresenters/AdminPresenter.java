@@ -7,7 +7,7 @@ import by.Girafic.core.view.ViewData;
 
 public class AdminPresenter implements by.Girafic.core.presenters.AdminPresenter
 {
-    private AdminView view;
+    private final AdminView view;
 
     public AdminPresenter(AdminView view)
     {
@@ -56,18 +56,21 @@ public class AdminPresenter implements by.Girafic.core.presenters.AdminPresenter
     }
 
     @Override
-    public void showCourse(CourseViewData course)
+    public void showCourse(CourseViewData course,boolean changeability)
     {
+        view.showCourse(new ViewData<>(course,false));
     }
 
     @Override
-    public void showSection(SectionViewData section)
+    public void showSection(SectionViewData section, boolean changeability)
     {
+        view.showSection(new ViewData<>(section,changeability));
     }
 
     @Override
-    public void showMaterial(MaterialViewData material)
+    public void showMaterial(MaterialViewData material, boolean changeability)
     {
+        view.showMaterial(new ViewData<>(material,changeability));
     }
 
     @Override

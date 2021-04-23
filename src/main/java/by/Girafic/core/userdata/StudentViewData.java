@@ -1,23 +1,27 @@
 package by.Girafic.core.userdata;
 
+import by.Girafic.core.contentdata.ContentLinkData;
+
 public class StudentViewData extends UserViewData
 {
-    public StudentViewData(int id, FullName fullName, String mail, String faculty, int course, double gpa, String group, String department)
+    public StudentViewData(int id, FullName fullName, String mail, String faculty, int course, double gpa, String group, String department, ContentLinkData[] courses)
     {
         super(id, fullName, mail, faculty);
         this.course = course;
         this.gpa = gpa;
         this.group = group;
         this.department = department;
+        this.courses = courses;
     }
 
-    public StudentViewData(int userID,StudentModifyData s)
+    public StudentViewData(int userID, StudentModifyData s,ContentLinkData[] courses)
     {
         super(userID,s.fullName, s.mail, s.faculty);
         this.course = s.course;
         this.group = s.group;
         this.gpa = s.gpa;
         this.department = s.department;
+        this.courses = courses;
     }
 
     public int getCourse()
@@ -44,4 +48,5 @@ public class StudentViewData extends UserViewData
     public double gpa;
     public String group;
     public String department;
+    public ContentLinkData[] courses;
 }

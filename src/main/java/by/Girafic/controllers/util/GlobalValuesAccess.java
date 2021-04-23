@@ -1,4 +1,4 @@
-package by.Girafic.controllers;
+package by.Girafic.controllers.util;
 
 import by.Girafic.core.interactors.InteractorAccess;
 import by.Girafic.database.InMemoryDataBase;

@@ -1,5 +1,6 @@
 package by.Girafic.webview;
 
+import by.Girafic.core.commonds.UserType;
 import by.Girafic.core.contentdata.CourseViewData;
 import by.Girafic.core.contentdata.MaterialViewData;
 import by.Girafic.core.contentdata.SectionViewData;
@@ -8,9 +9,12 @@ import by.Girafic.core.userdata.StudentViewData;
 import by.Girafic.core.userdata.StudentViewModifyData;
 import by.Girafic.core.userdata.TeacherViewData;
 import by.Girafic.core.view.ViewData;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
 
 public class StudentView implements by.Girafic.core.view.StudentView
 {
@@ -33,7 +37,15 @@ public class StudentView implements by.Girafic.core.view.StudentView
     @Override
     public void showStudentProfile(ViewData<StudentViewData> student)
     {
-        new DefaultView(request,response,servlet).showProfile(student.field,student.changeability);
+        request.setAttribute("Student",student.field);
+        request.setAttribute("changeability",student.changeability);
+        try
+        {
+            servlet.getServletContext().getRequestDispatcher("/studentProfile.jsp").forward(request,response);
+        } catch (ServletException | IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -51,16 +63,19 @@ public class StudentView implements by.Girafic.core.view.StudentView
     @Override
     public void showCourse(ViewData<CourseViewData> course)
     {
+        new DefaultView(request,response,servlet).showCourse(course);
     }
 
     @Override
     public void showMaterial(ViewData<MaterialViewData> material)
     {
+        new DefaultView(request,response,servlet).showMaterial(material);
     }
 
     @Override
     public void showSection(ViewData<SectionViewData> section)
     {
+        new DefaultView(request,response,servlet).showSection(section);
     }
 
     @Override

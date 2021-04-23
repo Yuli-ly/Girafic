@@ -74,16 +74,19 @@ public class AdminView implements by.Girafic.core.view.AdminView
     @Override
     public void showCourse(ViewData<CourseViewData> course)
     {
+        new DefaultView(request,response,servlet).showCourse(course);
     }
 
     @Override
     public void showMaterial(ViewData<MaterialViewData> material)
     {
+        new DefaultView(request,response,servlet).showMaterial(material);
     }
 
     @Override
     public void showSection(ViewData<SectionViewData> section)
     {
+        new DefaultView(request,response,servlet).showSection(section);
     }
 
     @Override

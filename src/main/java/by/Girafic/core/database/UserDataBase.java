@@ -6,8 +6,8 @@ import by.Girafic.core.userdata.*;
 
 public interface UserDataBase
 {
-    boolean checkExistence(LoginData ld);
-    boolean checkExistence(int userID);
+    boolean checkUserExistence(LoginData ld);
+    boolean checkUserExistence(int userID);
     boolean checkLoginOriginality(String login);
     boolean checkPasswordOriginality(String password);
     int  getUserID(String login);

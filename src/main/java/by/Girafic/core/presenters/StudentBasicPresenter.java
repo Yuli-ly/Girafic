@@ -13,7 +13,7 @@ public interface StudentBasicPresenter
     void showProfile(StudentViewData student,int currentUserID);
     void showProfile(TeacherViewData teacher,int currentUserID);
     void showProfile(AdminViewData admin, int currentUserID);
-    void showCourse(CourseViewData course);
-    void showSection(SectionViewData section);
-    void showMaterial(MaterialViewData material);
+    void showCourse(CourseViewData course,boolean changeability);
+    void showSection(SectionViewData section,boolean changeability);
+    void showMaterial(MaterialViewData material,boolean changeability);
 }

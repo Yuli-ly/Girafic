@@ -7,6 +7,7 @@ import by.Girafic.core.contentdata.MaterialModifyData;
 import by.Girafic.core.database.ContentDataBase;
 import by.Girafic.core.database.UserDataBase;
 import by.Girafic.core.presenters.AdminPresenter;
+import by.Girafic.core.presenters.StudentBasicPresenter;
 import by.Girafic.core.presenters.StudentPresenter;
 import by.Girafic.core.presenters.TeacherPresenter;
 import by.Girafic.core.userdata.*;
@@ -15,6 +16,59 @@ public class InteractorAccess
 {
     private final ContentDataBase contentDataBase;
     private final UserDataBase userDataBase;
+    private final DefaultInteractor defaultInteractor = new DefaultInteractor();
+    private class DefaultInteractor
+    {
+        public void showContent(StudentBasicPresenter presenter, int contentID, String login)
+        {
+            if (contentDataBase.checkContentExistence(contentID))
+            {
+                switch (userDataBase.getUserType(userDataBase.getUserID(login)))
+                {
+
+                    case Student -> {
+                        switch (contentDataBase.getContentType(contentID))
+                        {
+                            case Course -> presenter.showCourse(contentDataBase.getCourse(contentID),false);
+                            case Section -> presenter.showSection(contentDataBase.getSection(contentID),false);
+                            case Material -> presenter.showMaterial(contentDataBase.getMaterial(contentID),false);
+                        }
+                    }
+                    case Teacher, Admin -> {
+                        // должна быть проверка на доступность изменения конента для Преподователя и
+                        // последующее разделение switch
+                        switch (contentDataBase.getContentType(contentID))
+                        {
+                            case Course -> presenter.showCourse(contentDataBase.getCourse(contentID),true);
+                            case Section -> presenter.showSection(contentDataBase.getSection(contentID),true);
+                            case Material -> presenter.showMaterial(contentDataBase.getMaterial(contentID),true);
+                        }
+                    }
+                }
+
+            } else
+                presenter.showError("No content " + contentID);
+        }
+
+        public void showProfile(StudentBasicPresenter presenter, int userID, String login)
+        {
+            int thisUserID = userDataBase.getUserID(login);
+            if (userDataBase.checkUserExistence(userID))
+            {
+                switch (userDataBase.getUserType(userID))
+                {
+
+                    case Student -> presenter.showProfile(userDataBase.getStudent(userID), thisUserID);
+
+                    case Teacher -> presenter.showProfile(userDataBase.getTeacher(userID), thisUserID);
+
+                    case Admin -> presenter.showProfile(userDataBase.getAdmin(userID), thisUserID);
+                }
+            } else
+                presenter.showError("No user " + userID);
+        }
+    }
+
 
     private class AdminInteractorImpl implements AdminInteractor
     {
@@ -40,13 +94,15 @@ public class InteractorAccess
         }
 
         @Override
-        public void getContent()
+        public void getContent(int contentID)
         {
+            defaultInteractor.showContent(presenter,contentID, ld.login);
         }
 
         @Override
         public void getProfile(int userid)
         {
+            defaultInteractor.showProfile(presenter,userid, ld.login);
         }
 
         @Override
@@ -179,9 +235,8 @@ public class InteractorAccess
         @Override
         public void getStartPage()
         {
-            final UserDataBase udb = InteractorAccess.this.userDataBase;
-            int thisUserID = udb.getUserID(ld.login);
-            presenter.showProfile(udb.getTeacher(thisUserID),thisUserID);
+            int thisUserID = userDataBase.getUserID(ld.login);
+            presenter.showProfile(userDataBase.getTeacher(thisUserID),thisUserID);
         }
 
         @Override
@@ -190,13 +245,15 @@ public class InteractorAccess
         }
 
         @Override
-        public void getContent()
+        public void getContent(int contentID)
         {
+            defaultInteractor.showContent(presenter,contentID, ld.login);
         }
 
         @Override
         public void getProfile(int userid)
         {
+            defaultInteractor.showProfile(presenter,userid,ld.login);
         }
 
         @Override
@@ -264,9 +321,8 @@ public class InteractorAccess
         @Override
         public void getStartPage()
         {
-            final UserDataBase udb = InteractorAccess.this.userDataBase;
-            int thisUserID = udb.getUserID(ld.login);
-            presenter.showProfile(udb.getStudent(thisUserID),thisUserID);
+            int thisUserID = userDataBase.getUserID(ld.login);
+            presenter.showProfile(userDataBase.getStudent(thisUserID),thisUserID);
         }
 
         @Override
@@ -275,24 +331,15 @@ public class InteractorAccess
         }
 
         @Override
-        public void getContent()
+        public void getContent(int contentID)
         {
+            defaultInteractor.showContent(presenter,contentID, ld.login);
         }
 
         @Override
         public void getProfile(int userid)
         {
-            final UserDataBase udb = InteractorAccess.this.userDataBase;
-            int thisUserID = udb.getUserID(ld.login);
-            switch (udb.getUserType(userid))
-            {
-
-                case Student -> presenter.showProfile(udb.getStudent(userid),thisUserID);
-
-                case Teacher -> presenter.showProfile(udb.getTeacher(userid),thisUserID);
-
-                case Admin -> presenter.showProfile(udb.getAdmin(userid),thisUserID);
-            }
+            defaultInteractor.showProfile(presenter,userid, ld.login);
         }
     }
 
@@ -315,11 +362,11 @@ public class InteractorAccess
     }
     public boolean checkExistence(LoginData ld)
     {
-        return userDataBase.checkExistence(ld);
+        return userDataBase.checkUserExistence(ld);
     }
     public boolean checkExistence(int userID)
     {
-        return userDataBase.checkExistence(userID);
+        return userDataBase.checkUserExistence(userID);
     }
     public UserType getUserType(String login)
     {

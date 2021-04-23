@@ -1,5 +1,6 @@
-package by.Girafic.controllers;
+package by.Girafic.controllers.servlets;
 
+import by.Girafic.controllers.util.GlobalValuesAccess;
 import by.Girafic.core.commonds.LoginData;
 import by.Girafic.core.interactors.InteractorAccess;
 import by.Girafic.webpresenters.AdminPresenter;
@@ -14,8 +15,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "profileServlet",value = "/profile")
-public class ProfileServlet extends HttpServlet
+@WebServlet(name = "loginServlet", value = "/login")
+public class LoginServlet extends HttpServlet
 {
     final InteractorAccess interactorAccess = GlobalValuesAccess.getValues().interactorAccess;
     @Override
@@ -24,25 +25,22 @@ public class ProfileServlet extends HttpServlet
         response.setContentType("text/html");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        int id = Integer.parseInt(request.getParameter("id"));
-
         LoginData ld = new LoginData(login,password);
 
         request.setAttribute("login",login);
         request.setAttribute("password",password);
-
-        if(interactorAccess.checkExistence(id) && interactorAccess.checkExistence(ld))
+        if(interactorAccess.checkExistence(ld))
         {
             switch (interactorAccess.getUserType(login))
             {
-                case Student -> interactorAccess.studentLogin(ld, new StudentPresenter(new StudentView(request,response,this))).getProfile(id);
-                case Teacher -> interactorAccess.teacherLogin(ld, new TeacherPresenter(new TeacherView(request,response,this))).getProfile(id);
-                case Admin -> interactorAccess.adminLogin(ld, new AdminPresenter(new AdminView(request,response,this))).getProfile(id);
+                case Student -> interactorAccess.studentLogin(ld, new StudentPresenter(new StudentView(request,response,this))).getStartPage();
+                case Teacher -> interactorAccess.teacherLogin(ld, new TeacherPresenter(new TeacherView(request,response,this))).getStartPage();
+                case Admin -> interactorAccess.adminLogin(ld, new AdminPresenter(new AdminView(request,response,this))).getStartPage();
             }
         }
         else
         {
-            new DefaultView(request,response,this).showError("Неверный логин или пароль, или запрашиваемого пользователя не существует");
+            new DefaultView(request,response,this).showError("Неверный логин или пароль Login or Password");
         }
     }
 }
