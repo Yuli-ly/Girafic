@@ -27,16 +27,16 @@ public class UserModificationServlet extends HttpServlet
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     {
         ServletRequestParser parser = new ServletRequestParser(request);
-        LoginData ld = parser.takeLoginData();
+        LoginData ld = parser.takeAdminLoginData();
         int userModID = parser.takeID();
         parser.setLoginData(ld);
         parser.setID(userModID);
         try
         {
             if (interactorAccess.checkExistence(ld))
-                interactorAccess.adminLogin(ld, new AdminView(request, response, this)).showUserForModification(userModID);
+                interactorAccess.adminLogin(ld, new AdminView(request, response)).showUserForModification(userModID);
              else
-                new DefaultView(request, response, this).showError("Incorrect Login or Password");
+                new DefaultView(request, response).showError("Incorrect Login or Password");
         }
         catch (Exception e)
         {
@@ -48,15 +48,15 @@ public class UserModificationServlet extends HttpServlet
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     {
         ServletRequestParser parser = new ServletRequestParser(request);
-        LoginData ald = parser.takeAdminLoginData();
+        LoginData ld = parser.takeAdminLoginData();
         int id = parser.takeID();
-        parser.setAdminLoginData(ald);
+        parser.setLoginData(ld);
         parser.setID(id);
         try
         {
-        if(interactorAccess.checkExistence(ald))
+        if(interactorAccess.checkExistence(ld))
         {
-            AdminInteractor interactor = interactorAccess.adminLogin(ald, new AdminView(request, response, this));
+            AdminInteractor interactor = interactorAccess.adminLogin(ld, new AdminView(request, response));
 
                 switch (parser.takeUserType())
                 {
@@ -67,7 +67,7 @@ public class UserModificationServlet extends HttpServlet
 
         }
         else
-            new DefaultView(request,response,this).showError("Invalid username or password");
+            new DefaultView(request,response).showError("Invalid username or password");
         } catch (Exception e)
         {
             e.printStackTrace();

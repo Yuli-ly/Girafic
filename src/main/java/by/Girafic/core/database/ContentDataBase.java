@@ -10,11 +10,11 @@ public interface ContentDataBase
     SectionViewData getSection(int contentID);
     MaterialViewData getMaterial(int contentID);
     boolean checkContentExistence(int contentID);
-    boolean createCourse(CourseModifyData course);
-    boolean createSection(SectionModifyData section);
-    boolean createMaterial(MaterialModifyData material);
-    boolean modifyCourse(CourseModifyData course,int contentID);
-    boolean modifySection(SectionModifyData section,int contentID);
-    boolean modifyMaterial(MaterialModifyData material,int contentID);
-    boolean removeContent(int contentID);
+    int createCourse(CourseModifyData course);
+    int createSection(SectionModifyData section);
+    int createMaterial(MaterialModifyData material);
+    int modifyCourse(CourseModifyData course,int contentID);
+    int modifySection(SectionModifyData section,int contentID);
+    int modifyMaterial(MaterialModifyData material,int contentID);
+    void removeContent(int contentID);
 }

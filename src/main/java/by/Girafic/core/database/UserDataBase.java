@@ -18,11 +18,11 @@ public interface UserDataBase
     StudentModifyData getStudentForMod(int userID);
     TeacherModifyData getTeacherForMod(int userID);
     AdminModifyData getAdminForMod(int userID);
-    boolean createStudent(StudentModifyData student);
-    boolean createTeacher(TeacherModifyData teacher);
-    boolean createAdmin(AdminModifyData admin);
-    boolean modifyStudent(StudentModifyData student,int userID);
-    boolean modifyTeacher(TeacherModifyData teacher,int userID);
-    boolean modifyAdmin(AdminModifyData admin,int id);
-    boolean removeUser(int userID);
+    int createStudent(StudentModifyData student);
+    int createTeacher(TeacherModifyData teacher);
+    int createAdmin(AdminModifyData admin);
+    int modifyStudent(StudentModifyData student,int userID);
+    int modifyTeacher(TeacherModifyData teacher,int userID);
+    int modifyAdmin(AdminModifyData admin,int id);
+    void removeUser(int userID);
 }

@@ -4,7 +4,12 @@ import static by.Girafic.core.commonds.ModifyConfirmation.*;
 
 public class UserViewModifyData
 {
-    public UserViewModifyData(ModifyConfirmation<FullName> fullName, ModifyConfirmation<String> login, ModifyConfirmation<String> password, ModifyConfirmation<String> mail, ModifyConfirmation<String> faculty)
+    public UserViewModifyData(int id,
+                              ModifyConfirmation<FullName> fullName,
+                              ModifyConfirmation<String> login,
+                              ModifyConfirmation<String> password,
+                              ModifyConfirmation<String> mail,
+                              ModifyConfirmation<String> faculty)
     {
         this.fullName = fullName;
         this.login = login;
@@ -38,15 +43,21 @@ public class UserViewModifyData
         return faculty;
     }
 
-    public UserViewModifyData(UserModifyData data)
+    public int getId()
     {
+        return id;
+    }
+
+    public UserViewModifyData(int id, UserModifyData data)
+    {
+        this.id = id;
         fullName = successful(data.fullName);
         login = successful(data.login);
         password = successful(data.password);
         mail = successful(data.mail);
         faculty = successful(data.faculty);
     }
-
+    public int id;
     public ModifyConfirmation<FullName> fullName;
     public ModifyConfirmation<String> login;
     public ModifyConfirmation<String> password;

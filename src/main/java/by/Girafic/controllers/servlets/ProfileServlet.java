@@ -37,13 +37,13 @@ public class ProfileServlet extends HttpServlet
             {
                 switch (interactorAccess.getUserType(ld.login))
                 {
-                    case Student -> interactorAccess.studentLogin(ld, new StudentView(request, response, this)).getProfile(id);
-                    case Teacher -> interactorAccess.teacherLogin(ld, new TeacherView(request, response, this)).getProfile(id);
-                    case Admin -> interactorAccess.adminLogin(ld, new AdminView(request, response, this)).getProfile(id);
+                    case Student -> interactorAccess.studentLogin(ld, new StudentView(request, response)).getProfile(id);
+                    case Teacher -> interactorAccess.teacherLogin(ld, new TeacherView(request, response)).getProfile(id);
+                    case Admin -> interactorAccess.adminLogin(ld, new AdminView(request, response)).getProfile(id);
                 }
             } else
             {
-                new DefaultView(request, response, this).showError("Invalid username or password, or the requested user does not exist");
+                new DefaultView(request, response).showError("Invalid username or password, or the requested user does not exist");
             }
         } catch (Exception e)
         {

@@ -99,51 +99,51 @@ public class InteractorAccess
         }
 
         @Override
-        public void createUser(StudentModifyData student)
+        public void createUser(StudentModifyData student) throws Exception
         {
             // проверка каждого поля
-            userDataBase.createStudent(student);
-            view.showUserAfterModify(new StudentViewModifyData(student));
+            final int id = userDataBase.createStudent(student);
+            view.showUserAfterModify(new StudentViewModifyData(id,student));
         }
 
         @Override
-        public void modifyUser(StudentModifyData student, int userID)
+        public void modifyUser(StudentModifyData student, int userID) throws Exception
         {
             //проверить все поля
-            userDataBase.modifyStudent(student,userID);
-            view.showUserAfterModify(new StudentViewModifyData(student));
+            final int id = userDataBase.modifyStudent(student,userID);
+            view.showUserAfterModify(new StudentViewModifyData(id,student));
         }
 
         @Override
-        public void createUser(TeacherModifyData teacher)
+        public void createUser(TeacherModifyData teacher) throws Exception
         {
             // проверка каждого поля
-            userDataBase.createTeacher(teacher);
-            view.showUserAfterModify(new TeacherViewModifyData(teacher));
+            final int id = userDataBase.createTeacher(teacher);
+            view.showUserAfterModify(new TeacherViewModifyData(id,teacher));
         }
 
         @Override
-        public void modifyUser(TeacherModifyData teacher, int userID)
+        public void modifyUser(TeacherModifyData teacher, int userID) throws Exception
         {
             //проверить все поля
-            userDataBase.modifyTeacher(teacher,userID);
-            view.showUserAfterModify(new TeacherViewModifyData(teacher));
+            final int id = userDataBase.modifyTeacher(teacher,userID);
+            view.showUserAfterModify(new TeacherViewModifyData(id,teacher));
         }
 
         @Override
-        public void createUser(AdminModifyData admin) throws ServletException, IOException
+        public void createUser(AdminModifyData admin) throws Exception
         {
             // проверка каждого поля
-            userDataBase.createAdmin(admin);
-            view.showUserAfterModify(new AdminViewModifyData(admin));
+            final int id = userDataBase.createAdmin(admin);
+            view.showUserAfterModify(new AdminViewModifyData(id,admin));
         }
 
         @Override
-        public void modifyUser(AdminModifyData admin, int userID) throws ServletException, IOException
+        public void modifyUser(AdminModifyData admin, int userID) throws Exception
         {
             // проверить все поля
-            userDataBase.modifyAdmin(admin,userID);
-            view.showUserAfterModify(new AdminViewModifyData(admin));
+            final int id = userDataBase.modifyAdmin(admin,userID);
+            view.showUserAfterModify(new AdminViewModifyData(id,admin));
         }
 
         @Override
@@ -153,14 +153,14 @@ public class InteractorAccess
         }
 
         @Override
-        public void showUserForModification(int userID) throws ServletException, IOException
+        public void showUserForModification(int userID) throws Exception
         {
             final UserDataBase udb = InteractorAccess.this.userDataBase;
             switch (udb.getUserType(userID))
             {
-                case Student ->view.showUserAfterModify(new StudentViewModifyData(udb.getStudentForMod(userID)));
-                case Teacher -> view.showUserAfterModify(new TeacherViewModifyData(udb.getTeacherForMod(userID)));
-                case Admin -> view.showUserAfterModify(new AdminViewModifyData(udb.getAdminForMod(userID)));
+                case Student ->view.showUserAfterModify(new StudentViewModifyData(userID,udb.getStudentForMod(userID)));
+                case Teacher -> view.showUserAfterModify(new TeacherViewModifyData(userID,udb.getTeacherForMod(userID)));
+                case Admin -> view.showUserAfterModify(new AdminViewModifyData(userID,udb.getAdminForMod(userID)));
             }
         }
 

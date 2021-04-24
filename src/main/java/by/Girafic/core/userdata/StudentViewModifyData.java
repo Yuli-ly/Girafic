@@ -6,21 +6,33 @@ import static by.Girafic.core.commonds.ModifyConfirmation.*;
 
 public class StudentViewModifyData extends UserViewModifyData
 {
-    public StudentViewModifyData(ModifyConfirmation<FullName> fullName, ModifyConfirmation<String> login, ModifyConfirmation<String> password, ModifyConfirmation<String> mail, ModifyConfirmation<String> faculty, ModifyConfirmation<Integer> course, ModifyConfirmation<Double> gpa, ModifyConfirmation<String> group, ModifyConfirmation<int[]> courses)
+    public StudentViewModifyData(int id,
+                                 ModifyConfirmation<FullName> fullName,
+                                 ModifyConfirmation<String> login,
+                                 ModifyConfirmation<String> password,
+                                 ModifyConfirmation<String> mail,
+                                 ModifyConfirmation<String> faculty,
+                                 ModifyConfirmation<String> department,
+                                 ModifyConfirmation<Integer> course,
+                                 ModifyConfirmation<Double> gpa,
+                                 ModifyConfirmation<String> group,
+                                 ModifyConfirmation<int[]> courses)
     {
-        super(fullName, login, password, mail, faculty);
+        super(id,fullName, login, password, mail, faculty);
         this.course = course;
         this.gpa = gpa;
         this.group = group;
         this.courses = courses;
+        this.department = department;
     }
 
-    public StudentViewModifyData(StudentModifyData data)
+    public StudentViewModifyData(int id,StudentModifyData data)
     {
-        super(successful(data.fullName),successful(data.login),successful(data.password),successful(data.mail),successful(data.faculty));
+        super(id,data);
         course = successful(data.course);
         gpa = successful(data.gpa);
         group = successful(data.group);
+        department = successful(data.department);
         courses = successful(data.courses);
     }
 
@@ -28,6 +40,7 @@ public class StudentViewModifyData extends UserViewModifyData
     public ModifyConfirmation<Double> gpa;
     public ModifyConfirmation<String> group;
     public ModifyConfirmation<int[]> courses;
+    public ModifyConfirmation<String> department;
 
     public ModifyConfirmation<Integer> getCourse()
     {
@@ -42,6 +55,16 @@ public class StudentViewModifyData extends UserViewModifyData
     public ModifyConfirmation<String> getGroup()
     {
         return group;
+    }
+
+    public ModifyConfirmation<int[]> getCourses()
+    {
+        return courses;
+    }
+
+    public ModifyConfirmation<String> getDepartment()
+    {
+        return department;
     }
 
     @Override

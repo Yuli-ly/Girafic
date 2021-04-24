@@ -26,10 +26,11 @@ public class RegistrationServlet extends HttpServlet
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     {
         ServletRequestParser parser = new ServletRequestParser(request);
-        LoginData ald = parser.takeAdminLoginData();
+        LoginData ld = parser.takeAdminLoginData();
+        parser.setLoginData(ld);
         try
         {
-            AdminInteractor interactor = interactorAccess.adminLogin(ald,new AdminView(request,response,this));
+            AdminInteractor interactor = interactorAccess.adminLogin(ld,new AdminView(request,response));
             switch (parser.takeUserType())
             {
                 case Student -> interactor.createUser(parser.takeStudentData());

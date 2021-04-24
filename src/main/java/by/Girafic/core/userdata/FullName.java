@@ -2,8 +2,9 @@ package by.Girafic.core.userdata;
 
 public class FullName
 {
+    public String name;
     public String surname;
-
+    public String patronymic;
     @Override
     public String toString()
     {
@@ -25,13 +26,12 @@ public class FullName
         return patronymic;
     }
 
-    public FullName(String surname, String name, String patronymic)
+    public FullName(String name, String surname, String patronymic)
     {
         this.surname = surname;
         this.name = name;
         this.patronymic = patronymic;
     }
 
-    public String name;
-    public String patronymic;
+
 }

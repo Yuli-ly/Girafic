@@ -103,49 +103,48 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     }
 
     @Override
-    public boolean createCourse(CourseModifyData course)
+    public int createCourse(CourseModifyData course)
     {
-        content.put(contentAddIndex++,course);
-        return false;
+        content.put(contentAddIndex,course);
+        return contentAddIndex++;
     }
 
     @Override
-    public boolean createSection(SectionModifyData section)
+    public int createSection(SectionModifyData section)
     {
-        content.put(contentAddIndex++,section);
-        return false;
+        content.put(contentAddIndex,section);
+        return contentAddIndex++;
     }
 
     @Override
-    public boolean createMaterial(MaterialModifyData material)
+    public int createMaterial(MaterialModifyData material)
     {
-        content.put(contentAddIndex++,material);
-        return true;
+        content.put(contentAddIndex,material);
+        return contentAddIndex++;
     }
 
     @Override
-    public boolean modifyCourse(CourseModifyData course, int contentID)
+    public int modifyCourse(CourseModifyData course, int contentID)
     {
-        return false;
+        return -1;
     }
 
     @Override
-    public boolean modifySection(SectionModifyData section, int contentID)
+    public int modifySection(SectionModifyData section, int contentID)
     {
-        return false;
+        return -1;
     }
 
     @Override
-    public boolean modifyMaterial(MaterialModifyData material, int contentID)
+    public int modifyMaterial(MaterialModifyData material, int contentID)
     {
-        return false;
+        return -1;
     }
 
     @Override
-    public boolean removeContent(int contentID)
+    public void removeContent(int contentID)
     {
         content.remove(contentID);
-        return true;
     }
 
     @Override
@@ -261,61 +260,62 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     }
 
     @Override
-    public boolean createStudent(StudentModifyData student)
+    public int createStudent(StudentModifyData student)
     {
-        users.put(userAddIndex++,student);
-        return false;
+        users.put(userAddIndex,student);
+        return userAddIndex++;
     }
 
     @Override
-    public boolean createTeacher(TeacherModifyData teacher)
+    public int createTeacher(TeacherModifyData teacher)
     {
-        return false;
+        users.put(userAddIndex,teacher);
+        return userAddIndex++;
     }
 
     @Override
-    public boolean createAdmin(AdminModifyData admin)
+    public int createAdmin(AdminModifyData admin)
     {
-        return false;
+        users.put(userAddIndex,admin);
+        return userAddIndex++;
     }
 
     @Override
-    public boolean modifyStudent(StudentModifyData student, int userID)
+    public int modifyStudent(StudentModifyData student, int userID)
     {
         if(users.containsKey(userID))
         {
             users.replace(userID,student);
-            return true;
+            return userID;
         }
-        return false;
+        return -1;
     }
 
     @Override
-    public boolean modifyTeacher(TeacherModifyData teacher, int userID)
+    public int modifyTeacher(TeacherModifyData teacher, int userID)
     {
         if(users.containsKey(userID))
         {
             users.replace(userID,teacher);
-            return true;
+            return userID;
         }
-        return false;
+        return -1;
     }
 
     @Override
-    public boolean modifyAdmin(AdminModifyData admin, int userID)
+    public int modifyAdmin(AdminModifyData admin, int userID)
     {
         if(users.containsKey(userID))
         {
             users.replace(userID,admin);
-            return true;
+            return userID;
         }
-        return false;
+        return -1;
     }
 
     @Override
-    public boolean removeUser(int userID)
+    public void removeUser(int userID)
     {
         users.remove(userID);
-        return false;
     }
 }

@@ -1,12 +1,12 @@
-<%@page import="by.Girafic.core.userdata.AdminViewData" %>
 <%@ page import="by.Girafic.controllers.util.JspRequestParser" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%
     JspRequestParser parser = new JspRequestParser(request);
-    AdminViewData admin = parser.takeAdmin();
+    parser.takeAdmin();
 %>
 <%--@elvariable id="Admin" type="by.Girafic.core.userdata.AdminViewData"--%>
-<%--@elvariable id="LoginData" type="by.Girafic.core.commonds.LoginData"--%>
+<%--@elvariable id="login" type="String"--%>
+<%--@elvariable id="password" type="String"--%>
 <html>
 <head>
     <title>Профиль</title>
@@ -16,8 +16,8 @@
 
 <a href="<%=parser.registrationLink()%>">Регистрация</a>
 <form action="userModification" method="get">
-    <input type="text" name="login" value="${LoginData.login}">
-    <input type="text" name="password" value="${LoginData.login}">
+    <input type="text" name="login" value="${login}">
+    <input type="text" name="password" value="${password}">
     <input type="text" name="id">
     <input type="submit" name="Изменить пользователя">
 </form>

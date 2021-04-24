@@ -7,22 +7,25 @@ import jakarta.servlet.http.HttpServletRequest;
 
 public class ServletRequestParser
 {
-    private HttpServletRequest request;
+    private final HttpServletRequest request;
     public ServletRequestParser(HttpServletRequest request)
     {
         this.request = request;
+        request.setAttribute("path",request.getServletContext().getContextPath());
     }
     public void setLoginData(LoginData ld)
     {
-        request.setAttribute("LoginData",ld);
-    }
-    public void setAdminLoginData(LoginData ld)
-    {
-        request.setAttribute("ALoginData",ld);
+        request.setAttribute("login",ld.login);
+        request.setAttribute("password",ld.password);
     }
     public void setID(int id)
     {
         request.setAttribute("id",id);
+    }
+    public LoginData takeAdminLoginData()
+    {
+        return new LoginData(request.getParameter("ALogin"),
+                request.getParameter("APassword"));
     }
     public LoginData takeLoginData()
     {
@@ -33,27 +36,23 @@ public class ServletRequestParser
     {
         return Integer.parseInt(request.getParameter("id"));
     }
-    public LoginData takeAdminLoginData()
-    {
-        return new LoginData(request.getParameter("alogin"),
-                request.getParameter("apassword"));
-    }
+
     private UserModifyData takeUserData()
     {
         return new UserModifyData(takeUserType(),
                 new FullName(
-                        request.getParameter("name"),
-                        request.getParameter("surname"),
-                        request.getParameter("patronymic")),
+                        request.getParameter("Name"),
+                        request.getParameter("Surname"),
+                        request.getParameter("Patronymic")),
                 request.getParameter("login"),
                 request.getParameter("password"),
-                request.getParameter("mail"),
-                request.getParameter("faculty")
+                request.getParameter("Mail"),
+                request.getParameter("Faculty")
         );
     }
     public UserType takeUserType()
     {
-        return switch (request.getParameter("type"))
+        return switch (request.getParameter("Type"))
         {
             case "student" -> UserType.Student;
             case "teacher" -> UserType.Teacher;
@@ -64,17 +63,17 @@ public class ServletRequestParser
     public StudentModifyData takeStudentData()
     {
         return new StudentModifyData(takeUserData(),
-                 Integer.parseInt(request.getParameter("course")),
-                Double.parseDouble(request.getParameter("gpa")),
-                request.getParameter("group"),
-                request.getParameter("department"),
+                 Integer.parseInt(request.getParameter("Course")),
+                Double.parseDouble(request.getParameter("GPA")),
+                request.getParameter("Group"),
+                request.getParameter("Department"),
                 new int[]{});
     }
     public TeacherModifyData takeTeacherData()
     {
         return new TeacherModifyData(takeUserData(),
-                request.getParameter("department"),
-                request.getParameter("post"),
+                request.getParameter("Department"),
+                request.getParameter("Post"),
                 new int[]{});
     }
     public AdminModifyData takeAdminData()

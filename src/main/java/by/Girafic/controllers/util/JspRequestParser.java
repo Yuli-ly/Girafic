@@ -19,7 +19,7 @@ public class JspRequestParser
     {
         this.request = request;
         ld = (LoginData) request.getAttribute("LoginData");
-        path = request.getContextPath();
+        path = request.getServletContext().getContextPath();
     }
     public String takePath()
     {
@@ -28,19 +28,16 @@ public class JspRequestParser
     public AdminViewData takeAdmin()
     {
         AdminViewData admin = (AdminViewData) request.getAttribute("Admin");
-        request.setAttribute("User",admin);
         return admin;
     }
     public StudentViewData takeStudent()
     {
         StudentViewData student = (StudentViewData) request.getAttribute("Student");
-        request.setAttribute("User",student);
         return student;
     }
     public TeacherViewData takeTeacher()
     {
         TeacherViewData teacher = (TeacherViewData) request.getAttribute("Teacher");
-        request.setAttribute("User",teacher);
         return teacher;
     }
     public String createLinkToContent(ContentLinkData data)
@@ -67,9 +64,10 @@ public class JspRequestParser
     }
     public String registrationLink()
     {
-        return path + "/registrationTest.html";
+        return path + "/jsp/profileMod/registration.jsp?"+
+                "login=" + ld.login +
+                "&password=" + ld.password;
     }
-
     public CourseViewData takeCourse()
     {
         return (CourseViewData) request.getAttribute("Course");

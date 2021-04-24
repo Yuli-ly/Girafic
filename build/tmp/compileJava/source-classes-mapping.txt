@@ -1,45 +1,55 @@
-by/Girafic/core/contentdata/SectionViewData.java
- by.Girafic.core.contentdata.SectionViewData
-by/Girafic/core/contentdata/CourseModifyData.java
- by.Girafic.core.contentdata.CourseModifyData
-by/Girafic/core/contentdata/ContentViewModifyData.java
- by.Girafic.core.contentdata.ContentViewModifyData
+by/Girafic/controllers/servlets/RegistrationServlet.java
+ by.Girafic.controllers.servlets.RegistrationServlet
+ by.Girafic.controllers.servlets.RegistrationServlet$1
+by/Girafic/core/contentdata/MaterialViewModifyData.java
+ by.Girafic.core.contentdata.MaterialViewModifyData
+by/Girafic/controllers/util/JspModifyRequestParser.java
+ by.Girafic.controllers.util.JspModifyRequestParser
+by/Girafic/controllers/servlets/UserModificationServlet.java
+ by.Girafic.controllers.servlets.UserModificationServlet
+ by.Girafic.controllers.servlets.UserModificationServlet$1
 by/Girafic/core/contentdata/SectionViewModifyData.java
  by.Girafic.core.contentdata.SectionViewModifyData
 by/Girafic/core/contentdata/SectionModifyData.java
  by.Girafic.core.contentdata.SectionModifyData
 by/Girafic/core/contentdata/ContentType.java
  by.Girafic.core.contentdata.ContentType
-by/Girafic/core/commonds/LoginData.java
- by.Girafic.core.commonds.LoginData
 by/Girafic/core/userdata/UserType.java
  by.Girafic.core.userdata.UserType
-by/Girafic/core/contentdata/MaterialModifyData.java
- by.Girafic.core.contentdata.MaterialModifyData
-by/Girafic/core/contentdata/CourseViewModifyData.java
- by.Girafic.core.contentdata.CourseViewModifyData
-by/Girafic/controllers/servlets/ContentModificationServlet.java
- by.Girafic.controllers.servlets.ContentModificationServlet
+by/Girafic/core/commonds/LoginData.java
+ by.Girafic.core.commonds.LoginData
 by/Girafic/core/contentdata/ContentViewData.java
  by.Girafic.core.contentdata.ContentViewData
-by/Girafic/core/contentdata/MaterialViewModifyData.java
- by.Girafic.core.contentdata.MaterialViewModifyData
-by/Girafic/core/commonds/ModifyConfirmation.java
- by.Girafic.core.commonds.ModifyConfirmation
 by/Girafic/core/contentdata/MaterialViewData.java
  by.Girafic.core.contentdata.MaterialViewData
-by/Girafic/core/contentdata/ContentLinkData.java
- by.Girafic.core.contentdata.ContentLinkData
-by/Girafic/core/interactors/StudentInteractor.java
- by.Girafic.core.interactors.StudentInteractor
-by/Girafic/core/interactors/TeacherInteractor.java
- by.Girafic.core.interactors.TeacherInteractor
-by/Girafic/core/contentdata/ContentModifyData.java
- by.Girafic.core.contentdata.ContentModifyData
-by/Girafic/core/validators/ContentValidator.java
- by.Girafic.core.validators.ContentValidator
+by/Girafic/core/contentdata/MaterialModifyData.java
+ by.Girafic.core.contentdata.MaterialModifyData
 by/Girafic/core/validators/CheckResult.java
  by.Girafic.core.validators.CheckResult
+by/Girafic/core/contentdata/CourseViewModifyData.java
+ by.Girafic.core.contentdata.CourseViewModifyData
+by/Girafic/core/contentdata/ContentModifyData.java
+ by.Girafic.core.contentdata.ContentModifyData
+by/Girafic/webview/DefaultView.java
+ by.Girafic.webview.DefaultView
+by/Girafic/core/contentdata/CourseModifyData.java
+ by.Girafic.core.contentdata.CourseModifyData
+by/Girafic/core/interactors/TeacherInteractor.java
+ by.Girafic.core.interactors.TeacherInteractor
+by/Girafic/core/contentdata/ContentLinkData.java
+ by.Girafic.core.contentdata.ContentLinkData
+by/Girafic/core/validators/ContentValidator.java
+ by.Girafic.core.validators.ContentValidator
+by/Girafic/core/interactors/StudentInteractor.java
+ by.Girafic.core.interactors.StudentInteractor
+by/Girafic/core/contentdata/SectionViewData.java
+ by.Girafic.core.contentdata.SectionViewData
+by/Girafic/core/contentdata/ContentViewModifyData.java
+ by.Girafic.core.contentdata.ContentViewModifyData
+by/Girafic/core/commonds/ModifyConfirmation.java
+ by.Girafic.core.commonds.ModifyConfirmation
+by/Girafic/controllers/servlets/ContentModificationServlet.java
+ by.Girafic.controllers.servlets.ContentModificationServlet
 by/Girafic/core/validators/UserValidator.java
  by.Girafic.core.validators.UserValidator
 by/Girafic/core/contentdata/CourseViewData.java
@@ -101,16 +111,10 @@ by/Girafic/core/userdata/AdminViewData.java
  by.Girafic.core.userdata.AdminViewData
 by/Girafic/core/userdata/AdminModifyData.java
  by.Girafic.core.userdata.AdminModifyData
-by/Girafic/controllers/servlets/UserModificationServlet.java
- by.Girafic.controllers.servlets.UserModificationServlet
- by.Girafic.controllers.servlets.UserModificationServlet$1
 by/Girafic/core/database/UserDataBase.java
  by.Girafic.core.database.UserDataBase
 by/Girafic/core/userdata/UserLinkData.java
  by.Girafic.core.userdata.UserLinkData
-by/Girafic/controllers/servlets/RegistrationServlet.java
- by.Girafic.controllers.servlets.RegistrationServlet
- by.Girafic.controllers.servlets.RegistrationServlet$1
 by/Girafic/core/database/ContentDataBase.java
  by.Girafic.core.database.ContentDataBase
 by/Girafic/core/view/TeacherView.java
@@ -122,5 +126,3 @@ by/Girafic/controllers/util/JspRequestParser.java
 by/Girafic/controllers/servlets/LoginServlet.java
  by.Girafic.controllers.servlets.LoginServlet
  by.Girafic.controllers.servlets.LoginServlet$1
-by/Girafic/webview/DefaultView.java
- by.Girafic.webview.DefaultView

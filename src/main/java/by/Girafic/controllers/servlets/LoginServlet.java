@@ -36,12 +36,12 @@ public class LoginServlet extends HttpServlet
             {
                 switch (interactorAccess.getUserType(ld.login))
                 {
-                    case Student -> interactorAccess.studentLogin(ld, new StudentView(request, response, this)).getStartPage();
-                    case Teacher -> interactorAccess.teacherLogin(ld, new TeacherView(request, response, this)).getStartPage();
-                    case Admin -> interactorAccess.adminLogin(ld, new AdminView(request, response, this)).getStartPage();
+                    case Student -> interactorAccess.studentLogin(ld, new StudentView(request, response)).getStartPage();
+                    case Teacher -> interactorAccess.teacherLogin(ld, new TeacherView(request, response)).getStartPage();
+                    case Admin -> interactorAccess.adminLogin(ld, new AdminView(request, response)).getStartPage();
                 }
             } else
-                new DefaultView(request, response, this).showError("Invalid username or password");
+                new DefaultView(request, response).showError("Invalid username or password");
         } catch (Exception e)
         {
             e.printStackTrace();

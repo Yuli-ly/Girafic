@@ -4,7 +4,10 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index.html" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/jsp/profile/adminProfile.jsp" value="file://$PROJECT_DIR$/src/main/webapp/jsp/profile" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/jsp/profile/teacherProfile.jsp" value="file://$PROJECT_DIR$/src/main/webapp/jsp/profile" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/jsp/profileMod/studentProfileAfterModify.jsp" value="file://$PROJECT_DIR$/src/main/webapp/jsp/profileMod" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/jsp/profileMod/userInputForm.jsp" value="file://$PROJECT_DIR$/src/main/webapp/jsp/profileMod" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/profile.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/profileAfterModify.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
       </map>
