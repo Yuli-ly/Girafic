@@ -7,11 +7,7 @@ public class FullName
     @Override
     public String toString()
     {
-        return "FullName{" +
-                "surname='" + surname + '\'' +
-                ", name='" + name + '\'' +
-                ", patronymic='" + patronymic + '\'' +
-                '}';
+        return name + " " + surname + " " + patronymic;
     }
 
     public String getSurname()

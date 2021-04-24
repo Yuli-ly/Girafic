@@ -1,5 +1,5 @@
 <%--@elvariable id="Student" type="by.Girafic.core.userdata.StudentViewModifyData"--%>
-<%--@elvariable id="UserType" type="by.Girafic.core.commonds.UserType"--%>
+<%--@elvariable id="UserType" type="by.Girafic.core.userdata.UserType"--%>
 <%--@elvariable id="login" type="java.lang.String"--%>
 <%--@elvariable id="password" type="java.lang.String"--%>
 <%--@elvariable id="id" type="java.lang.Integer"--%>

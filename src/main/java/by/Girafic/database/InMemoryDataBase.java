@@ -1,8 +1,8 @@
 package by.Girafic.database;
 
-import by.Girafic.core.commonds.ContentType;
+import by.Girafic.core.contentdata.ContentType;
 import by.Girafic.core.commonds.LoginData;
-import by.Girafic.core.commonds.UserType;
+import by.Girafic.core.userdata.UserType;
 import by.Girafic.core.contentdata.*;
 import by.Girafic.core.database.ContentDataBase;
 import by.Girafic.core.database.UserDataBase;
@@ -52,6 +52,12 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
         return content.get(contentID).getContentType();
     }
 
+    private UserViewData getUser(int userID)
+    {
+        if(users.containsKey(userID))
+            return new UserViewData(userID,users.get(userID));
+        return null;
+    }
     @Override
     public CourseViewData getCourse(int contentID)
     {
@@ -61,7 +67,13 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
             ArrayList<SectionViewData> sections = new ArrayList<>();
             for(int i : course.sections)
                 sections.add(getSection(i));
-            return new CourseViewData(contentID,course,sections.toArray(new SectionViewData[]{}));
+            ArrayList<UserLinkData> userList = new ArrayList<>();
+            for(int i : course.users)
+                userList.add(new UserLinkData(getUser(i)));
+            return new CourseViewData(contentID,
+                    course,
+                    sections.toArray(new SectionViewData[]{}),
+                    userList.toArray(new UserLinkData[]{}));
         }
         return null;
     }

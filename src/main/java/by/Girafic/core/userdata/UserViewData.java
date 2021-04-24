@@ -45,5 +45,11 @@ public class UserViewData
         this.mail = mail;
         this.faculty = faculty;
     }
-
+    public UserViewData(int id,UserModifyData data)
+    {
+        this.id = id;
+        this.fullName = data.fullName;
+        this.mail = data.mail;
+        this.faculty = data.faculty;
+    }
 }

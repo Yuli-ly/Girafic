@@ -8,6 +8,12 @@ public class ContentLinkData
         this.id = id;
     }
 
+    public ContentLinkData(ContentViewData content)
+    {
+        this.name = content.title;
+        this.id = content.id;
+    }
+
     public String getName()
     {
         return name;

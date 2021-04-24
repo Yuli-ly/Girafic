@@ -1,7 +1,7 @@
 package by.Girafic.core.database;
 
 import by.Girafic.core.commonds.LoginData;
-import by.Girafic.core.commonds.UserType;
+import by.Girafic.core.userdata.UserType;
 import by.Girafic.core.userdata.*;
 
 public interface UserDataBase

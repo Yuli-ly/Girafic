@@ -1,7 +1,5 @@
 package by.Girafic.core.userdata;
 
-import by.Girafic.core.commonds.UserType;
-
 public class UserModifyData
 {
     public UserType userType;

@@ -1,7 +1,7 @@
 package by.Girafic.core.interactors;
 
 import by.Girafic.core.commonds.LoginData;
-import by.Girafic.core.commonds.UserType;
+import by.Girafic.core.userdata.UserType;
 import by.Girafic.core.contentdata.CourseModifyData;
 import by.Girafic.core.contentdata.MaterialModifyData;
 import by.Girafic.core.contentdata.SectionModifyData;

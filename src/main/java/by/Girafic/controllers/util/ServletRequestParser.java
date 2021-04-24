@@ -1,26 +1,24 @@
 package by.Girafic.controllers.util;
 
 import by.Girafic.core.commonds.LoginData;
-import by.Girafic.core.commonds.UserType;
+import by.Girafic.core.userdata.UserType;
 import by.Girafic.core.userdata.*;
 import jakarta.servlet.http.HttpServletRequest;
 
-public class RequestParser
+public class ServletRequestParser
 {
     private HttpServletRequest request;
-    public RequestParser(HttpServletRequest request)
+    public ServletRequestParser(HttpServletRequest request)
     {
         this.request = request;
     }
     public void setLoginData(LoginData ld)
     {
-        request.setAttribute("login",ld.login);
-        request.setAttribute("password",ld.password);
+        request.setAttribute("LoginData",ld);
     }
     public void setAdminLoginData(LoginData ld)
     {
-        request.setAttribute("alogin",ld.login);
-        request.setAttribute("apassword",ld.password);
+        request.setAttribute("ALoginData",ld);
     }
     public void setID(int id)
     {

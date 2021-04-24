@@ -1,4 +1,4 @@
-package by.Girafic.core.commonds;
+package by.Girafic.core.contentdata;
 
 public enum ContentType
 {

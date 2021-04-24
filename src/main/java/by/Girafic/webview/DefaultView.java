@@ -1,6 +1,6 @@
 package by.Girafic.webview;
 
-import by.Girafic.core.commonds.UserType;
+import by.Girafic.core.userdata.UserType;
 import by.Girafic.core.userdata.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

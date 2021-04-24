@@ -1,6 +1,6 @@
 package by.Girafic.core.database;
 
-import by.Girafic.core.commonds.ContentType;
+import by.Girafic.core.contentdata.ContentType;
 import by.Girafic.core.contentdata.*;
 
 public interface ContentDataBase

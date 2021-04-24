@@ -1,20 +1,12 @@
 <%@ page import="by.Girafic.core.userdata.TeacherViewData" %>
-<%@ page import="static by.Girafic.controllers.util.JspUtil.*" %>
 <%@ page import="by.Girafic.core.contentdata.ContentLinkData" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: anato
-  Date: 23.04.2021
-  Time: 8:44
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="by.Girafic.controllers.util.JspRequestParser" %>
+
 <%--@elvariable id="Teacher" type="by.Girafic.core.userdata.TeacherViewData"--%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%
-    TeacherViewData teacher = (TeacherViewData) request.getAttribute("Teacher");
-    String path = request.getContextPath();
-    String login = (String) request.getAttribute("login");
-    String password = (String) request.getAttribute("password");
+    JspRequestParser parser = new JspRequestParser(request);
+    TeacherViewData teacher = parser.takeTeacher();
 %>
 
 <html>
@@ -23,18 +15,14 @@
 </head>
 <body>
 <p>
-    Имя: ${Teacher.fullName.name}<br>
-    Фамилия: ${Teacher.fullName.surname}<br>
-    Отчество: ${Teacher.fullName.patronymic}<br>
-    Факультет: ${Teacher.faculty}<br>
-    Почта: ${Teacher.mail}<br>
+    <jsp:include page="userData.jsp"></jsp:include>
     Кафедра: ${Teacher.department}<br>
     Должность: ${Teacher.post}<br>
     Курсы:
     <%
         for (ContentLinkData data : teacher.courses)
         {
-            out.println(createLinkToContent(path, login, password, data));
+            out.println(parser.createLinkToContent(data));
             out.println("<br>");
         }
     %>

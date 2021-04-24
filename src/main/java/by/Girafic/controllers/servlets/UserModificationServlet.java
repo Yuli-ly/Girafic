@@ -1,7 +1,7 @@
 package by.Girafic.controllers.servlets;
 
 import by.Girafic.controllers.util.GlobalValuesAccess;
-import by.Girafic.controllers.util.RequestParser;
+import by.Girafic.controllers.util.ServletRequestParser;
 import by.Girafic.core.commonds.LoginData;
 import by.Girafic.core.interactors.AdminInteractor;
 import by.Girafic.core.interactors.InteractorAccess;
@@ -26,7 +26,7 @@ public class UserModificationServlet extends HttpServlet
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     {
-        RequestParser parser = new RequestParser(request);
+        ServletRequestParser parser = new ServletRequestParser(request);
         LoginData ld = parser.takeLoginData();
         int userModID = parser.takeID();
         parser.setLoginData(ld);
@@ -47,7 +47,7 @@ public class UserModificationServlet extends HttpServlet
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     {
-        RequestParser parser = new RequestParser(request);
+        ServletRequestParser parser = new ServletRequestParser(request);
         LoginData ald = parser.takeAdminLoginData();
         int id = parser.takeID();
         parser.setAdminLoginData(ald);

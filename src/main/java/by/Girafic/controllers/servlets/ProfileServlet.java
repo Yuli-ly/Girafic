@@ -1,7 +1,7 @@
 package by.Girafic.controllers.servlets;
 
 import by.Girafic.controllers.util.GlobalValuesAccess;
-import by.Girafic.controllers.util.RequestParser;
+import by.Girafic.controllers.util.ServletRequestParser;
 import by.Girafic.core.commonds.LoginData;
 import by.Girafic.core.interactors.InteractorAccess;
 import by.Girafic.webview.AdminView;
@@ -27,7 +27,7 @@ public class ProfileServlet extends HttpServlet
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     {
-        RequestParser parser = new RequestParser(request);
+        ServletRequestParser parser = new ServletRequestParser(request);
         int id = parser.takeID();
         LoginData ld = parser.takeLoginData();
         parser.setLoginData(ld);

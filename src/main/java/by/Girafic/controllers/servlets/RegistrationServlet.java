@@ -1,7 +1,7 @@
 package by.Girafic.controllers.servlets;
 
 import by.Girafic.controllers.util.GlobalValuesAccess;
-import by.Girafic.controllers.util.RequestParser;
+import by.Girafic.controllers.util.ServletRequestParser;
 import by.Girafic.core.commonds.LoginData;
 import by.Girafic.core.interactors.AdminInteractor;
 import by.Girafic.core.interactors.InteractorAccess;
@@ -25,7 +25,7 @@ public class RegistrationServlet extends HttpServlet
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     {
-        RequestParser parser = new RequestParser(request);
+        ServletRequestParser parser = new ServletRequestParser(request);
         LoginData ald = parser.takeAdminLoginData();
         try
         {

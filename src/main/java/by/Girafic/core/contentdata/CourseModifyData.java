@@ -1,7 +1,5 @@
 package by.Girafic.core.contentdata;
 
-import by.Girafic.core.commonds.ContentType;
-
 public class CourseModifyData extends ContentModifyData
 {
     public int[] sections;
