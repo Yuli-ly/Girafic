@@ -30,7 +30,7 @@ public class StudentView implements by.Girafic.core.view.StudentView
     {
         request.setAttribute("Student",student);
         request.setAttribute("mutable",mutable);
-        servlet.getServletContext().getRequestDispatcher("/studentProfile.jsp").forward(request,response);
+        servlet.getServletContext().getRequestDispatcher("/jsp/profile/studentProfile.jsp").forward(request,response);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class StudentView implements by.Girafic.core.view.StudentView
     {
         request.setAttribute("Teacher",teacher);
         request.setAttribute("mutable",mutable);
-        servlet.getServletContext().getRequestDispatcher("/teacherProfile.jsp").forward(request,response);
+        servlet.getServletContext().getRequestDispatcher("/jsp/profile/teacherProfile.jsp").forward(request,response);
     }
 
     @Override
@@ -46,14 +46,14 @@ public class StudentView implements by.Girafic.core.view.StudentView
     {
         request.setAttribute("Admin",admin);
         request.setAttribute("mutable",mutable);
-        servlet.getServletContext().getRequestDispatcher("/adminProfile.jsp").forward(request,response);
+        servlet.getServletContext().getRequestDispatcher("/jsp/profile/adminProfile.jsp").forward(request,response);
     }
     @Override
     public void showContent(CourseViewData course,boolean mutable) throws ServletException, IOException
     {
         request.setAttribute("Course",course);
         request.setAttribute("mutable",mutable);
-        servlet.getServletContext().getRequestDispatcher("/course.jsp").forward(request,response);
+        servlet.getServletContext().getRequestDispatcher("/jsp/content/course.jsp").forward(request,response);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class StudentView implements by.Girafic.core.view.StudentView
     {
         request.setAttribute("Material",material);
         request.setAttribute("mutable",mutable);
-        servlet.getServletContext().getRequestDispatcher("/material.jsp").forward(request,response);
+        servlet.getServletContext().getRequestDispatcher("/jsp/content/material.jsp").forward(request,response);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class StudentView implements by.Girafic.core.view.StudentView
     {
         request.setAttribute("Section",section);
         request.setAttribute("mutable",mutable);
-        servlet.getServletContext().getRequestDispatcher("/section.jsp").forward(request,response);
+        servlet.getServletContext().getRequestDispatcher("/jsp/content/section.jsp").forward(request,response);
     }
 
     public void showError(String message) throws ServletException, IOException

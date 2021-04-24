@@ -7,12 +7,18 @@ import by.Girafic.core.interactors.AdminInteractor;
 import by.Girafic.core.interactors.InteractorAccess;
 import by.Girafic.webview.AdminView;
 import by.Girafic.webview.DefaultView;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "userModificationServlet", value = "/usermodification")
+@WebServlet("/userModification")
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 10,  // 10 KB
+        maxFileSize = 1024 * 300,       // 300 KB
+        maxRequestSize = 1024 * 1024    // 1 MB
+)
 public class UserModificationServlet extends HttpServlet
 {
     private final InteractorAccess interactorAccess = GlobalValuesAccess.getValues().interactorAccess;

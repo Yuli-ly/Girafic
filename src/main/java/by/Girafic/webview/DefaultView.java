@@ -28,7 +28,7 @@ public class DefaultView
         request.setAttribute("Student",student);
         try
         {
-            servlet.getServletContext().getRequestDispatcher("/profileAfterModify.jsp").forward(request,response);
+            servlet.getServletContext().getRequestDispatcher("/jsp/profileMod/profileAfterModify.jsp").forward(request,response);
         } catch (ServletException | IOException e)
         {
             e.printStackTrace();
@@ -41,7 +41,7 @@ public class DefaultView
         request.setAttribute("Teacher",teacher);
         try
         {
-            servlet.getServletContext().getRequestDispatcher("/profileAfterModify.jsp").forward(request,response);
+            servlet.getServletContext().getRequestDispatcher("/jsp/profileMod/profileAfterModify.jsp").forward(request,response);
         } catch (ServletException | IOException e)
         {
             e.printStackTrace();
@@ -52,7 +52,7 @@ public class DefaultView
     {
         request.setAttribute("UserType",UserType.Admin);
         request.setAttribute("Admin",admin);
-        servlet.getServletContext().getRequestDispatcher("/profileAfterModify.jsp").forward(request,response);
+        servlet.getServletContext().getRequestDispatcher("/jsp/profileMod/profileAfterModify.jsp").forward(request,response);
     }
     public void showError(String message) throws ServletException, IOException
     {

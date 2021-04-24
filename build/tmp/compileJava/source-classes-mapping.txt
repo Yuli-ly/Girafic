@@ -40,8 +40,8 @@ by/Girafic/core/contentdata/CourseViewModifyData.java
  by.Girafic.core.contentdata.CourseViewModifyData
 by/Girafic/core/commonds/UserType.java
  by.Girafic.core.commonds.UserType
-by/Girafic/controllers/util/JspUtil.java
- by.Girafic.controllers.util.JspUtil
+by/Girafic/webview/DefaultView.java
+ by.Girafic.webview.DefaultView
 by/Girafic/core/contentdata/ContentViewModifyData.java
  by.Girafic.core.contentdata.ContentViewModifyData
 by/Girafic/core/interactors/StudentInteractor.java
@@ -70,18 +70,16 @@ by/Girafic/core/userdata/AdminViewModifyData.java
  by.Girafic.core.userdata.AdminViewModifyData
 by/Girafic/core/view/TeacherView.java
  by.Girafic.core.view.TeacherView
-by/Girafic/controllers/servlets/RegistrationServlet.java
- by.Girafic.controllers.servlets.RegistrationServlet
- by.Girafic.controllers.servlets.RegistrationServlet$1
-by/Girafic/controllers/servlets/UserModificationServlet.java
- by.Girafic.controllers.servlets.UserModificationServlet
- by.Girafic.controllers.servlets.UserModificationServlet$1
+by/Girafic/core/userdata/TeacherModifyData.java
+ by.Girafic.core.userdata.TeacherModifyData
+by/Girafic/webview/TeacherView.java
+ by.Girafic.webview.TeacherView
 by/Girafic/database/InMemoryDataBase.java
  by.Girafic.database.InMemoryDataBase
 by/Girafic/core/userdata/UserModifyData.java
  by.Girafic.core.userdata.UserModifyData
-by/Girafic/webview/DefaultView.java
- by.Girafic.webview.DefaultView
+by/Girafic/core/database/UserDataBase.java
+ by.Girafic.core.database.UserDataBase
 by/Girafic/core/interactors/AdminInteractor.java
  by.Girafic.core.interactors.AdminInteractor
 by/Girafic/core/userdata/UserViewModifyData.java
@@ -90,22 +88,11 @@ by/Girafic/core/userdata/StudentViewModifyData.java
  by.Girafic.core.userdata.StudentViewModifyData
 by/Girafic/core/userdata/StudentViewData.java
  by.Girafic.core.userdata.StudentViewData
-by/Girafic/core/database/UserDataBase.java
- by.Girafic.core.database.UserDataBase
-by/Girafic/core/userdata/TeacherModifyData.java
- by.Girafic.core.userdata.TeacherModifyData
+by/Girafic/controllers/servlets/LoginServlet.java
+ by.Girafic.controllers.servlets.LoginServlet
+ by.Girafic.controllers.servlets.LoginServlet$1
 by/Girafic/controllers/util/GlobalValuesAccess.java
  by.Girafic.controllers.util.GlobalValuesAccess
-by/Girafic/controllers/util/GlobalValues.java
- by.Girafic.controllers.util.GlobalValues
-by/Girafic/webview/AdminView.java
- by.Girafic.webview.AdminView
-by/Girafic/controllers/servlets/ProfileServlet.java
- by.Girafic.controllers.servlets.ProfileServlet
- by.Girafic.controllers.servlets.ProfileServlet$1
-by/Girafic/controllers/servlets/ContentServlet.java
- by.Girafic.controllers.servlets.ContentServlet
- by.Girafic.controllers.servlets.ContentServlet$1
 by/Girafic/core/interactors/InteractorAccess.java
  by.Girafic.core.interactors.InteractorAccess
  by.Girafic.core.interactors.InteractorAccess$1
@@ -113,10 +100,25 @@ by/Girafic/core/interactors/InteractorAccess.java
  by.Girafic.core.interactors.InteractorAccess$DefaultInteractor
  by.Girafic.core.interactors.InteractorAccess$StudentInteractorImpl
  by.Girafic.core.interactors.InteractorAccess$TeacherInteractorImpl
+by/Girafic/controllers/util/GlobalValues.java
+ by.Girafic.controllers.util.GlobalValues
+by/Girafic/webview/AdminView.java
+ by.Girafic.webview.AdminView
 by/Girafic/webview/StudentView.java
  by.Girafic.webview.StudentView
-by/Girafic/webview/TeacherView.java
- by.Girafic.webview.TeacherView
-by/Girafic/controllers/servlets/LoginServlet.java
- by.Girafic.controllers.servlets.LoginServlet
- by.Girafic.controllers.servlets.LoginServlet$1
+by/Girafic/controllers/util/JspUtil.java
+ by.Girafic.controllers.util.JspUtil
+by/Girafic/controllers/servlets/UserModificationServlet.java
+ by.Girafic.controllers.servlets.UserModificationServlet
+ by.Girafic.controllers.servlets.UserModificationServlet$1
+by/Girafic/controllers/servlets/ContentModificationServlet.java
+ by.Girafic.controllers.servlets.ContentModificationServlet
+by/Girafic/controllers/servlets/RegistrationServlet.java
+ by.Girafic.controllers.servlets.RegistrationServlet
+ by.Girafic.controllers.servlets.RegistrationServlet$1
+by/Girafic/controllers/servlets/ProfileServlet.java
+ by.Girafic.controllers.servlets.ProfileServlet
+ by.Girafic.controllers.servlets.ProfileServlet$1
+by/Girafic/controllers/servlets/ContentServlet.java
+ by.Girafic.controllers.servlets.ContentServlet
+ by.Girafic.controllers.servlets.ContentServlet$1
