@@ -1,7 +1,7 @@
-<%@ page import="by.Girafic.core.userdata.StudentViewData" %>
-<%@ page import="by.Girafic.core.contentdata.ContentLinkData" %>
-<%@ page import="by.Girafic.controllers.util.JspRequestParser" %>
-<%--@elvariable id="Student" type="by.Girafic.core.userdata.StudentViewData"--%>
+<%@ page import="by.girafic.core.userdata.StudentViewData" %>
+<%@ page import="by.girafic.core.contentdata.ContentLinkData" %>
+<%@ page import="by.girafic.controllers.util.JspRequestParser" %>
+<%--@elvariable id="Student" type="by.girafic.core.userdata.StudentViewData"--%>
 
 <%
     JspRequestParser parser = new JspRequestParser(request);

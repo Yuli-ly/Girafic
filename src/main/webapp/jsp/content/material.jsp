@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--@elvariable id="Material" type="by.Girafic.core.contentdata.MaterialViewData"--%>
+<%--@elvariable id="Material" type="by.girafic.core.contentdata.MaterialViewData"--%>
 <html>
 <head>
     <title>Материал</title>

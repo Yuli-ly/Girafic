@@ -121,8 +121,8 @@ by/Girafic/core/view/TeacherView.java
  by.Girafic.core.view.TeacherView
 by/Girafic/core/view/StudentView.java
  by.Girafic.core.view.StudentView
-by/Girafic/controllers/util/JspRequestParser.java
- by.Girafic.controllers.util.JspRequestParser
 by/Girafic/controllers/servlets/LoginServlet.java
  by.Girafic.controllers.servlets.LoginServlet
  by.Girafic.controllers.servlets.LoginServlet$1
+by/Girafic/controllers/util/JspRequestParser.java
+ by.Girafic.controllers.util.JspRequestParser

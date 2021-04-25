@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%--@elvariable id="Admin" type="by.Girafic.core.userdata.AdminViewModifyData"--%>
+<%--@elvariable id="Admin" type="by.girafic.core.userdata.AdminViewModifyData"--%>
 <%--@elvariable id="path" type="String"--%>
 <html>
 <head>

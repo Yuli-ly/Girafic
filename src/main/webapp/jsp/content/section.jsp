@@ -1,9 +1,9 @@
-<%@ page import="by.Girafic.core.contentdata.SectionViewData" %>
-<%@ page import="by.Girafic.core.contentdata.ContentViewData" %>
-<%@ page import="by.Girafic.core.contentdata.ContentLinkData" %>
-<%@ page import="by.Girafic.controllers.util.JspRequestParser" %>
+<%@ page import="by.girafic.core.contentdata.SectionViewData" %>
+<%@ page import="by.girafic.core.contentdata.ContentViewData" %>
+<%@ page import="by.girafic.core.contentdata.ContentLinkData" %>
+<%@ page import="by.girafic.controllers.util.JspRequestParser" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%--@elvariable id="Section" type="by.Girafic.core.contentdata.SectionViewData"--%>
+<%--@elvariable id="Section" type="by.girafic.core.contentdata.SectionViewData"--%>
 
 <html>
 <head>

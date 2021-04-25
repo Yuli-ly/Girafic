@@ -4,7 +4,7 @@
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
   <component name="ProjectResources">
-    <resource url="https://java.sun.com/jsp/jstl/core" location="$PROJECT_DIR$" />
+    <resource url="http://java.sun.com/jsp/jstl/core" location="" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_15" default="true" project-jdk-name="15" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

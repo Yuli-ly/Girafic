@@ -1,12 +1,12 @@
-<%@ page import="by.Girafic.core.contentdata.CourseViewData" %>
-<%@ page import="by.Girafic.core.contentdata.SectionViewData" %>
-<%@ page import="by.Girafic.core.contentdata.ContentLinkData" %>
-<%@ page import="by.Girafic.core.contentdata.ContentViewData" %>
-<%@ page import="by.Girafic.core.userdata.UserLinkData" %>
-<%@ page import="by.Girafic.controllers.util.JspRequestParser" %>
+<%@ page import="by.girafic.core.contentdata.CourseViewData" %>
+<%@ page import="by.girafic.core.contentdata.SectionViewData" %>
+<%@ page import="by.girafic.core.contentdata.ContentLinkData" %>
+<%@ page import="by.girafic.core.contentdata.ContentViewData" %>
+<%@ page import="by.girafic.core.userdata.UserLinkData" %>
+<%@ page import="by.girafic.controllers.util.JspRequestParser" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%--@elvariable id="Course" type="by.Girafic.core.contentdata.CourseViewData"--%>
-<%--@elvariable id="LoginData" type="by.Girafic.core.commonds.LoginData"--%>
+<%--@elvariable id="Course" type="by.girafic.core.contentdata.CourseViewData"--%>
+<%--@elvariable id="LoginData" type="by.girafic.core.commonds.LoginData"--%>
 <html>
 <head>
     <title>Курс</title>
