@@ -240,6 +240,4 @@ input[type="radio"]:checked + label::before {
     color: #fff;
 }
 
-.student, .teacher {
-    display: none;
-}
+
