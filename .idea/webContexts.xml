@@ -5,6 +5,7 @@
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/error.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index.html" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/jsp/content/creation/material.jsp" value="file://$PROJECT_DIR$/src/main/webapp/jsp/content/creation" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/jsp/profile/adminProfile.jsp" value="file://$PROJECT_DIR$/src/main/webapp/jsp/profile" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/jsp/profile/teacherProfile.jsp" value="file://$PROJECT_DIR$/src/main/webapp/jsp/profile" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/jsp/profileMod/studentProfileAfterModify.jsp" value="file://$PROJECT_DIR$/src/main/webapp/jsp/profileMod" />

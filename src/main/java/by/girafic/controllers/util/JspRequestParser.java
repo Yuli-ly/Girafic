@@ -12,9 +12,14 @@ import jakarta.servlet.http.HttpServletRequest;
 
 public class JspRequestParser
 {
-    private HttpServletRequest request;
-    private LoginData ld;
-    private String path;
+    protected final HttpServletRequest request;
+    protected final LoginData ld;
+    private final String path;
+    private String loginPassword()
+    {
+        return "?login=" + ld.login +
+                "&password=" + ld.password;
+    }
     public JspRequestParser(HttpServletRequest request)
     {
         this.request = request;
@@ -28,27 +33,22 @@ public class JspRequestParser
     }
     public AdminViewData takeAdmin()
     {
-        AdminViewData admin = (AdminViewData) request.getAttribute("Admin");
-        return admin;
+        return (AdminViewData) request.getAttribute("Admin");
     }
     public StudentViewData takeStudent()
     {
-        StudentViewData student = (StudentViewData) request.getAttribute("Student");
-        return student;
+        return (StudentViewData) request.getAttribute("Student");
     }
     public TeacherViewData takeTeacher()
     {
-        TeacherViewData teacher = (TeacherViewData) request.getAttribute("Teacher");
-        return teacher;
+        return (TeacherViewData) request.getAttribute("Teacher");
     }
     public String createLinkToContent(ContentLinkData data)
     {
         return "<a href=\"" +
                 path +
                 "/content" +
-                "?" +
-                "login=" + ld.login +
-                "&password=" + ld.password +
+                loginPassword()+
                 "&id=" + data.id +
                 "\">" + data.name + "</a>";
     }
@@ -65,9 +65,19 @@ public class JspRequestParser
     }
     public String registrationLink()
     {
-        return path + "/jsp/profileMod/registration.jsp?"+
-                "login=" + ld.login +
-                "&password=" + ld.password;
+        return path + "/jsp/user/creation/registration.jsp" + loginPassword();
+    }
+    public String courseCreationLink()
+    {
+        return path + "/jsp/content/creation/course.jsp"+loginPassword();
+    }
+    public String materialCreationLink()
+    {
+        return path + "/jsp/content/creation/material.jsp"+loginPassword();
+    }
+    public String sectionCreationLink()
+    {
+        return path + "/jsp/content/creation/section.jsp"+loginPassword();
     }
     public CourseViewData takeCourse()
     {

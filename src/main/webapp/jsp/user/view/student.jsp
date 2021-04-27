@@ -14,7 +14,7 @@
 </head>
 <body>
 <p>
-    <jsp:include page="userData.jsp"></jsp:include>
+    <jsp:include page="user.jsp"></jsp:include>
     Группа: ${Student.group}<br>
     Курс: ${Student.course}<br>
     Средний балл: ${Student.gpa}<br>

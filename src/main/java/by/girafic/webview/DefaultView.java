@@ -19,6 +19,6 @@ public class DefaultView
     public void showError(String message) throws ServletException, IOException
     {
         request.setAttribute("Message",message);
-        request.getServletContext().getRequestDispatcher("/error.jsp").forward(request,response);
+        request.getServletContext().getRequestDispatcher("/jsp/error.jsp").forward(request,response);
     }
 }

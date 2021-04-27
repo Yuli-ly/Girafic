@@ -24,17 +24,31 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
                 new FullName("admin", "admin", "admin"),
                 "admin",
                 "admin",
-                "admin@example.com", "RF&CT");
+                "admin@example.com",
+                "RF&CT");
         users.put(userAddIndex++, admin);
         TeacherModifyData teacher = new TeacherModifyData(UserType.Teacher,
                 new FullName("teacher", "teacher", "teacher"),
-                "teacher", "teacher", "teacher@gmail.com", "RF&CT", "1", "teacher", new int[]{3});
+                "teacher",
+                "teacher",
+                "teacher@gmail.com",
+                "RF&CT",
+                "1",
+                "teacher",
+                new int[]{3},
+                new int[]{1,2,3});
         users.put(userAddIndex++, teacher);
         StudentModifyData student = new StudentModifyData(UserType.Student,
                 new FullName("student", "student", "student"),
                 "student",
                 "student",
-                "student@example.com", "RF&CT", 2, 10, "7", "no department", new int[]{3});
+                "student@example.com",
+                "RF&CT",
+                2,
+                10,
+                "7",
+                "no department",
+                new int[]{3});
         users.put(userAddIndex++, student);
 
         MaterialModifyData material = new MaterialModifyData("Material 1","First material","bla-bla-bla");

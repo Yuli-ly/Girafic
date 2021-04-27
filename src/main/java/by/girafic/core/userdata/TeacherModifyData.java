@@ -14,26 +14,42 @@ public class TeacherModifyData extends UserModifyData
 
     public int[] getCourses()
     {
-        return courses;
+        return availableContent;
     }
 
-    public TeacherModifyData(UserType userType, FullName fullName, String login, String password, String mail, String faculty, String department, String post, int[] courses)
+    public TeacherModifyData(UserType userType,
+                             FullName fullName,
+                             String login,
+                             String password,
+                             String mail,
+                             String faculty,
+                             String department,
+                             String post,
+                             int[] courses,
+                             int[] availableContent)
     {
         super(userType, fullName, login, password, mail, faculty);
         this.department = department;
         this.post = post;
         this.courses = courses;
+        this.availableContent = availableContent;
     }
 
-    public TeacherModifyData(UserModifyData data,String department,String post,int[] courses)
+    public TeacherModifyData(UserModifyData data,
+                             String department,
+                             String post,
+                             int[] courses,
+                             int[] availableContent)
     {
         super(data);
         this.department = department;
         this.post = post;
         this.courses = courses;
+        this.availableContent = availableContent;
     }
 
     public String department;
     public String post;
+    public int[] availableContent;
     public int[] courses;
 }

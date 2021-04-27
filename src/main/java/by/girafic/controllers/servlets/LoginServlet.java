@@ -1,7 +1,9 @@
 package by.girafic.controllers.servlets;
 
 import by.girafic.controllers.util.GlobalValuesAccess;
-import by.girafic.controllers.util.ServletRequestParser;
+import by.girafic.controllers.request.DefaultLoginGetter;
+import by.girafic.controllers.request.DefaultLoginSetter;
+import by.girafic.controllers.request.RequestWrapper;
 import by.girafic.core.commonds.LoginData;
 import by.girafic.core.interactors.InteractorAccess;
 import by.girafic.webview.AdminView;
@@ -27,18 +29,19 @@ public class LoginServlet extends HttpServlet
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     {
-        ServletRequestParser parser = new ServletRequestParser(request);
-        LoginData ld = parser.takeLoginData();
-        parser.setLoginData(ld);
+        RequestWrapper wrapper = new RequestWrapper(request,response,
+                DefaultLoginSetter.instance,
+                DefaultLoginGetter.instance);
+        LoginData ld = wrapper.takeLogin();
         try
         {
             if (interactorAccess.checkExistence(ld))
             {
                 switch (interactorAccess.getUserType(ld.login))
                 {
-                    case Student -> interactorAccess.studentLogin(ld, new StudentView(request, response)).getStartPage();
-                    case Teacher -> interactorAccess.teacherLogin(ld, new TeacherView(request, response)).getStartPage();
-                    case Admin -> interactorAccess.adminLogin(ld, new AdminView(request, response)).getStartPage();
+                    case Student -> interactorAccess.studentLogin(ld, new StudentView(wrapper)).getStartPage();
+                    case Teacher -> interactorAccess.teacherLogin(ld, new TeacherView(wrapper)).getStartPage();
+                    case Admin -> interactorAccess.adminLogin(ld, new AdminView(wrapper)).getStartPage();
                 }
             } else
                 new DefaultView(request, response).showError("Invalid username or password");

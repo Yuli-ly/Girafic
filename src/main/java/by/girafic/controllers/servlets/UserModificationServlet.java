@@ -1,7 +1,10 @@
 package by.girafic.controllers.servlets;
 
 import by.girafic.controllers.util.GlobalValuesAccess;
-import by.girafic.controllers.util.ServletRequestParser;
+import by.girafic.controllers.request.AdminLoginGetter;
+import by.girafic.controllers.request.DefaultLoginSetter;
+import by.girafic.controllers.request.RequestWrapper;
+import by.girafic.controllers.request.UserRequestWrapper;
 import by.girafic.core.commonds.LoginData;
 import by.girafic.core.interactors.AdminInteractor;
 import by.girafic.core.interactors.InteractorAccess;
@@ -26,15 +29,15 @@ public class UserModificationServlet extends HttpServlet
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     {
-        ServletRequestParser parser = new ServletRequestParser(request);
-        LoginData ld = parser.takeAdminLoginData();
-        int userModID = parser.takeID();
-        parser.setLoginData(ld);
-        parser.setID(userModID);
+        RequestWrapper wrapper = new RequestWrapper(request,response,
+                DefaultLoginSetter.instance,AdminLoginGetter.instance);
+        LoginData ld = wrapper.takeLogin();
+        int userModID = wrapper.takeID();
+        wrapper.setID(userModID);
         try
         {
             if (interactorAccess.checkExistence(ld))
-                interactorAccess.adminLogin(ld, new AdminView(request, response)).showUserForModification(userModID);
+                interactorAccess.adminLogin(ld, new AdminView(wrapper)).showUserForModification(userModID);
              else
                 new DefaultView(request, response).showError("Incorrect Login or Password");
         }
@@ -47,22 +50,22 @@ public class UserModificationServlet extends HttpServlet
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     {
-        ServletRequestParser parser = new ServletRequestParser(request);
-        LoginData ld = parser.takeAdminLoginData();
-        int id = parser.takeID();
-        parser.setLoginData(ld);
-        parser.setID(id);
+        UserRequestWrapper wrapper = new UserRequestWrapper(request,response,
+                DefaultLoginSetter.instance, AdminLoginGetter.instance);
+        LoginData ld = wrapper.takeLogin();
+        int id = wrapper.takeID();
+        wrapper.setID(id);
         try
         {
         if(interactorAccess.checkExistence(ld))
         {
-            AdminInteractor interactor = interactorAccess.adminLogin(ld, new AdminView(request, response));
+            AdminInteractor interactor = interactorAccess.adminLogin(ld, new AdminView(wrapper));
 
-                switch (parser.takeUserType())
+                switch (wrapper.takeUserType())
                 {
-                    case Student -> interactor.modifyUser(parser.takeStudentData(), id);
-                    case Teacher -> interactor.modifyUser(parser.takeTeacherData(), id);
-                    case Admin -> interactor.modifyUser(parser.takeAdminData(), id);
+                    case Student -> interactor.modifyUser(wrapper.takeStudentData(), id);
+                    case Teacher -> interactor.modifyUser(wrapper.takeTeacherData(), id);
+                    case Admin -> interactor.modifyUser(wrapper.takeAdminData(), id);
                 }
 
         }

@@ -1,14 +1,13 @@
 package by.girafic.webview;
 
+import by.girafic.controllers.request.RequestWrapper;
 import by.girafic.core.contentdata.*;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 public class TeacherView extends StudentView implements by.girafic.core.view.TeacherView
 {
-    public TeacherView(HttpServletRequest request, HttpServletResponse response)
+    public TeacherView(RequestWrapper wrapper)
     {
-        super(request,response);
+        super(wrapper);
     }
 
     @Override

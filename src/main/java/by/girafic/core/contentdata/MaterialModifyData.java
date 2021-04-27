@@ -9,7 +9,11 @@ public class MaterialModifyData extends ContentModifyData
         super(title, description, ContentType.Material);
         this.filling = filling;
     }
-
+    public MaterialModifyData(ContentModifyData data,String filling)
+    {
+        super(data.title,data.description,data.contentType);
+        this.filling = filling;
+    }
     public String getFilling()
     {
         return filling;

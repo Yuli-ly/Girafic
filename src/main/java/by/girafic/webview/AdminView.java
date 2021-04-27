@@ -1,47 +1,37 @@
 package by.girafic.webview;
 
+import by.girafic.controllers.request.RequestWrapper;
 import by.girafic.core.userdata.*;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
 public class AdminView extends TeacherView implements by.girafic.core.view.AdminView
 {
 
-    public AdminView(HttpServletRequest request, HttpServletResponse response)
+    public AdminView(RequestWrapper wrapper)
     {
-        super(request,response);
+        super(wrapper);
     }
 
     @Override
     public void showUserAfterModify(AdminViewModifyData admin) throws ServletException, IOException
     {
-        request.setAttribute("Admin",admin);
-        request.setAttribute("User",admin);
-        request.getServletContext()
-                .getRequestDispatcher("/jsp/profileMod/adminProfileAfterModify.jsp")
-                .forward(request,response);
+        wrapper.setUser(admin);
+        wrapper.forward("/jsp/user/modification/admin.jsp");
     }
 
     @Override
     public void showUserAfterModify(StudentViewModifyData student) throws ServletException, IOException
     {
-        request.setAttribute("Student",student);
-        request.setAttribute("User",student);
-        request.getServletContext()
-                .getRequestDispatcher("/jsp/profileMod/studentProfileAfterModify.jsp")
-                .forward(request,response);
+        wrapper.setUser(student);
+        wrapper.forward("/jsp/user/modification/student.jsp");
     }
 
     @Override
     public void showUserAfterModify(TeacherViewModifyData teacher) throws ServletException, IOException
     {
-        request.setAttribute("Teacher",teacher);
-        request.setAttribute("User",teacher);
-        request.getServletContext()
-                .getRequestDispatcher("/jsp/profileMod/teacherProfileAfterModify.jsp")
-                .forward(request,response);
+        wrapper.setUser(teacher);
+        wrapper.forward("/jsp/user/modification/teacher.jsp");
     }
 }

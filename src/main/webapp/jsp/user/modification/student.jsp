@@ -9,7 +9,7 @@
 <form action="${path}/userModification" method="post">
     <input type="hidden" name="Type" value="student">
 <ul>
-<jsp:include page="userInputForm.jsp"></jsp:include>
+<jsp:include page="../creation/userInputForm.jsp"></jsp:include>
     <li>
         <label for="gpa">Средний балл:</label>
         <input type="text" id="gpa" name="GPA" value="${Student.gpa.field}">

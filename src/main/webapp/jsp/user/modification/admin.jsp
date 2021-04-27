@@ -9,7 +9,7 @@
 <form action="${path}/userModification" method="post">
     <input type="hidden" name="Type" value="admin">
     <ul>
-        <jsp:include page="userInputForm.jsp"></jsp:include>
+        <jsp:include page="../creation/userInputForm.jsp"></jsp:include>
     </ul>
     <input type="submit" value="Подтвердить">
 </form>

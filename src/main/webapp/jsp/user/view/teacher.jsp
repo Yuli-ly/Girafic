@@ -15,7 +15,7 @@
 </head>
 <body>
 <p>
-    <jsp:include page="userData.jsp"></jsp:include>
+    <jsp:include page="user.jsp"></jsp:include>
     Кафедра: ${Teacher.department}<br>
     Должность: ${Teacher.post}<br>
     Курсы:
@@ -27,5 +27,10 @@
         }
     %>
 </p>
+<a href="<%=parser.courseCreationLink()%>">Создать курс</a>
+<br>
+<a href="<%=parser.sectionCreationLink()%>">Создать раздел</a>
+<br>
+<a href="<%=parser.materialCreationLink()%>">Создать материал</a>
 </body>
 </html>

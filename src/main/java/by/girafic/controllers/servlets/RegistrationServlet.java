@@ -1,7 +1,9 @@
 package by.girafic.controllers.servlets;
 
 import by.girafic.controllers.util.GlobalValuesAccess;
-import by.girafic.controllers.util.ServletRequestParser;
+import by.girafic.controllers.request.AdminLoginGetter;
+import by.girafic.controllers.request.DefaultLoginSetter;
+import by.girafic.controllers.request.UserRequestWrapper;
 import by.girafic.core.commonds.LoginData;
 import by.girafic.core.interactors.AdminInteractor;
 import by.girafic.core.interactors.InteractorAccess;
@@ -25,17 +27,17 @@ public class RegistrationServlet extends HttpServlet
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     {
-        ServletRequestParser parser = new ServletRequestParser(request);
-        LoginData ld = parser.takeAdminLoginData();
-        parser.setLoginData(ld);
+        UserRequestWrapper wrapper = new UserRequestWrapper(request,response,
+                DefaultLoginSetter.instance, AdminLoginGetter.instance);
+        LoginData ld = wrapper.takeLogin();
         try
         {
-            AdminInteractor interactor = interactorAccess.adminLogin(ld,new AdminView(request,response));
-            switch (parser.takeUserType())
+            AdminInteractor interactor = interactorAccess.adminLogin(ld,new AdminView(wrapper));
+            switch (wrapper.takeUserType())
             {
-                case Student -> interactor.createUser(parser.takeStudentData());
-                case Teacher -> interactor.createUser(parser.takeTeacherData());
-                case Admin -> interactor.createUser(parser.takeAdminData());
+                case Student -> interactor.createUser(wrapper.takeStudentData());
+                case Teacher -> interactor.createUser(wrapper.takeTeacherData());
+                case Admin -> interactor.createUser(wrapper.takeAdminData());
             }
         } catch (Exception e)
         {
