@@ -9,5 +9,5 @@ public class GlobalValues
         this.interactorAccess = interactorAccess;
     }
 
-    public InteractorAccess interactorAccess;
+    public final InteractorAccess interactorAccess;
 }

@@ -28,9 +28,9 @@ public class TeacherViewModifyData extends UserViewModifyData
         post = successful(data.post);
         courses = successful(data.courses);
     }
-    public ModifyConfirmation<String> department;
-    public ModifyConfirmation<String> post;
-    public ModifyConfirmation<int[]> courses;
+    public final ModifyConfirmation<String> department;
+    public final ModifyConfirmation<String> post;
+    public final ModifyConfirmation<int[]> courses;
 
     public ModifyConfirmation<String> getDepartment()
     {

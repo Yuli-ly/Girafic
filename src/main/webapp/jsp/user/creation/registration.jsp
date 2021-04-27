@@ -11,6 +11,7 @@
 </head>
 <body>
 <form action="${path}/registration" method="post">
+    <ul>
     <jsp:include page="userInputForm.jsp"></jsp:include>
     <li>
         <label for="gpa">Средний балл:</label>

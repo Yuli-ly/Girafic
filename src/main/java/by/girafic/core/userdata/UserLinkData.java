@@ -2,8 +2,8 @@ package by.girafic.core.userdata;
 
 public class UserLinkData
 {
-    public int id;
-    public FullName name;
+    public final int id;
+    public final FullName name;
 
     public UserLinkData(int id, FullName name)
     {

@@ -2,10 +2,10 @@ package by.girafic.core.userdata;
 
 public class UserViewData
 {
-    public int id;
-    public FullName fullName;
-    public String mail;
-    public String faculty;
+    public final int id;
+    public final FullName fullName;
+    public final String mail;
+    public final String faculty;
 
     public int getId()
     {

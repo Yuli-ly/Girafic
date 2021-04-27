@@ -48,8 +48,8 @@ public class TeacherModifyData extends UserModifyData
         this.availableContent = availableContent;
     }
 
-    public String department;
-    public String post;
+    public final String department;
+    public final String post;
     public int[] availableContent;
-    public int[] courses;
+    public final int[] courses;
 }

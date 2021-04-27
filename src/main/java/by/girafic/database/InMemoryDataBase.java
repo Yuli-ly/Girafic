@@ -1,8 +1,6 @@
 package by.girafic.database;
 
-import by.girafic.core.contentdata.ContentType;
 import by.girafic.core.commonds.LoginData;
-import by.girafic.core.userdata.UserType;
 import by.girafic.core.contentdata.*;
 import by.girafic.core.database.ContentDataBase;
 import by.girafic.core.database.UserDataBase;
@@ -233,10 +231,16 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
         if(users.containsKey(userID))
         {
             ArrayList<ContentLinkData> courses = new ArrayList<>();
+            ArrayList<ContentLinkData> availableContent = new ArrayList<>();
             TeacherModifyData teacher = (TeacherModifyData) users.get(userID);
             for (int i : teacher.courses)
                 courses.add(new ContentLinkData(getCourse(i).title,i));
-            return new TeacherViewData(userID,teacher,courses.toArray(new ContentLinkData[]{}));
+            for (int i : teacher.availableContent)
+                availableContent.add(new ContentLinkData(content.get(i).title,i));
+            return new TeacherViewData(userID,
+                    teacher,
+                    courses.toArray(new ContentLinkData[]{}),
+                    availableContent.toArray(new ContentLinkData[]{}));
         }
         return null;
     }

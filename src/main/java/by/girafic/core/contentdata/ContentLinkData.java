@@ -24,6 +24,6 @@ public class ContentLinkData
         return id;
     }
 
-    public String name;
-    public int id;
+    public final String name;
+    public final int id;
 }

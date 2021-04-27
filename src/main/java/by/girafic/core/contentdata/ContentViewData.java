@@ -2,9 +2,9 @@ package by.girafic.core.contentdata;
 
 public class ContentViewData
 {
-    public int id;
-    public String title;
-    public String description;
+    public final int id;
+    public final String title;
+    public final String description;
 
     public ContentViewData(int id, String title, String description)
     {

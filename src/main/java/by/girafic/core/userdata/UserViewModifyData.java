@@ -58,11 +58,11 @@ public class UserViewModifyData
         faculty = successful(data.faculty);
     }
     public int id;
-    public ModifyConfirmation<FullName> fullName;
-    public ModifyConfirmation<String> login;
-    public ModifyConfirmation<String> password;
-    public ModifyConfirmation<String> mail;
-    public ModifyConfirmation<String> faculty;
+    public final ModifyConfirmation<FullName> fullName;
+    public final ModifyConfirmation<String> login;
+    public final ModifyConfirmation<String> password;
+    public final ModifyConfirmation<String> mail;
+    public final ModifyConfirmation<String> faculty;
 
     @Override
     public String toString()

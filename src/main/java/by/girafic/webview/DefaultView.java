@@ -1,5 +1,6 @@
 package by.girafic.webview;
 
+import by.girafic.controllers.request.RequestWrapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -8,17 +9,15 @@ import java.io.IOException;
 
 public class DefaultView
 {
-    private final HttpServletRequest request;
-    private final HttpServletResponse response;
-    public DefaultView(HttpServletRequest request, HttpServletResponse response)
+    private final RequestWrapper wrapper;
+    public DefaultView(RequestWrapper wrapper)
     {
-        this.request = request;
-        this.response = response;
+        this.wrapper = wrapper;
     }
 
     public void showError(String message) throws ServletException, IOException
     {
-        request.setAttribute("Message",message);
-        request.getServletContext().getRequestDispatcher("/jsp/error.jsp").forward(request,response);
+        wrapper.setMessage(message);
+        wrapper.forward("/jsp/error.jsp");
     }
 }

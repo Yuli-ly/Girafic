@@ -1,9 +1,9 @@
 package by.girafic.core.interactors;
 
 import by.girafic.core.commonds.LoginData;
-import by.girafic.core.userdata.UserType;
 import by.girafic.core.contentdata.CourseModifyData;
 import by.girafic.core.contentdata.MaterialModifyData;
+import by.girafic.core.contentdata.MaterialViewModifyData;
 import by.girafic.core.contentdata.SectionModifyData;
 import by.girafic.core.database.ContentDataBase;
 import by.girafic.core.database.UserDataBase;
@@ -14,6 +14,7 @@ import by.girafic.webview.TeacherView;
 import jakarta.servlet.ServletException;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class InteractorAccess
 {
@@ -192,7 +193,15 @@ public class InteractorAccess
         @Override
         public void createContent(MaterialModifyData material) throws Exception
         {
-
+            int userID = userDataBase.getUserID(ld.login);
+            TeacherModifyData teacher = userDataBase.getTeacherForMod(userID);
+            int[] oldContent = teacher.availableContent;
+            int[] newContent = Arrays.copyOf(oldContent,oldContent.length+1);
+            int contentID = contentDataBase.createMaterial(material);
+            newContent[oldContent.length] = contentID;
+            teacher.availableContent = newContent;
+            userDataBase.modifyTeacher(teacher,userID);
+            view.showContentAfterModify(new MaterialViewModifyData(contentID,material));
         }
 
         @Override
@@ -203,6 +212,19 @@ public class InteractorAccess
 
         @Override
         public void modifyContent(MaterialModifyData material, int contentID) throws Exception
+        {
+            contentDataBase.modifyMaterial(material, contentID);
+            view.showContentAfterModify(new MaterialViewModifyData(contentID,material));
+        }
+
+        @Override
+        public void modifyContent(SectionModifyData material, int contentID) throws Exception
+        {
+
+        }
+
+        @Override
+        public void modifyContent(CourseModifyData material, int contentID) throws Exception
         {
 
         }
@@ -298,13 +320,17 @@ public class InteractorAccess
     {
         return new AdminInteractorImpl(presenter,ld);
     }
-    public boolean checkExistence(LoginData ld)
+    public boolean checkUserExistence(LoginData ld)
     {
         return userDataBase.checkUserExistence(ld);
     }
-    public boolean checkExistence(int userID)
+    public boolean checkUserExistence(int userID)
     {
         return userDataBase.checkUserExistence(userID);
+    }
+    public boolean checkContentExistence(int contentID)
+    {
+        return contentDataBase.checkContentExistence(contentID);
     }
     public UserType getUserType(String login)
     {

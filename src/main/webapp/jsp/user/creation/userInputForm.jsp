@@ -8,30 +8,30 @@
 <input type="hidden" name="id" value="${User.id}">
 <li>
     <label for="login">Логин:</label>
-    <input type="text" id="login" name="login" value="${User.login.field}">
+    <input type="text" id="login" name="login" value="${User.login.value}">
 </li>
 
 <li>
     <label for="password">Пароль:</label>
-    <input type="text" id="password" name="password" value="${User.password.field}">
+    <input type="text" id="password" name="password" value="${User.password.value}">
 </li>
 <li>
     <label for="name">Имя:</label>
-    <input type="text" id="name" name="Name" value="${User.fullName.field.name}">
+    <input type="text" id="name" name="Name" value="${User.fullName.value.name}">
 </li>
 <li>
     <label for="surname">Фамилия:</label>
-    <input type="text" id="surname" name="Surname" value="${User.fullName.field.surname}">
+    <input type="text" id="surname" name="Surname" value="${User.fullName.value.surname}">
 </li>
 <li>
     <label for="patronymic">Отчество:</label>
-    <input type="text" id="patronymic" name="Patronymic" value="${User.fullName.field.patronymic}">
+    <input type="text" id="patronymic" name="Patronymic" value="${User.fullName.value.patronymic}">
 </li>
 <li>
     <label for="mail">Почта:</label>
-    <input type="email" id="mail" name="Mail" value="${User.mail.field}">
+    <input type="email" id="mail" name="Mail" value="${User.mail.value}">
 </li>
 <li>
     <label for="faculty">Факультет:</label>
-    <input type="text" id="faculty" name="Faculty" value="${User.faculty.field}">
+    <input type="text" id="faculty" name="Faculty" value="${User.faculty.value}">
 </li>

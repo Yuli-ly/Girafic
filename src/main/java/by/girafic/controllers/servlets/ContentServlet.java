@@ -24,7 +24,7 @@ import jakarta.servlet.http.HttpServletResponse;
 )
 public class ContentServlet extends HttpServlet
 {
-    InteractorAccess interactorAccess = GlobalValuesAccess.getValues().interactorAccess;
+    final InteractorAccess interactorAccess = GlobalValuesAccess.getValues().interactorAccess;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,7 +35,7 @@ public class ContentServlet extends HttpServlet
         LoginData ld = wrapper.takeLogin();
         try
         {
-            if(interactorAccess.checkExistence(ld))
+            if(interactorAccess.checkUserExistence(ld))
             {
                 switch (interactorAccess.getUserType(ld.login))
                 {
@@ -45,7 +45,7 @@ public class ContentServlet extends HttpServlet
                 }
             }
             else
-                new DefaultView(request, response).showError("Incorrect Login or Password");
+                new DefaultView(wrapper).showError("Incorrect Login or Password");
         } catch (Exception e)
         {
             e.printStackTrace();

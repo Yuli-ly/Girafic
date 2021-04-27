@@ -12,7 +12,7 @@
     <title>Профиль</title>
 </head>
 <body>
-<p><jsp:include page="user.jsp"></jsp:include></p>
+<p><jsp:include page="user.jsp"/></p>
 
 <a href="<%=parser.registrationLink()%>">Регистрация</a>
 <form action="userModification" method="get">

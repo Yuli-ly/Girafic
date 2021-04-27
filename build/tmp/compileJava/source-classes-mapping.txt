@@ -1,128 +1,144 @@
-by/Girafic/controllers/servlets/RegistrationServlet.java
- by.Girafic.controllers.servlets.RegistrationServlet
- by.Girafic.controllers.servlets.RegistrationServlet$1
-by/Girafic/core/contentdata/MaterialViewModifyData.java
- by.Girafic.core.contentdata.MaterialViewModifyData
-by/Girafic/controllers/util/JspModifyRequestParser.java
- by.Girafic.controllers.util.JspModifyRequestParser
-by/Girafic/controllers/servlets/UserModificationServlet.java
- by.Girafic.controllers.servlets.UserModificationServlet
- by.Girafic.controllers.servlets.UserModificationServlet$1
-by/Girafic/core/contentdata/SectionViewModifyData.java
- by.Girafic.core.contentdata.SectionViewModifyData
-by/Girafic/core/contentdata/SectionModifyData.java
- by.Girafic.core.contentdata.SectionModifyData
-by/Girafic/core/contentdata/ContentType.java
- by.Girafic.core.contentdata.ContentType
-by/Girafic/core/userdata/UserType.java
- by.Girafic.core.userdata.UserType
-by/Girafic/core/commonds/LoginData.java
- by.Girafic.core.commonds.LoginData
-by/Girafic/core/contentdata/ContentViewData.java
- by.Girafic.core.contentdata.ContentViewData
-by/Girafic/core/contentdata/MaterialViewData.java
- by.Girafic.core.contentdata.MaterialViewData
-by/Girafic/core/contentdata/MaterialModifyData.java
- by.Girafic.core.contentdata.MaterialModifyData
-by/Girafic/core/validators/CheckResult.java
- by.Girafic.core.validators.CheckResult
-by/Girafic/core/contentdata/CourseViewModifyData.java
- by.Girafic.core.contentdata.CourseViewModifyData
-by/Girafic/core/contentdata/ContentModifyData.java
- by.Girafic.core.contentdata.ContentModifyData
-by/Girafic/webview/DefaultView.java
- by.Girafic.webview.DefaultView
-by/Girafic/core/contentdata/CourseModifyData.java
- by.Girafic.core.contentdata.CourseModifyData
-by/Girafic/core/interactors/TeacherInteractor.java
- by.Girafic.core.interactors.TeacherInteractor
-by/Girafic/core/contentdata/ContentLinkData.java
- by.Girafic.core.contentdata.ContentLinkData
-by/Girafic/core/validators/ContentValidator.java
- by.Girafic.core.validators.ContentValidator
-by/Girafic/core/interactors/StudentInteractor.java
- by.Girafic.core.interactors.StudentInteractor
-by/Girafic/core/contentdata/SectionViewData.java
- by.Girafic.core.contentdata.SectionViewData
-by/Girafic/core/contentdata/ContentViewModifyData.java
- by.Girafic.core.contentdata.ContentViewModifyData
-by/Girafic/core/commonds/ModifyConfirmation.java
- by.Girafic.core.commonds.ModifyConfirmation
-by/Girafic/controllers/servlets/ContentModificationServlet.java
- by.Girafic.controllers.servlets.ContentModificationServlet
-by/Girafic/core/validators/UserValidator.java
- by.Girafic.core.validators.UserValidator
-by/Girafic/core/contentdata/CourseViewData.java
- by.Girafic.core.contentdata.CourseViewData
-by/Girafic/controllers/util/ServletRequestParser.java
- by.Girafic.controllers.util.ServletRequestParser
-by/Girafic/core/userdata/TeacherViewData.java
- by.Girafic.core.userdata.TeacherViewData
-by/Girafic/webview/TeacherView.java
- by.Girafic.webview.TeacherView
-by/Girafic/core/userdata/TeacherViewModifyData.java
- by.Girafic.core.userdata.TeacherViewModifyData
-by/Girafic/controllers/util/GlobalValues.java
- by.Girafic.controllers.util.GlobalValues
-by/Girafic/webview/AdminView.java
- by.Girafic.webview.AdminView
-by/Girafic/core/view/AdminView.java
- by.Girafic.core.view.AdminView
-by/Girafic/core/userdata/StudentModifyData.java
- by.Girafic.core.userdata.StudentModifyData
-by/Girafic/core/userdata/AdminViewModifyData.java
- by.Girafic.core.userdata.AdminViewModifyData
-by/Girafic/controllers/servlets/ProfileServlet.java
- by.Girafic.controllers.servlets.ProfileServlet
- by.Girafic.controllers.servlets.ProfileServlet$1
-by/Girafic/controllers/servlets/ContentServlet.java
- by.Girafic.controllers.servlets.ContentServlet
- by.Girafic.controllers.servlets.ContentServlet$1
-by/Girafic/webview/StudentView.java
- by.Girafic.webview.StudentView
-by/Girafic/database/InMemoryDataBase.java
- by.Girafic.database.InMemoryDataBase
-by/Girafic/core/userdata/UserModifyData.java
- by.Girafic.core.userdata.UserModifyData
-by/Girafic/controllers/util/GlobalValuesAccess.java
- by.Girafic.controllers.util.GlobalValuesAccess
-by/Girafic/core/userdata/FullName.java
- by.Girafic.core.userdata.FullName
-by/Girafic/core/interactors/AdminInteractor.java
- by.Girafic.core.interactors.AdminInteractor
-by/Girafic/core/userdata/UserViewModifyData.java
- by.Girafic.core.userdata.UserViewModifyData
-by/Girafic/core/userdata/StudentViewModifyData.java
- by.Girafic.core.userdata.StudentViewModifyData
-by/Girafic/core/userdata/StudentViewData.java
- by.Girafic.core.userdata.StudentViewData
-by/Girafic/core/userdata/UserViewData.java
- by.Girafic.core.userdata.UserViewData
-by/Girafic/core/interactors/InteractorAccess.java
- by.Girafic.core.interactors.InteractorAccess
- by.Girafic.core.interactors.InteractorAccess$1
- by.Girafic.core.interactors.InteractorAccess$AdminInteractorImpl
- by.Girafic.core.interactors.InteractorAccess$DefaultInteractor
- by.Girafic.core.interactors.InteractorAccess$StudentInteractorImpl
- by.Girafic.core.interactors.InteractorAccess$TeacherInteractorImpl
-by/Girafic/core/userdata/TeacherModifyData.java
- by.Girafic.core.userdata.TeacherModifyData
-by/Girafic/core/userdata/AdminViewData.java
- by.Girafic.core.userdata.AdminViewData
-by/Girafic/core/userdata/AdminModifyData.java
- by.Girafic.core.userdata.AdminModifyData
-by/Girafic/core/database/UserDataBase.java
- by.Girafic.core.database.UserDataBase
-by/Girafic/core/userdata/UserLinkData.java
- by.Girafic.core.userdata.UserLinkData
-by/Girafic/core/database/ContentDataBase.java
- by.Girafic.core.database.ContentDataBase
-by/Girafic/core/view/TeacherView.java
- by.Girafic.core.view.TeacherView
-by/Girafic/core/view/StudentView.java
- by.Girafic.core.view.StudentView
-by/Girafic/controllers/servlets/LoginServlet.java
- by.Girafic.controllers.servlets.LoginServlet
- by.Girafic.controllers.servlets.LoginServlet$1
-by/Girafic/controllers/util/JspRequestParser.java
- by.Girafic.controllers.util.JspRequestParser
+by/girafic/controllers/request/DefaultLoginSetter.java
+ by.girafic.controllers.request.DefaultLoginSetter
+by/girafic/core/interactors/TeacherInteractor.java
+ by.girafic.core.interactors.TeacherInteractor
+by/girafic/core/userdata/TeacherViewModifyData.java
+ by.girafic.core.userdata.TeacherViewModifyData
+by/girafic/controllers/request/DefaultLoginGetter.java
+ by.girafic.controllers.request.DefaultLoginGetter
+by/girafic/controllers/request/LoginSetter.java
+ by.girafic.controllers.request.LoginSetter
+by/girafic/core/commonds/ModifyConfirmation.java
+ by.girafic.core.commonds.ModifyConfirmation
+by/girafic/core/contentdata/MaterialViewModifyData.java
+ by.girafic.core.contentdata.MaterialViewModifyData
+by/girafic/core/userdata/UserViewData.java
+ by.girafic.core.userdata.UserViewData
+by/girafic/core/validators/ContentValidator.java
+ by.girafic.core.validators.ContentValidator
+by/girafic/core/userdata/UserType.java
+ by.girafic.core.userdata.UserType
+by/girafic/core/userdata/TeacherModifyData.java
+ by.girafic.core.userdata.TeacherModifyData
+by/girafic/core/contentdata/SectionModifyData.java
+ by.girafic.core.contentdata.SectionModifyData
+by/girafic/core/contentdata/MaterialViewData.java
+ by.girafic.core.contentdata.MaterialViewData
+by/girafic/core/userdata/AdminModifyData.java
+ by.girafic.core.userdata.AdminModifyData
+by/girafic/core/userdata/StudentModifyData.java
+ by.girafic.core.userdata.StudentModifyData
+by/girafic/core/contentdata/CourseViewData.java
+ by.girafic.core.contentdata.CourseViewData
+by/girafic/core/contentdata/CourseViewModifyData.java
+ by.girafic.core.contentdata.CourseViewModifyData
+by/girafic/controllers/request/AdminLoginGetter.java
+ by.girafic.controllers.request.AdminLoginGetter
+by/girafic/core/userdata/UserLinkData.java
+ by.girafic.core.userdata.UserLinkData
+by/girafic/core/database/ContentDataBase.java
+ by.girafic.core.database.ContentDataBase
+by/girafic/core/commonds/LoginData.java
+ by.girafic.core.commonds.LoginData
+by/girafic/core/contentdata/ContentViewData.java
+ by.girafic.core.contentdata.ContentViewData
+by/girafic/core/contentdata/ContentViewModifyData.java
+ by.girafic.core.contentdata.ContentViewModifyData
+by/girafic/core/validators/UserValidator.java
+ by.girafic.core.validators.UserValidator
+by/girafic/core/userdata/StudentViewData.java
+ by.girafic.core.userdata.StudentViewData
+by/girafic/core/interactors/StudentInteractor.java
+ by.girafic.core.interactors.StudentInteractor
+by/girafic/core/contentdata/ContentModifyData.java
+ by.girafic.core.contentdata.ContentModifyData
+by/girafic/core/contentdata/CourseModifyData.java
+ by.girafic.core.contentdata.CourseModifyData
+by/girafic/core/userdata/UserModifyData.java
+ by.girafic.core.userdata.UserModifyData
+by/girafic/core/validators/CheckResult.java
+ by.girafic.core.validators.CheckResult
+by/girafic/core/contentdata/ContentType.java
+ by.girafic.core.contentdata.ContentType
+by/girafic/controllers/servlets/RegistrationServlet.java
+ by.girafic.controllers.servlets.RegistrationServlet
+ by.girafic.controllers.servlets.RegistrationServlet$1
+by/girafic/core/userdata/AdminViewData.java
+ by.girafic.core.userdata.AdminViewData
+by/girafic/controllers/servlets/ContentCreationServlet.java
+ by.girafic.controllers.servlets.ContentCreationServlet
+ by.girafic.controllers.servlets.ContentCreationServlet$1
+by/girafic/core/interactors/AdminInteractor.java
+ by.girafic.core.interactors.AdminInteractor
+by/girafic/controllers/servlets/UserModificationServlet.java
+ by.girafic.controllers.servlets.UserModificationServlet
+ by.girafic.controllers.servlets.UserModificationServlet$1
+by/girafic/core/userdata/AdminViewModifyData.java
+ by.girafic.core.userdata.AdminViewModifyData
+by/girafic/core/userdata/UserViewModifyData.java
+ by.girafic.core.userdata.UserViewModifyData
+by/girafic/controllers/servlets/ContentModificationServlet.java
+ by.girafic.controllers.servlets.ContentModificationServlet
+ by.girafic.controllers.servlets.ContentModificationServlet$1
+by/girafic/core/userdata/StudentViewModifyData.java
+ by.girafic.core.userdata.StudentViewModifyData
+by/girafic/core/contentdata/MaterialModifyData.java
+ by.girafic.core.contentdata.MaterialModifyData
+by/girafic/core/userdata/FullName.java
+ by.girafic.core.userdata.FullName
+by/girafic/controllers/request/LoginGetter.java
+ by.girafic.controllers.request.LoginGetter
+by/girafic/core/contentdata/SectionViewModifyData.java
+ by.girafic.core.contentdata.SectionViewModifyData
+by/girafic/core/contentdata/SectionViewData.java
+ by.girafic.core.contentdata.SectionViewData
+by/girafic/core/contentdata/ContentLinkData.java
+ by.girafic.core.contentdata.ContentLinkData
+by/girafic/webview/AdminView.java
+ by.girafic.webview.AdminView
+by/girafic/core/interactors/InteractorAccess.java
+ by.girafic.core.interactors.InteractorAccess
+ by.girafic.core.interactors.InteractorAccess$1
+ by.girafic.core.interactors.InteractorAccess$AdminInteractorImpl
+ by.girafic.core.interactors.InteractorAccess$DefaultInteractor
+ by.girafic.core.interactors.InteractorAccess$StudentInteractorImpl
+ by.girafic.core.interactors.InteractorAccess$TeacherInteractorImpl
+by/girafic/controllers/util/GlobalValues.java
+ by.girafic.controllers.util.GlobalValues
+by/girafic/controllers/servlets/LoginServlet.java
+ by.girafic.controllers.servlets.LoginServlet
+ by.girafic.controllers.servlets.LoginServlet$1
+by/girafic/controllers/util/JspRequestParser.java
+ by.girafic.controllers.util.JspRequestParser
+by/girafic/core/view/StudentView.java
+ by.girafic.core.view.StudentView
+by/girafic/controllers/servlets/ProfileServlet.java
+ by.girafic.controllers.servlets.ProfileServlet
+ by.girafic.controllers.servlets.ProfileServlet$1
+by/girafic/controllers/servlets/ContentServlet.java
+ by.girafic.controllers.servlets.ContentServlet
+ by.girafic.controllers.servlets.ContentServlet$1
+by/girafic/core/userdata/TeacherViewData.java
+ by.girafic.core.userdata.TeacherViewData
+by/girafic/core/view/AdminView.java
+ by.girafic.core.view.AdminView
+by/girafic/database/InMemoryDataBase.java
+ by.girafic.database.InMemoryDataBase
+by/girafic/core/database/UserDataBase.java
+ by.girafic.core.database.UserDataBase
+by/girafic/webview/StudentView.java
+ by.girafic.webview.StudentView
+by/girafic/webview/TeacherView.java
+ by.girafic.webview.TeacherView
+by/girafic/controllers/util/GlobalValuesAccess.java
+ by.girafic.controllers.util.GlobalValuesAccess
+by/girafic/controllers/request/UserRequestWrapper.java
+ by.girafic.controllers.request.UserRequestWrapper
+by/girafic/webview/DefaultView.java
+ by.girafic.webview.DefaultView
+by/girafic/controllers/request/ContentRequestWrapper.java
+ by.girafic.controllers.request.ContentRequestWrapper
+by/girafic/controllers/request/RequestWrapper.java
+ by.girafic.controllers.request.RequestWrapper
+by/girafic/core/view/TeacherView.java
+ by.girafic.core.view.TeacherView

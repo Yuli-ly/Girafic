@@ -4,7 +4,7 @@ import by.girafic.core.userdata.FullName;
 
 public class UserValidator
 {
-    private static CheckResult success = new CheckResult(true,"Успешно");
+    private static final CheckResult success = new CheckResult(true,"Успешно");
     public static CheckResult checkLogin(String login)
     {
         return success;

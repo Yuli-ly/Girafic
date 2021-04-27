@@ -2,12 +2,12 @@ package by.girafic.core.userdata;
 
 public class UserModifyData
 {
-    public UserType userType;
-    public FullName fullName;
-    public String login;
-    public String password;
-    public String mail;
-    public String faculty;
+    public final UserType userType;
+    public final FullName fullName;
+    public final String login;
+    public final String password;
+    public final String mail;
+    public final String faculty;
 
     public UserType getUserType()
     {

@@ -2,11 +2,11 @@ package by.girafic.core.userdata;
 
 public class StudentModifyData extends UserModifyData
 {
-    public int course;
-    public double gpa;
-    public String group;
-    public String department;
-    public int[] courses;
+    public final int course;
+    public final double gpa;
+    public final String group;
+    public final String department;
+    public final int[] courses;
 
     public StudentModifyData(UserType userType, FullName fullName, String login, String password, String mail, String faculty, int course, double gpa, String group, String department, int[] courses)
     {

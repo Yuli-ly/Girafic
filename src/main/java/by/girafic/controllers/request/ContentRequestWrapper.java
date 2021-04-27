@@ -1,8 +1,6 @@
 package by.girafic.controllers.request;
 
-import by.girafic.core.contentdata.ContentModifyData;
-import by.girafic.core.contentdata.ContentType;
-import by.girafic.core.contentdata.MaterialModifyData;
+import by.girafic.core.contentdata.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -37,5 +35,13 @@ public class ContentRequestWrapper extends RequestWrapper
     {
         return new MaterialModifyData(takeContent(),
                 request.getParameter("Filling"));
+    }
+    public SectionModifyData takeSection()
+    {
+        return null;
+    }
+    public CourseModifyData takeCourse()
+    {
+        return null;
     }
 }

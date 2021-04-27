@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 public class DefaultLoginSetter implements LoginSetter
 {
-    public static DefaultLoginSetter instance = new DefaultLoginSetter();
+    public static final DefaultLoginSetter instance = new DefaultLoginSetter();
     private DefaultLoginSetter()
     {}
     @Override

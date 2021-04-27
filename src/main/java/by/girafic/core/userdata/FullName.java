@@ -2,9 +2,9 @@ package by.girafic.core.userdata;
 
 public class FullName
 {
-    public String name;
-    public String surname;
-    public String patronymic;
+    public final String name;
+    public final String surname;
+    public final String patronymic;
     @Override
     public String toString()
     {

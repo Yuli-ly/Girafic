@@ -2,7 +2,7 @@ package by.girafic.core.contentdata;
 
 public class MaterialModifyData extends ContentModifyData
 {
-    public String filling;
+    public final String filling;
 
     public MaterialModifyData(String title, String description, String filling)
     {

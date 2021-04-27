@@ -16,7 +16,7 @@
         <jsp:include page="../creation/userInputForm.jsp"></jsp:include>
         <li>
             <label for="department">Кафедра:</label>
-            <input type="text" id="department" name="Department" value="${Teacher.department.field}">
+            <input type="text" id="department" name="Department" value="${Teacher.department.value}">
         </li>
         <li>
             <label for="post">Должность:</label>

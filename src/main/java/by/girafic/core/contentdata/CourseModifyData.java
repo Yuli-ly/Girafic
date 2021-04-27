@@ -2,8 +2,8 @@ package by.girafic.core.contentdata;
 
 public class CourseModifyData extends ContentModifyData
 {
-    public int[] sections;
-    public int[] users;
+    public final int[] sections;
+    public final int[] users;
 
     public CourseModifyData(String title, String description, int[] sections, int[] users)
     {

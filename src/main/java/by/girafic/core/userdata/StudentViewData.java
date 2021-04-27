@@ -44,9 +44,9 @@ public class StudentViewData extends UserViewData
         return department;
     }
 
-    public int course;
-    public double gpa;
-    public String group;
-    public String department;
-    public ContentLinkData[] courses;
+    public final int course;
+    public final double gpa;
+    public final String group;
+    public final String department;
+    public final ContentLinkData[] courses;
 }

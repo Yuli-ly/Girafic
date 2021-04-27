@@ -4,8 +4,8 @@ import by.girafic.core.userdata.UserLinkData;
 
 public class CourseViewData extends ContentViewData
 {
-    public SectionViewData[] sections;
-    public UserLinkData[] users;
+    public final SectionViewData[] sections;
+    public final UserLinkData[] users;
 
     public CourseViewData(int id, String title, String description, SectionViewData[] sections, UserLinkData[] users)
     {

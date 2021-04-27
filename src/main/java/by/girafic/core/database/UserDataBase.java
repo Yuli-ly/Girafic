@@ -1,7 +1,6 @@
 package by.girafic.core.database;
 
 import by.girafic.core.commonds.LoginData;
-import by.girafic.core.userdata.UserType;
 import by.girafic.core.userdata.*;
 
 public interface UserDataBase

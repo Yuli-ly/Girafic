@@ -12,19 +12,19 @@
 <jsp:include page="../creation/userInputForm.jsp"></jsp:include>
     <li>
         <label for="gpa">Средний балл:</label>
-        <input type="text" id="gpa" name="GPA" value="${Student.gpa.field}">
+        <input type="text" id="gpa" name="GPA" value="${Student.gpa.value}">
     </li>
     <li>
         <label for="department">Кафедра:</label>
-        <input type="text" id="department" name="Department" value="${Student.department.field}">
+        <input type="text" id="department" name="Department" value="${Student.department.value}">
     </li>
     <li>
         <label for="course">Курс:</label>
-        <input type="text" id="course" name="Course" value="${Student.course.field}">
+        <input type="text" id="course" name="Course" value="${Student.course.value}">
     </li>
     <li>
         <label for="group">Группа:</label>
-        <input type="text" id="group" name="Group" value="${Student.group.field}">
+        <input type="text" id="group" name="Group" value="${Student.group.value}">
     </li>
 </ul>
     <input type="submit" value="Подтвердить">

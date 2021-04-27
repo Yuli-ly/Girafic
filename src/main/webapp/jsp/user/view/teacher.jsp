@@ -15,12 +15,23 @@
 </head>
 <body>
 <p>
-    <jsp:include page="user.jsp"></jsp:include>
+    <jsp:include page="user.jsp"/>
     Кафедра: ${Teacher.department}<br>
     Должность: ${Teacher.post}<br>
     Курсы:
+    <br>
     <%
         for (ContentLinkData data : teacher.courses)
+        {
+            out.println(parser.createLinkToContent(data));
+            out.println("<br>");
+        }
+    %>
+
+    Доступный контент:
+    <br>
+    <%
+        for (ContentLinkData data : teacher.availableContent)
         {
             out.println(parser.createLinkToContent(data));
             out.println("<br>");

@@ -13,6 +13,8 @@ public interface TeacherInteractor extends StudentInteractor
     void createContent(SectionModifyData section) throws Exception;
 
     void modifyContent(MaterialModifyData material, int contentID) throws Exception;
+    void modifyContent(SectionModifyData material, int contentID) throws Exception;
+    void modifyContent(CourseModifyData material, int contentID) throws Exception;
 
     void removeContent(int contentID) throws Exception;
 

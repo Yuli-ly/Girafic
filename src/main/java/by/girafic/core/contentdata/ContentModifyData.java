@@ -2,9 +2,9 @@ package by.girafic.core.contentdata;
 
 public class ContentModifyData
 {
-    public String title;
-    public String description;
-    public ContentType contentType;
+    public final String title;
+    public final String description;
+    public final ContentType contentType;
 
     public String getTitle()
     {

@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet
         LoginData ld = wrapper.takeLogin();
         try
         {
-            if (interactorAccess.checkExistence(ld))
+            if (interactorAccess.checkUserExistence(ld))
             {
                 switch (interactorAccess.getUserType(ld.login))
                 {
@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet
                     case Admin -> interactorAccess.adminLogin(ld, new AdminView(wrapper)).getStartPage();
                 }
             } else
-                new DefaultView(request, response).showError("Invalid username or password");
+                new DefaultView(wrapper).showError("Invalid username or password");
         } catch (Exception e)
         {
             e.printStackTrace();

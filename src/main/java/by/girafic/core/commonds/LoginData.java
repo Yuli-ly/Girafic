@@ -2,8 +2,8 @@ package by.girafic.core.commonds;
 
 public class LoginData
 {
-    public String login;
-    public String password;
+    public final String login;
+    public final String password;
 
     public String getLogin()
     {

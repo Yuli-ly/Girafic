@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 public class AdminLoginGetter implements LoginGetter
 {
-    public static AdminLoginGetter instance = new AdminLoginGetter();
+    public static final AdminLoginGetter instance = new AdminLoginGetter();
     private AdminLoginGetter()
     {}
     @Override

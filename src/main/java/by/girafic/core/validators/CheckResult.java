@@ -8,6 +8,6 @@ public class CheckResult
         this.message = message;
     }
 
-    public boolean status;
-    public String message;
+    public final boolean status;
+    public final String message;
 }

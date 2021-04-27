@@ -2,7 +2,7 @@ package by.girafic.core.validators;
 
 public class ContentValidator
 {
-    private static CheckResult success = new CheckResult(true,"Успешно");
+    private static final CheckResult success = new CheckResult(true,"Успешно");
     public CheckResult checkTitle(String title)
     {
         return success;

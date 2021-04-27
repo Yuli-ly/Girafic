@@ -36,11 +36,11 @@ public class StudentViewModifyData extends UserViewModifyData
         courses = successful(data.courses);
     }
 
-    public ModifyConfirmation<Integer> course;
-    public ModifyConfirmation<Double> gpa;
-    public ModifyConfirmation<String> group;
-    public ModifyConfirmation<int[]> courses;
-    public ModifyConfirmation<String> department;
+    public final ModifyConfirmation<Integer> course;
+    public final ModifyConfirmation<Double> gpa;
+    public final ModifyConfirmation<String> group;
+    public final ModifyConfirmation<int[]> courses;
+    public final ModifyConfirmation<String> department;
 
     public ModifyConfirmation<Integer> getCourse()
     {

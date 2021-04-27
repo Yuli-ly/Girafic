@@ -36,7 +36,7 @@ public class ProfileServlet extends HttpServlet
         int id = wrapper.takeID();
         try
         {
-            if (interactorAccess.checkExistence(id) && interactorAccess.checkExistence(ld))
+            if (interactorAccess.checkUserExistence(id) && interactorAccess.checkUserExistence(ld))
             {
                 switch (interactorAccess.getUserType(ld.login))
                 {
@@ -46,7 +46,7 @@ public class ProfileServlet extends HttpServlet
                 }
             } else
             {
-                new DefaultView(request, response).showError("Invalid username or password, or the requested user does not exist");
+                new DefaultView(wrapper).showError("Invalid username or password, or the requested user does not exist");
             }
         } catch (Exception e)
         {

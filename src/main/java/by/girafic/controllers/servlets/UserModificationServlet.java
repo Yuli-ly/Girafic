@@ -36,10 +36,10 @@ public class UserModificationServlet extends HttpServlet
         wrapper.setID(userModID);
         try
         {
-            if (interactorAccess.checkExistence(ld))
+            if (interactorAccess.checkUserExistence(ld))
                 interactorAccess.adminLogin(ld, new AdminView(wrapper)).showUserForModification(userModID);
              else
-                new DefaultView(request, response).showError("Incorrect Login or Password");
+                new DefaultView(wrapper).showError("Incorrect Login or Password");
         }
         catch (Exception e)
         {
@@ -57,7 +57,7 @@ public class UserModificationServlet extends HttpServlet
         wrapper.setID(id);
         try
         {
-        if(interactorAccess.checkExistence(ld))
+        if(interactorAccess.checkUserExistence(ld))
         {
             AdminInteractor interactor = interactorAccess.adminLogin(ld, new AdminView(wrapper));
 
@@ -70,7 +70,7 @@ public class UserModificationServlet extends HttpServlet
 
         }
         else
-            new DefaultView(request,response).showError("Invalid username or password");
+            new DefaultView(wrapper).showError("Invalid username or password");
         } catch (Exception e)
         {
             e.printStackTrace();
