@@ -1,10 +1,7 @@
 package by.girafic.core.interactors;
 
 import by.girafic.core.commonds.LoginData;
-import by.girafic.core.contentdata.CourseModifyData;
-import by.girafic.core.contentdata.MaterialModifyData;
-import by.girafic.core.contentdata.MaterialViewModifyData;
-import by.girafic.core.contentdata.SectionModifyData;
+import by.girafic.core.contentdata.*;
 import by.girafic.core.database.ContentDataBase;
 import by.girafic.core.database.UserDataBase;
 import by.girafic.core.userdata.*;
@@ -14,7 +11,11 @@ import by.girafic.webview.TeacherView;
 import jakarta.servlet.ServletException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class InteractorAccess
 {
@@ -195,19 +196,29 @@ public class InteractorAccess
         {
             int userID = userDataBase.getUserID(ld.login);
             TeacherModifyData teacher = userDataBase.getTeacherForMod(userID);
-            int[] oldContent = teacher.availableContent;
-            int[] newContent = Arrays.copyOf(oldContent,oldContent.length+1);
             int contentID = contentDataBase.createMaterial(material);
-            newContent[oldContent.length] = contentID;
-            teacher.availableContent = newContent;
-            userDataBase.modifyTeacher(teacher,userID);
+            userDataBase.modifyTeacher(addContent(teacher,contentID),userID);
             view.showContentAfterModify(new MaterialViewModifyData(contentID,material));
         }
-
+        private TeacherModifyData addContent(TeacherModifyData teacher,int id)
+        {
+            int[] oldContent = teacher.availableContent;
+            int[] newContent = Arrays.copyOf(oldContent,oldContent.length+1);
+            newContent[oldContent.length] = id;
+            teacher.availableContent = newContent;
+            return teacher;
+        }
         @Override
         public void createContent(SectionModifyData section) throws Exception
         {
+            final int userID = userDataBase.getUserID(ld.login);
+            TeacherModifyData teacher = userDataBase.getTeacherForMod(userID);
+            int contentID = contentDataBase.createSection(section);
+            TeacherModifyData newTeacher = addContent(teacher,contentID);
+            userDataBase.modifyTeacher(newTeacher,userID);
 
+            view.showContentAfterModify(new SectionViewModifyData(section,contentID),
+                    userDataBase.getAvailableSectionContent(userID));
         }
 
         @Override
@@ -218,9 +229,14 @@ public class InteractorAccess
         }
 
         @Override
-        public void modifyContent(SectionModifyData material, int contentID) throws Exception
+        public void modifyContent(SectionModifyData section, int contentID) throws Exception
         {
-
+            contentDataBase.modifySection(section,contentID);
+            view.showContentAfterModify(
+                    new SectionViewModifyData(section,contentID),
+                    userDataBase.getAvailableSectionContent(
+                            userDataBase.getUserID(ld.login))
+            );
         }
 
         @Override
@@ -269,6 +285,28 @@ public class InteractorAccess
         public void removeUserFromCourse(int courseID, int userID) throws Exception
         {
 
+        }
+
+        @Override
+        public void showMaterialForCreation() throws Exception
+        {
+            view.showMaterialForCreation();
+        }
+
+        @Override
+        public void showSectionForCreation() throws Exception
+        {
+            view.showSectionForCreation(
+                    userDataBase.getAvailableSectionContent(
+                    userDataBase.getUserID(ld.login)));
+        }
+
+        @Override
+        public void showCourseForCreation() throws Exception
+        {
+            view.showCourseForCreation(
+                    userDataBase.getAvailableSections(
+                    userDataBase.getUserID(ld.login)));
         }
     }
 

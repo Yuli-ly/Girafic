@@ -138,18 +138,34 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     @Override
     public int modifyCourse(CourseModifyData course, int contentID)
     {
+        if(content.containsKey(contentID))
+        {
+            content.replace(contentID,course);
+            return contentID;
+        }
         return -1;
     }
 
     @Override
     public int modifySection(SectionModifyData section, int contentID)
     {
+        if(content.containsKey(contentID))
+        {
+            content.replace(contentID,section);
+            return contentID;
+        }
         return -1;
     }
 
     @Override
     public int modifyMaterial(MaterialModifyData material, int contentID)
     {
+
+        if(content.containsKey(contentID))
+        {
+            content.replace(contentID,material);
+            return contentID;
+        }
         return -1;
     }
 
@@ -220,7 +236,7 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
             StudentModifyData student = (StudentModifyData) users.get(userID);
             for (int i : student.courses)
                 courses.add(new ContentLinkData(getCourse(i).title,i));
-            return new StudentViewData(userID,student,courses.toArray(new ContentLinkData[]{}));
+            return new StudentViewData(userID,student,courses.toArray(new ContentLinkData[0]));
         }
         return null;
     }
@@ -239,8 +255,8 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
                 availableContent.add(new ContentLinkData(content.get(i).title,i));
             return new TeacherViewData(userID,
                     teacher,
-                    courses.toArray(new ContentLinkData[]{}),
-                    availableContent.toArray(new ContentLinkData[]{}));
+                    courses.toArray(new ContentLinkData[0]),
+                    availableContent.toArray(new ContentLinkData[0]));
         }
         return null;
     }
@@ -335,5 +351,38 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     public void removeUser(int userID)
     {
         users.remove(userID);
+    }
+
+    @Override
+    public ContentLinkData[] getAvailableSectionContent(int userID)
+    {
+        if(users.containsKey(userID))
+        {
+            UserModifyData user = users.get(userID);
+            ArrayList<ContentLinkData> list = new ArrayList<>();
+            ContentViewData c;
+            Integer[] contentID;
+            if(user instanceof TeacherModifyData teacher)
+                contentID = Arrays.stream(teacher.availableContent).boxed().toArray(Integer[]::new);
+            else
+                contentID = content.keySet().toArray(new Integer[0]);
+
+            for(int i : contentID)
+                {
+                    if(getContentType(i)==ContentType.Material)
+                    {
+                        c = getMaterial(i);
+                        list.add(new ContentLinkData(c.title,c.id));
+                    }
+                }
+            return list.toArray(new ContentLinkData[0]);
+        }
+        return null;
+    }
+
+    @Override
+    public ContentLinkData[] getAvailableSections(int userID)
+    {
+        return null;
     }
 }

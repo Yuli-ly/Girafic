@@ -10,12 +10,19 @@ repositories {
     mavenCentral()
 }
 
+
 ext {
     junitVersion = '5.7.0' as Object
 }
 
-sourceCompatibility = 15
-targetCompatibility = 15
+tasks.withType(JavaCompile) {
+    options.compilerArgs += '--enable-preview'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_15
+    targetCompatibility = JavaVersion.VERSION_15
+}
 
 dependencies {
 

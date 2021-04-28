@@ -9,8 +9,7 @@
     <title>Error</title>
 </head>
 <body>
-<c:out value="3"/>
 <h1>Ошибка</h1>
-<p>${Message}</p>
+<c:out value="${Message}"/>
 </body>
 </html>

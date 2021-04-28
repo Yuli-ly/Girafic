@@ -151,4 +151,8 @@ public class RequestWrapper
     {
         request.setAttribute("Message",message);
     }
+    public void setContent(ContentLinkData[] content)
+    {
+        request.setAttribute("Content",content);
+    }
 }

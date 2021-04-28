@@ -12,6 +12,12 @@ public class SectionModifyData extends ContentModifyData
         this.contents = contents;
     }
 
+    public SectionModifyData(ContentModifyData data, int[] contents)
+    {
+        super(data);
+        this.contents = contents;
+    }
+
     public int[] getContents()
     {
         return contents;

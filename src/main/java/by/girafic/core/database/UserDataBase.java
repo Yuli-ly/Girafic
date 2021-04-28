@@ -1,6 +1,8 @@
 package by.girafic.core.database;
 
 import by.girafic.core.commonds.LoginData;
+import by.girafic.core.contentdata.ContentLinkData;
+import by.girafic.core.contentdata.ContentViewData;
 import by.girafic.core.userdata.*;
 
 public interface UserDataBase
@@ -24,4 +26,6 @@ public interface UserDataBase
     int modifyTeacher(TeacherModifyData teacher,int userID);
     int modifyAdmin(AdminModifyData admin,int id);
     void removeUser(int userID);
+    ContentLinkData[] getAvailableSectionContent(int userID);
+    ContentLinkData[] getAvailableSections(int userID);
 }

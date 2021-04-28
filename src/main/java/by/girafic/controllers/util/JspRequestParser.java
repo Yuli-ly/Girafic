@@ -69,15 +69,15 @@ public class JspRequestParser
     }
     public String courseCreationLink()
     {
-        return path + "/jsp/content/creation/course.jsp"+loginPassword();
+        return path + "/contentCreation"+loginPassword()+"&Type=course";
     }
     public String materialCreationLink()
     {
-        return path + "/jsp/content/creation/material.jsp"+loginPassword();
+        return path + "/contentCreation"+loginPassword()+"&Type=material";
     }
     public String sectionCreationLink()
     {
-        return path + "/jsp/content/creation/section.jsp"+loginPassword();
+        return path + "/contentCreation"+loginPassword()+"&Type=section";
     }
     public CourseViewData takeCourse()
     {

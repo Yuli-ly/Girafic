@@ -18,6 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 @WebServlet("/contentCreation")
 @MultipartConfig(
@@ -28,6 +29,38 @@ import java.io.IOException;
 public class ContentCreationServlet extends HttpServlet
 {
     private final InteractorAccess interactorAccess = GlobalValuesAccess.getValues().interactorAccess;
+    @Override
+    public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException
+    {
+        ContentRequestWrapper wrapper = new ContentRequestWrapper(request,response,
+                DefaultLoginSetter.instance,DefaultLoginGetter.instance);
+        LoginData ld = wrapper.takeLogin();
+        if(interactorAccess.checkUserExistence(ld))
+        {
+            TeacherInteractor interactor = switch (interactorAccess.getUserType(ld.login))
+                    {
+                        case Teacher -> interactorAccess.teacherLogin(ld,new TeacherView(wrapper));
+                        case Admin -> interactorAccess.adminLogin(ld,new AdminView(wrapper));
+                        default -> throw new IllegalArgumentException("No permission access");
+                    };
+            try
+            {
+                switch (wrapper.takeContentType())
+                {
+                    case Course -> interactor.showCourseForCreation();
+                    case Section -> interactor.showSectionForCreation();
+                    case Material -> interactor.showMaterialForCreation();
+                }
+            }
+            catch (Exception e)
+            {
+                new DefaultView(wrapper).showError("Unknown type of requested content or user ");
+                e.printStackTrace();
+            }
+        }
+        else
+            new DefaultView(wrapper).showError("Invalid username or password");
+    }
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -52,10 +85,14 @@ public class ContentCreationServlet extends HttpServlet
                     case Material -> interactor.createContent(wrapper.takeMaterial());
                 }
             }
-            catch (Exception e)
+            catch (IllegalArgumentException e)
             {
                 new DefaultView(wrapper)
-                        .showError("You do not have permission to create content and " + e.getMessage());
+                        .showError("You do not have permission to create content and ");
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
             }
         }
         else

@@ -4,6 +4,8 @@ import by.girafic.core.contentdata.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.util.Arrays;
+
 public class ContentRequestWrapper extends RequestWrapper
 {
     public ContentRequestWrapper(HttpServletRequest request,
@@ -38,7 +40,10 @@ public class ContentRequestWrapper extends RequestWrapper
     }
     public SectionModifyData takeSection()
     {
-        return null;
+        int[] id = Arrays.stream(request.getParameterValues("Content"))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+        return new SectionModifyData(takeContent(),id);
     }
     public CourseModifyData takeCourse()
     {

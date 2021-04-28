@@ -15,7 +15,7 @@ public class SectionViewModifyData extends ContentViewModifyData
         super(id,title, description);
         this.contents = contents;
     }
-    public SectionViewModifyData(int id,SectionModifyData data)
+    public SectionViewModifyData(SectionModifyData data,int id)
     {
         super(id,data);
         this.contents = successful(data.contents);

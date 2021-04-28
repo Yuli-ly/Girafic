@@ -27,4 +27,10 @@ public class ContentModifyData
         this.description = description;
         this.contentType = contentType;
     }
+    public ContentModifyData(ContentModifyData data)
+    {
+        this.title = data.title;
+        this.description = data.description;
+        this.contentType = data.contentType;
+    }
 }

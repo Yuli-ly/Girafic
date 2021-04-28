@@ -1,9 +1,14 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%--@elvariable id="path" type="String"--%>
+
 <html>
 <head>
-    <title>Title</title>
+    <title>Создание раздела</title>
 </head>
 <body>
-
+<form action="contentCreation" method="post">
+    <jsp:include page="baseSection.jsp"/>
+    <input type="submit" value="Создать">
+</form>
 </body>
 </html>
