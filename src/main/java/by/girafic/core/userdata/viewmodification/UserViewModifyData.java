@@ -1,5 +1,8 @@
-package by.girafic.core.userdata;
+package by.girafic.core.userdata.viewmodification;
 import by.girafic.core.commonds.ModifyConfirmation;
+import by.girafic.core.userdata.modification.UserModifyData;
+import by.girafic.core.userdata.FullName;
+
 import static by.girafic.core.commonds.ModifyConfirmation.*;
 
 public class UserViewModifyData

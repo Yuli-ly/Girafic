@@ -1,28 +1,31 @@
-package by.girafic.core.contentdata;
+package by.girafic.core.contentdata.viewmodification;
 
 import by.girafic.core.commonds.ModifyConfirmation;
-import static by.girafic.core.commonds.ModifyConfirmation.successful;
+import by.girafic.core.contentdata.modification.CourseModifyData;
 
 public class CourseViewModifyData extends ContentViewModifyData
 {
-    public final ModifyConfirmation<int[]> sections;
+    public final int[] sections;
+    public final int[] users;
 
     public CourseViewModifyData(int id,
                                 ModifyConfirmation<String> title,
                                 ModifyConfirmation<String> description,
-                                ModifyConfirmation<int[]> sections)
+                                int[] sections, int[] users)
     {
         super(id,title, description);
         this.sections = sections;
+        this.users = users;
     }
 
-    public CourseViewModifyData(int id,CourseModifyData data)
+    public CourseViewModifyData(int id, CourseModifyData data)
     {
         super(id,data);
-        this.sections = successful(data.sections);
+        this.sections = data.sections;
+        this.users = data.users;
     }
 
-    public ModifyConfirmation<int[]> getSections()
+    public int[] getSections()
     {
         return sections;
     }

@@ -1,11 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%--@elvariable id="login" type="String"--%>
 <%--@elvariable id="password" type="String"--%>
-<%--@elvariable id="Material" type="by.girafic.core.contentdata.MaterialViewModifyData"--%>
-<%
-request.setAttribute("login",request.getParameter("login"));
-request.setAttribute("password",request.getParameter("password"));
-%>
+<%--@elvariable id="Material" type="by.girafic.core.contentdata.viewmodification.MaterialViewModifyData"--%>
+
 <input type="hidden" name="login" value="${login}">
 <input type="hidden" name="password" value="${password}">
 <input type="hidden" name="Type" value="material">

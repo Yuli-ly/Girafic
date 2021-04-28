@@ -1,8 +1,12 @@
 package by.girafic.controllers.request;
 
-import by.girafic.core.userdata.*;
+import by.girafic.core.userdata.modification.*;
+import by.girafic.core.userdata.FullName;
+import by.girafic.core.userdata.UserType;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.util.Arrays;
 
 public class UserRequestWrapper extends RequestWrapper
 {
@@ -26,6 +30,14 @@ public class UserRequestWrapper extends RequestWrapper
                 request.getParameter("Mail"),
                 request.getParameter("Faculty"));
     }
+    private ExtendedUserModifyData takeExtendedUserData()
+    {
+        return new ExtendedUserModifyData(takeUserData(),
+                request.getParameter("Department"),
+                Arrays.stream(request
+                        .getParameterValues("Courses"))
+                        .mapToInt(Integer::parseInt).toArray());
+    }
     public UserType takeUserType()
     {
         return switch (request.getParameter("Type"))
@@ -38,19 +50,18 @@ public class UserRequestWrapper extends RequestWrapper
     }
     public StudentModifyData takeStudentData()
     {
-        return new StudentModifyData(takeUserData(),
+        return new StudentModifyData(takeExtendedUserData(),
                 Integer.parseInt(request.getParameter("Course")),
                 Double.parseDouble(request.getParameter("GPA")),
-                request.getParameter("Group"),
-                request.getParameter("Department"),
-                new int[]{});
+                request.getParameter("Group"));
     }
     public TeacherModifyData takeTeacherData()
     {
-        return new TeacherModifyData(takeUserData(),
-                request.getParameter("Department"),
+        return new TeacherModifyData(takeExtendedUserData(),
                 request.getParameter("Post"),
-                new int[]{},new int[]{});
+                Arrays.stream(request
+                        .getParameterValues("AvailableContent"))
+                        .mapToInt(Integer::parseInt).toArray());
     }
     public AdminModifyData takeAdminData()
     {

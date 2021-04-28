@@ -2,9 +2,25 @@ package by.girafic.database;
 
 import by.girafic.core.commonds.LoginData;
 import by.girafic.core.contentdata.*;
+import by.girafic.core.contentdata.modification.ContentModifyData;
+import by.girafic.core.contentdata.modification.CourseModifyData;
+import by.girafic.core.contentdata.modification.MaterialModifyData;
+import by.girafic.core.contentdata.modification.SectionModifyData;
+import by.girafic.core.contentdata.view.ContentViewData;
+import by.girafic.core.contentdata.view.CourseViewData;
+import by.girafic.core.contentdata.view.MaterialViewData;
+import by.girafic.core.contentdata.view.SectionViewData;
 import by.girafic.core.database.ContentDataBase;
 import by.girafic.core.database.UserDataBase;
 import by.girafic.core.userdata.*;
+import by.girafic.core.userdata.modification.AdminModifyData;
+import by.girafic.core.userdata.modification.StudentModifyData;
+import by.girafic.core.userdata.modification.TeacherModifyData;
+import by.girafic.core.userdata.modification.UserModifyData;
+import by.girafic.core.userdata.view.AdminViewData;
+import by.girafic.core.userdata.view.StudentViewData;
+import by.girafic.core.userdata.view.TeacherViewData;
+import by.girafic.core.userdata.view.UserViewData;
 
 import java.util.*;
 
@@ -14,8 +30,8 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
 
     int userAddIndex = 1;
     int contentAddIndex;
-    private final Map<Integer,UserModifyData> users = new HashMap<>();
-    private final Map<Integer,ContentModifyData> content = new HashMap<>();
+    private final Map<Integer, UserModifyData> users = new HashMap<>();
+    private final Map<Integer, ContentModifyData> content = new HashMap<>();
     public InMemoryDataBase()
     {
         AdminModifyData admin = new AdminModifyData(UserType.Admin,
@@ -32,8 +48,8 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
                 "teacher@gmail.com",
                 "RF&CT",
                 "1",
-                "teacher",
                 new int[]{3},
+                "teacher",
                 new int[]{1,2,3});
         users.put(userAddIndex++, teacher);
         StudentModifyData student = new StudentModifyData(UserType.Student,
@@ -42,11 +58,11 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
                 "student",
                 "student@example.com",
                 "RF&CT",
+                "no department",
+                new int[]{3},
                 2,
                 10,
-                "7",
-                "no department",
-                new int[]{3});
+                "7");
         users.put(userAddIndex++, student);
 
         MaterialModifyData material = new MaterialModifyData("Material 1","First material","bla-bla-bla");
@@ -56,6 +72,17 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
         CourseModifyData course = new CourseModifyData("Course 1","First course",new int[]{2},new int[]{2,3});
         content.put(3,course);
         contentAddIndex = 4;
+    }
+
+    @Override
+    public ContentLinkData getLink(int contentID)
+    {
+        if(content.containsKey(contentID))
+        {
+            ContentModifyData d = content.get(contentID);
+            return new ContentLinkData(d.title,contentID);
+        }
+        return null;
     }
 
     @Override
@@ -115,28 +142,28 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     }
 
     @Override
-    public int createCourse(CourseModifyData course)
+    public int createContent(CourseModifyData course)
     {
         content.put(contentAddIndex,course);
         return contentAddIndex++;
     }
 
     @Override
-    public int createSection(SectionModifyData section)
+    public int createContent(SectionModifyData section)
     {
         content.put(contentAddIndex,section);
         return contentAddIndex++;
     }
 
     @Override
-    public int createMaterial(MaterialModifyData material)
+    public int createContent(MaterialModifyData material)
     {
         content.put(contentAddIndex,material);
         return contentAddIndex++;
     }
 
     @Override
-    public int modifyCourse(CourseModifyData course, int contentID)
+    public int modifyContent(CourseModifyData course, int contentID)
     {
         if(content.containsKey(contentID))
         {
@@ -147,7 +174,7 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     }
 
     @Override
-    public int modifySection(SectionModifyData section, int contentID)
+    public int modifyContent(SectionModifyData section, int contentID)
     {
         if(content.containsKey(contentID))
         {
@@ -158,7 +185,7 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     }
 
     @Override
-    public int modifyMaterial(MaterialModifyData material, int contentID)
+    public int modifyContent(MaterialModifyData material, int contentID)
     {
 
         if(content.containsKey(contentID))
@@ -294,28 +321,28 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     }
 
     @Override
-    public int createStudent(StudentModifyData student)
+    public int createUser(StudentModifyData student)
     {
         users.put(userAddIndex,student);
         return userAddIndex++;
     }
 
     @Override
-    public int createTeacher(TeacherModifyData teacher)
+    public int createUser(TeacherModifyData teacher)
     {
         users.put(userAddIndex,teacher);
         return userAddIndex++;
     }
 
     @Override
-    public int createAdmin(AdminModifyData admin)
+    public int createUser(AdminModifyData admin)
     {
         users.put(userAddIndex,admin);
         return userAddIndex++;
     }
 
     @Override
-    public int modifyStudent(StudentModifyData student, int userID)
+    public int modifyUser(StudentModifyData student, int userID)
     {
         if(users.containsKey(userID))
         {
@@ -326,7 +353,7 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     }
 
     @Override
-    public int modifyTeacher(TeacherModifyData teacher, int userID)
+    public int modifyUser(TeacherModifyData teacher, int userID)
     {
         if(users.containsKey(userID))
         {
@@ -337,7 +364,7 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     }
 
     @Override
-    public int modifyAdmin(AdminModifyData admin, int userID)
+    public int modifyUser(AdminModifyData admin, int userID)
     {
         if(users.containsKey(userID))
         {
@@ -384,5 +411,18 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     public ContentLinkData[] getAvailableSections(int userID)
     {
         return null;
+    }
+
+    @Override
+    public UserLinkData[] getAvailableUsers(int userID)
+    {
+        List<UserLinkData> list = new ArrayList<>();
+        for(Map.Entry<Integer,UserModifyData> user : users.entrySet())
+            switch (user.getValue().userType)
+            {
+                case Teacher,Student -> list.add(new UserLinkData(user.getKey(), user.getValue().fullName));
+                default -> {}
+            }
+        return list.toArray(new UserLinkData[0]);
     }
 }

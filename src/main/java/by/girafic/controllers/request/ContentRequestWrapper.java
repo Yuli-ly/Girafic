@@ -1,6 +1,10 @@
 package by.girafic.controllers.request;
 
-import by.girafic.core.contentdata.*;
+import by.girafic.core.contentdata.modification.ContentModifyData;
+import by.girafic.core.contentdata.ContentType;
+import by.girafic.core.contentdata.modification.CourseModifyData;
+import by.girafic.core.contentdata.modification.MaterialModifyData;
+import by.girafic.core.contentdata.modification.SectionModifyData;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -40,13 +44,20 @@ public class ContentRequestWrapper extends RequestWrapper
     }
     public SectionModifyData takeSection()
     {
-        int[] id = Arrays.stream(request.getParameterValues("Content"))
+        return new SectionModifyData(takeContent(),
+                Arrays.stream(request.getParameterValues("Content"))
                 .mapToInt(Integer::parseInt)
-                .toArray();
-        return new SectionModifyData(takeContent(),id);
+                .toArray());
     }
     public CourseModifyData takeCourse()
     {
-        return null;
+        return new CourseModifyData(takeContent(),
+                Arrays.stream(request.getParameterValues("Sections"))
+                        .mapToInt(Integer::parseInt)
+                        .toArray(),
+                Arrays.stream(request.getParameterValues("Users"))
+                        .mapToInt(Integer::parseInt)
+                        .toArray()
+        );
     }
 }

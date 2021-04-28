@@ -1,4 +1,6 @@
-package by.girafic.core.contentdata;
+package by.girafic.core.contentdata.view;
+
+import by.girafic.core.contentdata.modification.SectionModifyData;
 
 public class SectionViewData extends ContentViewData
 {

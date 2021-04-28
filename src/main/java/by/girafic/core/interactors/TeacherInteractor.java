@@ -1,8 +1,8 @@
 package by.girafic.core.interactors;
 
-import by.girafic.core.contentdata.CourseModifyData;
-import by.girafic.core.contentdata.MaterialModifyData;
-import by.girafic.core.contentdata.SectionModifyData;
+import by.girafic.core.contentdata.modification.CourseModifyData;
+import by.girafic.core.contentdata.modification.MaterialModifyData;
+import by.girafic.core.contentdata.modification.SectionModifyData;
 
 public interface TeacherInteractor extends StudentInteractor
 {
@@ -20,17 +20,6 @@ public interface TeacherInteractor extends StudentInteractor
 
     void removeContent(int contentID) throws Exception;
 
-    void addContentToSection(int sectionID, int contentID) throws Exception;
-
-    void addSectionToCourse(int courseID, int contentID) throws Exception;
-
-    void removeSectionFromCourse(int courseID, int sectionID) throws Exception;
-
-    void removeContentFromSection(int sectionID, int contentID) throws Exception;
-
-    void addUserToCourse(int courseID, int userID) throws Exception;
-
-    void removeUserFromCourse(int courseID, int userID) throws Exception;
     void showMaterialForCreation() throws Exception;
     void showSectionForCreation() throws Exception;
     void showCourseForCreation() throws Exception;

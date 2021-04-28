@@ -1,8 +1,8 @@
 package by.girafic.core.interactors;
 
-import by.girafic.core.userdata.AdminModifyData;
-import by.girafic.core.userdata.StudentModifyData;
-import by.girafic.core.userdata.TeacherModifyData;
+import by.girafic.core.userdata.modification.AdminModifyData;
+import by.girafic.core.userdata.modification.StudentModifyData;
+import by.girafic.core.userdata.modification.TeacherModifyData;
 
 public interface AdminInteractor extends TeacherInteractor
 {

@@ -1,51 +1,49 @@
-package by.girafic.core.userdata;
+package by.girafic.core.userdata.view;
 
 import by.girafic.core.contentdata.ContentLinkData;
+import by.girafic.core.userdata.modification.TeacherModifyData;
+import by.girafic.core.userdata.FullName;
+import by.girafic.core.userdata.modification.UserModifyData;
 
-public class TeacherViewData extends UserViewData
+public class TeacherViewData extends ExtendedUserViewData
 {
-    public final String department;
     public final String post;
-    public final ContentLinkData[] courses;
     public final ContentLinkData[] availableContent;
-    public String getDepartment()
-    {
-        return department;
-    }
 
     public TeacherViewData(int id,
                            FullName fullName,
                            String mail,
                            String faculty,
                            String department,
-                           String post,
                            ContentLinkData[] courses,
+                           String post,
                            ContentLinkData[] availableContent)
     {
-        super(id, fullName, mail, faculty);
-        this.department = department;
+        super(id, fullName, mail, faculty, department, courses);
         this.post = post;
-        this.courses = courses;
         this.availableContent = availableContent;
     }
 
+    public TeacherViewData(int id,
+                           TeacherModifyData data,
+                           ContentLinkData[] courses,
+                           ContentLinkData[] availableContent)
+    {
+        super(id, data, data.department, courses);
+        this.post = data.post;
+        this.availableContent = availableContent;
+    }
+    public String getDepartment()
+    {
+        return department;
+    }
     public String getPost()
     {
         return post;
     }
 
-
-    public TeacherViewData(int id,
-                           TeacherModifyData t,
-                           ContentLinkData[] courses,
-                           ContentLinkData[] availableContent)
+    public ContentLinkData[] getAvailableContent()
     {
-        super(id,t.fullName,t.mail,t.faculty);
-        this.department = t.department;
-        this.post = t.post;
-        this.courses = courses;
-        this.availableContent = availableContent;
+        return availableContent;
     }
-
-
 }

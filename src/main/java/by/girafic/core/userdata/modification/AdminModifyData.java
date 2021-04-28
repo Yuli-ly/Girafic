@@ -1,4 +1,7 @@
-package by.girafic.core.userdata;
+package by.girafic.core.userdata.modification;
+
+import by.girafic.core.userdata.FullName;
+import by.girafic.core.userdata.UserType;
 
 public class AdminModifyData extends UserModifyData
 {

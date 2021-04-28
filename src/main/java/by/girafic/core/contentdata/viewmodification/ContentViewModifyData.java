@@ -1,6 +1,8 @@
-package by.girafic.core.contentdata;
+package by.girafic.core.contentdata.viewmodification;
 
 import by.girafic.core.commonds.ModifyConfirmation;
+import by.girafic.core.contentdata.modification.ContentModifyData;
+
 import static by.girafic.core.commonds.ModifyConfirmation.successful;
 
 public class ContentViewModifyData
@@ -15,7 +17,7 @@ public class ContentViewModifyData
         this.title = title;
         this.description = description;
     }
-    public ContentViewModifyData(int id,ContentModifyData data)
+    public ContentViewModifyData(int id, ContentModifyData data)
     {
         this.title = successful(data.title);
         this.description = successful(data.description);

@@ -1,12 +1,12 @@
 package by.girafic.webview;
 
 import by.girafic.controllers.request.RequestWrapper;
-import by.girafic.core.contentdata.CourseViewData;
-import by.girafic.core.contentdata.MaterialViewData;
-import by.girafic.core.contentdata.SectionViewData;
-import by.girafic.core.userdata.AdminViewData;
-import by.girafic.core.userdata.StudentViewData;
-import by.girafic.core.userdata.TeacherViewData;
+import by.girafic.core.contentdata.view.CourseViewData;
+import by.girafic.core.contentdata.view.MaterialViewData;
+import by.girafic.core.contentdata.view.SectionViewData;
+import by.girafic.core.userdata.view.AdminViewData;
+import by.girafic.core.userdata.view.StudentViewData;
+import by.girafic.core.userdata.view.TeacherViewData;
 import jakarta.servlet.ServletException;
 
 import java.io.IOException;

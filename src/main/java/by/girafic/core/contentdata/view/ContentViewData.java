@@ -1,4 +1,6 @@
-package by.girafic.core.contentdata;
+package by.girafic.core.contentdata.view;
+
+import by.girafic.core.contentdata.modification.ContentModifyData;
 
 public class ContentViewData
 {
@@ -13,7 +15,7 @@ public class ContentViewData
         this.description = description;
     }
 
-    public ContentViewData(int contentID,ContentModifyData data)
+    public ContentViewData(int contentID, ContentModifyData data)
     {
         this.id = contentID;
         this.title = data.title;

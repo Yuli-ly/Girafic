@@ -1,4 +1,6 @@
-package by.girafic.core.contentdata;
+package by.girafic.core.contentdata.modification;
+
+import by.girafic.core.contentdata.ContentType;
 
 public class ContentModifyData
 {

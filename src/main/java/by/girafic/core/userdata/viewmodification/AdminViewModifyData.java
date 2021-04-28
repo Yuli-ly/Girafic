@@ -1,6 +1,8 @@
-package by.girafic.core.userdata;
+package by.girafic.core.userdata.viewmodification;
 
 import by.girafic.core.commonds.ModifyConfirmation;
+import by.girafic.core.userdata.modification.AdminModifyData;
+import by.girafic.core.userdata.FullName;
 
 public class AdminViewModifyData extends UserViewModifyData
 {
@@ -14,7 +16,7 @@ public class AdminViewModifyData extends UserViewModifyData
         super(id,fullName, login, password, mail, faculty);
     }
 
-    public AdminViewModifyData(int id,AdminModifyData data)
+    public AdminViewModifyData(int id, AdminModifyData data)
     {
         super(id,data);
     }

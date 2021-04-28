@@ -1,8 +1,22 @@
 package by.girafic.controllers.request;
 
 import by.girafic.core.commonds.LoginData;
-import by.girafic.core.contentdata.*;
-import by.girafic.core.userdata.*;
+import by.girafic.core.contentdata.ContentLinkData;
+import by.girafic.core.contentdata.view.CourseViewData;
+import by.girafic.core.contentdata.viewmodification.CourseViewModifyData;
+import by.girafic.core.contentdata.view.MaterialViewData;
+import by.girafic.core.contentdata.viewmodification.MaterialViewModifyData;
+import by.girafic.core.contentdata.view.SectionViewData;
+import by.girafic.core.contentdata.viewmodification.SectionViewModifyData;
+import by.girafic.core.userdata.view.AdminViewData;
+import by.girafic.core.userdata.viewmodification.AdminViewModifyData;
+import by.girafic.core.userdata.view.StudentViewData;
+import by.girafic.core.userdata.viewmodification.StudentViewModifyData;
+import by.girafic.core.userdata.view.TeacherViewData;
+import by.girafic.core.userdata.viewmodification.TeacherViewModifyData;
+import by.girafic.core.userdata.UserLinkData;
+import by.girafic.core.userdata.view.UserViewData;
+import by.girafic.core.userdata.viewmodification.UserViewModifyData;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -154,5 +168,10 @@ public class RequestWrapper
     public void setContent(ContentLinkData[] content)
     {
         request.setAttribute("Content",content);
+    }
+
+    public void setUsers(UserLinkData[] users)
+    {
+        request.setAttribute("Users",users);
     }
 }

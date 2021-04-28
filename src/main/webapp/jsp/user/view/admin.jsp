@@ -4,7 +4,7 @@
     JspRequestParser parser = new JspRequestParser(request);
     parser.takeAdmin();
 %>
-<%--@elvariable id="Admin" type="by.girafic.core.userdata.AdminViewData"--%>
+<%--@elvariable id="Admin" type="by.girafic.core.userdata.view.AdminViewData"--%>
 <%--@elvariable id="login" type="String"--%>
 <%--@elvariable id="password" type="String"--%>
 <html>

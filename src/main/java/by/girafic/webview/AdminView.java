@@ -1,7 +1,9 @@
 package by.girafic.webview;
 
 import by.girafic.controllers.request.RequestWrapper;
-import by.girafic.core.userdata.*;
+import by.girafic.core.userdata.viewmodification.AdminViewModifyData;
+import by.girafic.core.userdata.viewmodification.StudentViewModifyData;
+import by.girafic.core.userdata.viewmodification.TeacherViewModifyData;
 import jakarta.servlet.ServletException;
 
 import java.io.IOException;

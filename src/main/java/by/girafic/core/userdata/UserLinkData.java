@@ -1,5 +1,7 @@
 package by.girafic.core.userdata;
 
+import by.girafic.core.userdata.view.UserViewData;
+
 public class UserLinkData
 {
     public final int id;

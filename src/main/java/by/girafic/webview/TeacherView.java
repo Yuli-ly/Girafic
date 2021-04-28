@@ -1,7 +1,11 @@
 package by.girafic.webview;
 
 import by.girafic.controllers.request.RequestWrapper;
-import by.girafic.core.contentdata.*;
+import by.girafic.core.contentdata.ContentLinkData;
+import by.girafic.core.contentdata.viewmodification.CourseViewModifyData;
+import by.girafic.core.contentdata.viewmodification.MaterialViewModifyData;
+import by.girafic.core.contentdata.viewmodification.SectionViewModifyData;
+import by.girafic.core.userdata.UserLinkData;
 import jakarta.servlet.ServletException;
 
 import java.io.IOException;
@@ -14,12 +18,17 @@ public class TeacherView extends StudentView implements by.girafic.core.view.Tea
     }
 
     @Override
-    public void showContentAfterModify(CourseViewModifyData course,ContentLinkData[] section)
+    public void showContentAfterModify(CourseViewModifyData course,
+                                       ContentLinkData[] sections,
+                                       UserLinkData[] users) throws ServletException, IOException
     {
+        wrapper.setContent(sections);
+        wrapper.setUsers(users);
+        wrapper.forward("/jsp/content/modification/course.jsp");
     }
 
     @Override
-    public void showContentAfterModify(SectionViewModifyData section,ContentLinkData[] content) throws ServletException, IOException
+    public void showContentAfterModify(SectionViewModifyData section, ContentLinkData[] content) throws ServletException, IOException
     {
         wrapper.setContent(section);
         wrapper.setContent(content);

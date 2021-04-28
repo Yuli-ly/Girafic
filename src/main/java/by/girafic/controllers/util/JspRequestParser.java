@@ -2,11 +2,11 @@ package by.girafic.controllers.util;
 
 import by.girafic.core.commonds.LoginData;
 import by.girafic.core.contentdata.ContentLinkData;
-import by.girafic.core.contentdata.CourseViewData;
-import by.girafic.core.contentdata.SectionViewData;
-import by.girafic.core.userdata.AdminViewData;
-import by.girafic.core.userdata.StudentViewData;
-import by.girafic.core.userdata.TeacherViewData;
+import by.girafic.core.contentdata.view.CourseViewData;
+import by.girafic.core.contentdata.view.SectionViewData;
+import by.girafic.core.userdata.view.AdminViewData;
+import by.girafic.core.userdata.view.StudentViewData;
+import by.girafic.core.userdata.view.TeacherViewData;
 import by.girafic.core.userdata.UserLinkData;
 import jakarta.servlet.http.HttpServletRequest;
 

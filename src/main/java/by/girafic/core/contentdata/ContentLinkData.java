@@ -1,5 +1,7 @@
 package by.girafic.core.contentdata;
 
+import by.girafic.core.contentdata.view.ContentViewData;
+
 public class ContentLinkData
 {
     public ContentLinkData(String name, int id)

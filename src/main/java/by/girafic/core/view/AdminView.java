@@ -1,8 +1,8 @@
 package by.girafic.core.view;
 
-import by.girafic.core.userdata.AdminViewModifyData;
-import by.girafic.core.userdata.StudentViewModifyData;
-import by.girafic.core.userdata.TeacherViewModifyData;
+import by.girafic.core.userdata.viewmodification.AdminViewModifyData;
+import by.girafic.core.userdata.viewmodification.StudentViewModifyData;
+import by.girafic.core.userdata.viewmodification.TeacherViewModifyData;
 
 public interface AdminView extends TeacherView
 {

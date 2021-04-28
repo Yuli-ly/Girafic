@@ -1,4 +1,7 @@
-package by.girafic.core.userdata;
+package by.girafic.core.userdata.view;
+
+import by.girafic.core.userdata.modification.UserModifyData;
+import by.girafic.core.userdata.FullName;
 
 public class UserViewData
 {
@@ -45,7 +48,7 @@ public class UserViewData
         this.mail = mail;
         this.faculty = faculty;
     }
-    public UserViewData(int id,UserModifyData data)
+    public UserViewData(int id, UserModifyData data)
     {
         this.id = id;
         this.fullName = data.fullName;

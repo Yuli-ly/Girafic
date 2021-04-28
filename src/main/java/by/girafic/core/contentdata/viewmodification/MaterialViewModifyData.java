@@ -1,6 +1,8 @@
-package by.girafic.core.contentdata;
+package by.girafic.core.contentdata.viewmodification;
 
 import by.girafic.core.commonds.ModifyConfirmation;
+import by.girafic.core.contentdata.modification.MaterialModifyData;
+
 import static by.girafic.core.commonds.ModifyConfirmation.successful;
 
 public class MaterialViewModifyData extends ContentViewModifyData
