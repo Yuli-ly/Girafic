@@ -1,10 +1,7 @@
 package by.girafic.core.userdata;
 
-public class FullName
+public record FullName(String name, String surname, String patronymic)
 {
-    public final String name;
-    public final String surname;
-    public final String patronymic;
     @Override
     public String toString()
     {
@@ -24,13 +21,6 @@ public class FullName
     public String getPatronymic()
     {
         return patronymic;
-    }
-
-    public FullName(String name, String surname, String patronymic)
-    {
-        this.surname = surname;
-        this.name = name;
-        this.patronymic = patronymic;
     }
 
 

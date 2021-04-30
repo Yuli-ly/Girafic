@@ -34,9 +34,7 @@ public class UserRequestWrapper extends RequestWrapper
     {
         return new ExtendedUserModifyData(takeUserData(),
                 request.getParameter("Department"),
-                Arrays.stream(request
-                        .getParameterValues("Courses"))
-                        .mapToInt(Integer::parseInt).toArray());
+                takeIDs("Courses"));
     }
     public UserType takeUserType()
     {
@@ -59,9 +57,7 @@ public class UserRequestWrapper extends RequestWrapper
     {
         return new TeacherModifyData(takeExtendedUserData(),
                 request.getParameter("Post"),
-                Arrays.stream(request
-                        .getParameterValues("AvailableContent"))
-                        .mapToInt(Integer::parseInt).toArray());
+                takeIDs("AvailableContent"));
     }
     public AdminModifyData takeAdminData()
     {

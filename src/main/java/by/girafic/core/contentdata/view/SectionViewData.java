@@ -22,6 +22,8 @@ public class SectionViewData extends ContentViewData
 
         this.contents = contents;
     }
+
+
     public ContentViewData[] getContents()
     {
         return contents;

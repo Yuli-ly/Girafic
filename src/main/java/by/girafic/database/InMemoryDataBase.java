@@ -91,28 +91,20 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
         return content.get(contentID).getContentType();
     }
 
-    private UserViewData getUser(int userID)
-    {
-        if(users.containsKey(userID))
-            return new UserViewData(userID,users.get(userID));
-        return null;
-    }
     @Override
     public CourseViewData getCourse(int contentID)
     {
         if(content.containsKey(contentID))
         {
             CourseModifyData course = (CourseModifyData) content.get(contentID);
-            ArrayList<SectionViewData> sections = new ArrayList<>();
-            for(int i : course.sections)
-                sections.add(getSection(i));
-            ArrayList<UserLinkData> userList = new ArrayList<>();
-            for(int i : course.users)
-                userList.add(new UserLinkData(getUser(i)));
             return new CourseViewData(contentID,
                     course,
-                    sections.toArray(new SectionViewData[]{}),
-                    userList.toArray(new UserLinkData[]{}));
+                    Arrays.stream(course.sections)
+                            .mapToObj(this::getSection)
+                            .toArray(SectionViewData[]::new),
+                    Arrays.stream(course.users)
+                            .mapToObj(i->new UserLinkData(i,users.get(i).fullName))
+                            .toArray(UserLinkData[]::new));
         }
         return null;
     }
@@ -123,10 +115,11 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
         if(content.containsKey(contentID))
         {
             SectionModifyData section = (SectionModifyData) content.get(contentID);
-            ArrayList<ContentViewData> contents = new ArrayList<>();
-            for(int i : section.contents)
-                contents.add(new ContentViewData(i,content.get(i)));
-            return new SectionViewData(contentID,section, contents.toArray(new ContentViewData[]{}));
+            return new SectionViewData(contentID,
+                    section,
+                    Arrays.stream(section.contents)
+                            .mapToObj(i->new ContentViewData(i,content.get(i)))
+                            .toArray(ContentViewData[]::new));
         }
         return null;
     }
@@ -259,11 +252,12 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     {
         if(users.containsKey(userID))
         {
-            ArrayList<ContentLinkData> courses = new ArrayList<>();
             StudentModifyData student = (StudentModifyData) users.get(userID);
-            for (int i : student.courses)
-                courses.add(new ContentLinkData(getCourse(i).title,i));
-            return new StudentViewData(userID,student,courses.toArray(new ContentLinkData[0]));
+            return new StudentViewData(userID,
+                    student,
+                    Arrays.stream(student.courses)
+                            .mapToObj(i->new ContentLinkData(content.get(i).title,i))
+                            .toArray(ContentLinkData[]::new));
         }
         return null;
     }
@@ -273,17 +267,15 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     {
         if(users.containsKey(userID))
         {
-            ArrayList<ContentLinkData> courses = new ArrayList<>();
-            ArrayList<ContentLinkData> availableContent = new ArrayList<>();
             TeacherModifyData teacher = (TeacherModifyData) users.get(userID);
-            for (int i : teacher.courses)
-                courses.add(new ContentLinkData(getCourse(i).title,i));
-            for (int i : teacher.availableContent)
-                availableContent.add(new ContentLinkData(content.get(i).title,i));
             return new TeacherViewData(userID,
                     teacher,
-                    courses.toArray(new ContentLinkData[0]),
-                    availableContent.toArray(new ContentLinkData[0]));
+                    Arrays.stream(teacher.courses)
+                            .mapToObj(i->new ContentLinkData(content.get(i).title,i))
+                            .toArray(ContentLinkData[]::new),
+                    Arrays.stream(teacher.availableContent)
+                            .mapToObj(i->new ContentLinkData(content.get(i).title,i))
+                            .toArray(ContentLinkData[]::new));
         }
         return null;
     }
@@ -386,23 +378,12 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
         if(users.containsKey(userID))
         {
             UserModifyData user = users.get(userID);
-            ArrayList<ContentLinkData> list = new ArrayList<>();
-            ContentViewData c;
-            Integer[] contentID;
-            if(user instanceof TeacherModifyData teacher)
-                contentID = Arrays.stream(teacher.availableContent).boxed().toArray(Integer[]::new);
-            else
-                contentID = content.keySet().toArray(new Integer[0]);
-
-            for(int i : contentID)
-                {
-                    if(getContentType(i)==ContentType.Material)
-                    {
-                        c = getMaterial(i);
-                        list.add(new ContentLinkData(c.title,c.id));
-                    }
-                }
-            return list.toArray(new ContentLinkData[0]);
+            return (user instanceof TeacherModifyData teacher
+                    ? Arrays.stream(teacher.availableContent).boxed()
+                    : content.keySet().stream())
+                    .filter(i->getContentType(i)==ContentType.Material)
+                    .map(i->new ContentLinkData(content.get(i).title,i))
+                    .toArray(ContentLinkData[]::new);
         }
         return null;
     }
@@ -416,13 +397,11 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     @Override
     public UserLinkData[] getAvailableUsers(int userID)
     {
-        List<UserLinkData> list = new ArrayList<>();
-        for(Map.Entry<Integer,UserModifyData> user : users.entrySet())
-            switch (user.getValue().userType)
-            {
-                case Teacher,Student -> list.add(new UserLinkData(user.getKey(), user.getValue().fullName));
-                default -> {}
-            }
-        return list.toArray(new UserLinkData[0]);
+        return users.entrySet().stream()
+                .filter(u->switch (u.getValue().userType)
+                        {case Teacher,Student->true;
+                            default -> false;})
+                .map(u->new UserLinkData(u.getKey(),u.getValue().fullName))
+                .toArray(UserLinkData[]::new);
     }
 }

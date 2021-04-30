@@ -22,6 +22,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Optional;
 
 public class RequestWrapper
 {
@@ -169,9 +171,16 @@ public class RequestWrapper
     {
         request.setAttribute("Content",content);
     }
-
     public void setUsers(UserLinkData[] users)
     {
         request.setAttribute("Users",users);
+    }
+    protected int[] takeIDs(String name)
+    {
+        return Arrays.stream(
+                Optional.ofNullable(request.getParameterValues(name))
+                        .orElse(new String[0]))
+                .mapToInt(Integer::parseInt)
+                .toArray();
     }
 }

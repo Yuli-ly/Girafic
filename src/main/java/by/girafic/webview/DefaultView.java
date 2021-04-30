@@ -2,8 +2,6 @@ package by.girafic.webview;
 
 import by.girafic.controllers.request.RequestWrapper;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 

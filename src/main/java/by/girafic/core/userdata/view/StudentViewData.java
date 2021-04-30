@@ -3,7 +3,6 @@ package by.girafic.core.userdata.view;
 import by.girafic.core.contentdata.ContentLinkData;
 import by.girafic.core.userdata.FullName;
 import by.girafic.core.userdata.modification.StudentModifyData;
-import by.girafic.core.userdata.modification.UserModifyData;
 
 public class StudentViewData extends ExtendedUserViewData
 {

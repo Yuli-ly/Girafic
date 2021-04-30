@@ -8,7 +8,6 @@ import by.girafic.core.contentdata.modification.SectionModifyData;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.util.Arrays;
 
 public class ContentRequestWrapper extends RequestWrapper
 {
@@ -44,20 +43,12 @@ public class ContentRequestWrapper extends RequestWrapper
     }
     public SectionModifyData takeSection()
     {
-        return new SectionModifyData(takeContent(),
-                Arrays.stream(request.getParameterValues("Content"))
-                .mapToInt(Integer::parseInt)
-                .toArray());
+        return new SectionModifyData(takeContent(), takeIDs("Content"));
     }
     public CourseModifyData takeCourse()
     {
         return new CourseModifyData(takeContent(),
-                Arrays.stream(request.getParameterValues("Sections"))
-                        .mapToInt(Integer::parseInt)
-                        .toArray(),
-                Arrays.stream(request.getParameterValues("Users"))
-                        .mapToInt(Integer::parseInt)
-                        .toArray()
-        );
+                takeIDs("Content"),
+               takeIDs("Users"));
     }
 }
