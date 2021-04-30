@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%--@elvariable id="Material" type="by.girafic.core.contentdata.view.MaterialViewData"--%>
 <html>
 <head>

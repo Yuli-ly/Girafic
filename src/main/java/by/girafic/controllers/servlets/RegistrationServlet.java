@@ -1,5 +1,6 @@
 package by.girafic.controllers.servlets;
 
+import by.girafic.controllers.request.DefaultLoginGetter;
 import by.girafic.controllers.util.GlobalValuesAccess;
 import by.girafic.controllers.request.AdminLoginGetter;
 import by.girafic.controllers.request.DefaultLoginSetter;
@@ -23,7 +24,26 @@ import jakarta.servlet.http.HttpServletResponse;
 public class RegistrationServlet extends HttpServlet
 {
     private final InteractorAccess interactorAccess = GlobalValuesAccess.getValues().interactorAccess;
-
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+    {
+        UserRequestWrapper wrapper = new UserRequestWrapper(request,response,
+                DefaultLoginSetter.instance, DefaultLoginGetter.instance);
+        LoginData ld = wrapper.takeLogin();
+        try
+        {
+            AdminInteractor interactor = interactorAccess.adminLogin(ld,new AdminView(wrapper));
+            switch (wrapper.takeUserType())
+            {
+                case Student -> interactor.showStudentForCreation();
+                case Teacher -> interactor.showTeacherForCreation();
+                case Admin -> interactor.showAdminForCreation();
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     {

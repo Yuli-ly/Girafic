@@ -63,6 +63,20 @@ public class JspRequestParser
                 "&id=" + user.id +
                 "\">" + user.name + "</a>";
     }
+    public String studentCreationLink()
+    {
+        return path + "/registration"+loginPassword()+"&Type=student";
+    }
+
+    public String teacherCreationLink()
+    {
+        return path + "/registration"+loginPassword()+"&Type=teacher";
+    }
+
+    public String adminCreationLink()
+    {
+        return path + "/registration"+loginPassword()+"&Type=admin";
+    }
     public String registrationLink()
     {
         return path + "/jsp/user/creation/registration.jsp" + loginPassword();

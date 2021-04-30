@@ -5,7 +5,7 @@
 </head>
 <body>
 <form action="contentModification" method="post">
-    <jsp:include page="../creation/baseCourse.jsp"/>
+    <jsp:include page="../base/course.jsp"/>
     <input type="submit" value="Изменить">
 </form>
 </body>

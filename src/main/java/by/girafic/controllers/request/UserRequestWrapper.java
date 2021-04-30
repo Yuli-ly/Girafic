@@ -34,7 +34,7 @@ public class UserRequestWrapper extends RequestWrapper
     {
         return new ExtendedUserModifyData(takeUserData(),
                 request.getParameter("Department"),
-                takeIDs("Courses"));
+                takeIDs("Content"));
     }
     public UserType takeUserType()
     {
@@ -57,7 +57,7 @@ public class UserRequestWrapper extends RequestWrapper
     {
         return new TeacherModifyData(takeExtendedUserData(),
                 request.getParameter("Post"),
-                takeIDs("AvailableContent"));
+                new int[]{});
     }
     public AdminModifyData takeAdminData()
     {

@@ -28,4 +28,13 @@ public class ContentLinkData
 
     public final String name;
     public final int id;
+
+    @Override
+    public String toString()
+    {
+        return "ContentLinkData{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

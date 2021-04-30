@@ -14,13 +14,17 @@
 <body>
 <p><jsp:include page="user.jsp"/></p>
 
-<a href="<%=parser.registrationLink()%>">Регистрация</a>
 <form action="userModification" method="get">
     <input type="text" name="login" value="${login}">
     <input type="text" name="password" value="${password}">
     <input type="text" name="id">
     <input type="submit" name="Изменить пользователя">
 </form>
+
+<a href="<%=parser.studentCreationLink()%>">Зарегестрировать студента</a>
+<a href="<%=parser.teacherCreationLink()%>">Зарегестрировать преподавателя</a>
+<a href="<%=parser.adminCreationLink()%>">Зарегестрировать админа</a>
+
 
 </body>
 </html>

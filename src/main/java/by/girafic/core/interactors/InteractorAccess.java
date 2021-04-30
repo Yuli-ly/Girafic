@@ -2,6 +2,7 @@ package by.girafic.core.interactors;
 
 import by.girafic.core.commonds.LoginData;
 import by.girafic.core.contentdata.ContentLinkData;
+import by.girafic.core.contentdata.ContentType;
 import by.girafic.core.contentdata.modification.CourseModifyData;
 import by.girafic.core.contentdata.viewmodification.CourseViewModifyData;
 import by.girafic.core.contentdata.modification.MaterialModifyData;
@@ -120,7 +121,8 @@ public class InteractorAccess
             final int id = userDataBase.createUser(student);
             view.showUserAfterModify(new StudentViewModifyData(id,
                     student,
-                    getLinks(student.courses)));
+                    getLinks(student.courses)),
+                    contentDataBase.getCourses());
         }
 
         @Override
@@ -130,28 +132,39 @@ public class InteractorAccess
             final int id = userDataBase.modifyUser(student,userID);
             view.showUserAfterModify(new StudentViewModifyData(id,
                     student,
-                    getLinks(student.courses)));
+                    getLinks(student.courses)),
+                    contentDataBase.getCourses());
         }
         @Override
         public void createUser(TeacherModifyData teacher) throws Exception
         {
             // проверка каждого поля
+            teacher.availableContent = teacher.courses;
+            teacher.courses = Arrays.stream(teacher.availableContent)
+                    .filter(i->contentDataBase.getContentType(i)== ContentType.Course)
+                    .toArray();
             final int id = userDataBase.createUser(teacher);
             view.showUserAfterModify(new TeacherViewModifyData(id,
                     teacher,
                     getLinks(teacher.courses),
-                    getLinks(teacher.availableContent)));
+                    getLinks(teacher.availableContent)),
+                    contentDataBase.getAllContent());
         }
 
         @Override
         public void modifyUser(TeacherModifyData teacher, int userID) throws Exception
         {
             //проверить все поля
+            teacher.availableContent = teacher.courses;
+            teacher.courses = Arrays.stream(teacher.availableContent)
+                    .filter(i->contentDataBase.getContentType(i)== ContentType.Course)
+                    .toArray();
             final int id = userDataBase.modifyUser(teacher,userID);
             view.showUserAfterModify(new TeacherViewModifyData(id,
                     teacher,
                     getLinks(teacher.courses),
-                    getLinks(teacher.availableContent)));
+                    getLinks(teacher.availableContent)),
+                    contentDataBase.getAllContent());
         }
 
         @Override
@@ -185,7 +198,11 @@ public class InteractorAccess
                 case Student ->
                         {
                             StudentModifyData student = udb.getStudentForMod(userID);
-                            view.showUserAfterModify(new StudentViewModifyData(userID,student,getLinks(student.courses)));
+                            view.showUserAfterModify(
+                                    new StudentViewModifyData(userID,
+                                            student,
+                                            getLinks(student.courses)),
+                                    contentDataBase.getCourses());
                         }
                 case Teacher ->
                         {
@@ -193,11 +210,30 @@ public class InteractorAccess
                             view.showUserAfterModify(new TeacherViewModifyData(userID,
                                     teacher,
                                     getLinks(teacher.courses),
-                                    getLinks(teacher.availableContent)));
+                                    getLinks(teacher.availableContent)),
+                                    contentDataBase.getAllContent());
                         }
                 case Admin ->
                             view.showUserAfterModify(new AdminViewModifyData(userID,udb.getAdminForMod(userID)));
             }
+        }
+
+        @Override
+        public void showStudentForCreation() throws Exception
+        {
+            view.showStudentForCreation(contentDataBase.getCourses());
+        }
+
+        @Override
+        public void showTeacherForCreation() throws Exception
+        {
+            view.showTeacherForCreation(contentDataBase.getAllContent());
+        }
+
+        @Override
+        public void showAdminForCreation() throws Exception
+        {
+            view.showAdminForCreation();
         }
 
     }
@@ -280,38 +316,6 @@ public class InteractorAccess
             );
         }
 
-        private StudentModifyData addCourse(StudentModifyData student,int courseID)
-        {
-            int[] oldCourses = student.courses;
-            int[] newCourses = Arrays.copyOf(oldCourses,oldCourses.length+1);
-            newCourses[oldCourses.length] = courseID;
-            student.courses = newCourses;
-            return student;
-        }
-        private TeacherModifyData addCourse(TeacherModifyData teacher,int courseID)
-        {
-            int[] oldCourses = teacher.courses;
-            int[] newCourses = Arrays.copyOf(oldCourses,oldCourses.length+1);
-            newCourses[oldCourses.length] = courseID;
-            teacher.courses = newCourses;
-            return teacher;
-        }
-        private StudentModifyData removeCourse(StudentModifyData student,int courseID)
-        {
-            int[] oldCourses = student.courses;
-            int[] newCourses = Arrays.copyOf(oldCourses,oldCourses.length+1);
-            newCourses[oldCourses.length] = courseID;
-            student.courses = newCourses;
-            return student;
-        }
-        private TeacherModifyData removeCourse(TeacherModifyData teacher,int courseID)
-        {
-            int[] oldCourses = teacher.courses;
-            int[] newCourses = Arrays.copyOf(oldCourses,oldCourses.length+1);
-            newCourses[oldCourses.length] = courseID;
-            teacher.courses = newCourses;
-            return teacher;
-        }
         @Override
         public void modifyContent(CourseModifyData course, int contentID) throws Exception
         {

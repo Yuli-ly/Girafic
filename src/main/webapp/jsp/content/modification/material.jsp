@@ -6,7 +6,7 @@
 </head>
 <body>
 <form method="post" action="contentModification">
-    <jsp:include page="../creation/baseMaterial.jsp"/>
+    <jsp:include page="../base/material.jsp"/>
     <input type="submit" value="Изменить">
 </form>
 </body>

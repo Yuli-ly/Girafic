@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Создание курса</title>
+    <title>Создание студента</title>
 </head>
 <body>
-<form action="contentCreation" method="post">
-    <jsp:include page="../base/course.jsp"/>
+<form action="registration" method="post">
+    <jsp:include page="../base/student.jsp"/>
     <input type="submit" value="Создать">
 </form>
 </body>

@@ -23,6 +23,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 public class RequestWrapper
@@ -182,5 +183,13 @@ public class RequestWrapper
                         .orElse(new String[0]))
                 .mapToInt(Integer::parseInt)
                 .toArray();
+    }
+    public void setCurrentContent(List<Integer> list)
+    {
+        request.setAttribute("CurrentContent",list);
+    }
+    public void setCurrentUsers(List<Integer> list)
+    {
+        request.setAttribute("CurrentUsers",list);
     }
 }

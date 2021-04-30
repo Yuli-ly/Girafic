@@ -1,16 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%--@elvariable id="Admin" type="by.girafic.core.userdata.viewmodification.AdminViewModifyData"--%>
-<%--@elvariable id="path" type="String"--%>
 <html>
 <head>
     <title>Изменение админа</title>
 </head>
 <body>
-<form action="${path}/userModification" method="post">
-    <input type="hidden" name="Type" value="admin">
-    <ul>
-        <jsp:include page="../creation/userInputForm.jsp"></jsp:include>
-    </ul>
+<form action="userModification" method="post">
+    <jsp:include page="../base/admin.jsp"/>
     <input type="submit" value="Подтвердить">
 </form>
 </body>

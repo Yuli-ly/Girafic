@@ -1,9 +1,9 @@
-<%@ page import="by.girafic.core.contentdata.modification.CourseModifyData" %>
 <%@ page import="by.girafic.core.contentdata.viewmodification.CourseViewModifyData" %>
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.stream.Collectors" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--@elvariable id="login" type="String"--%>
 <%--@elvariable id="password" type="String"--%>
 <%--@elvariable id="Course" type="by.girafic.core.contentdata.viewmodification.CourseViewModifyData"--%>

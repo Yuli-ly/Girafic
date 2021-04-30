@@ -6,7 +6,7 @@
 </head>
 <body>
 <form action="contentCreation" method="post">
-    <jsp:include page="baseMaterial.jsp"/>
+    <jsp:include page="../base/material.jsp"/>
     <input type="submit" value="Создать">
 </form>
 </body>

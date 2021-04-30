@@ -190,6 +190,25 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     }
 
     @Override
+    public ContentLinkData[] getCourses()
+    {
+        return content.entrySet()
+                .stream()
+                .filter(c->c.getValue().contentType==ContentType.Course)
+                .map(c->new ContentLinkData(c.getValue().title,c.getKey()))
+                .toArray(ContentLinkData[]::new);
+    }
+
+    @Override
+    public ContentLinkData[] getAllContent()
+    {
+        return content.entrySet()
+                .stream()
+                .map(c-> new ContentLinkData(c.getValue().title,c.getKey()))
+                .toArray(ContentLinkData[]::new);
+    }
+
+    @Override
     public void removeContent(int contentID)
     {
         content.remove(contentID);
