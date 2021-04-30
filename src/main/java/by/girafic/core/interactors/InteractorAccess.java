@@ -90,10 +90,9 @@ public class InteractorAccess
         }
 
         @Override
-        public void getStartPage() throws ServletException, IOException
+        public void getStartPage() throws Exception
         {
-            int thisUserID = userDataBase.getUserID(ld.login);
-            view.showProfile(userDataBase.getAdmin(thisUserID),true);
+            view.showStartPage(userDataBase.getAdmin(userDataBase.getUserID(ld.login)));
         }
 
         @Override
@@ -249,10 +248,9 @@ public class InteractorAccess
         }
 
         @Override
-        public void getStartPage() throws ServletException, IOException
+        public void getStartPage() throws Exception
         {
-            int thisUserID = userDataBase.getUserID(ld.login);
-            view.showProfile(userDataBase.getTeacher(thisUserID),false);
+            view.showStartPage(userDataBase.getTeacher(userDataBase.getUserID(ld.login)));
         }
 
         @Override
@@ -371,10 +369,10 @@ public class InteractorAccess
         }
 
         @Override
-        public void getStartPage() throws ServletException, IOException
+        public void getStartPage() throws Exception
         {
-            int thisUserID = userDataBase.getUserID(ld.login);
-            view.showProfile(userDataBase.getStudent(thisUserID),false);
+            view.showStartPage(
+                    userDataBase.getStudent(userDataBase.getUserID(ld.login)));
         }
 
         @Override

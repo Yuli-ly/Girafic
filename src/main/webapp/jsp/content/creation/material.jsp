@@ -5,6 +5,7 @@
     <title>Создание материала</title>
 </head>
 <body>
+<jsp:include page="../../navigation.jsp"/>
 <form action="contentCreation" method="post">
     <jsp:include page="../base/material.jsp"/>
     <input type="submit" value="Создать">

@@ -6,6 +6,7 @@
     <title>Создание раздела</title>
 </head>
 <body>
+<jsp:include page="../../navigation.jsp"/>
 <form action="contentCreation" method="post">
     <jsp:include page="../base/section.jsp"/>
     <input type="submit" value="Создать">

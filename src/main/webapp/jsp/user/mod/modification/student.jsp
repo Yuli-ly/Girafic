@@ -4,6 +4,7 @@
     <title>Изменение студента</title>
 </head>
 <body>
+<jsp:include page="../../../navigation.jsp"/>
 <form action="userModification" method="post">
     <input type="hidden" name="Type" value="student">
     <jsp:include page="../base/student.jsp"/>

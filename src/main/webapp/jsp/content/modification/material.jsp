@@ -5,6 +5,7 @@
     <title>Изменение материала</title>
 </head>
 <body>
+<jsp:include page="../../navigation.jsp"/>
 <form method="post" action="contentModification">
     <jsp:include page="../base/material.jsp"/>
     <input type="submit" value="Изменить">

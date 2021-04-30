@@ -4,6 +4,7 @@
     <title>Создание студента</title>
 </head>
 <body>
+<jsp:include page="../../../navigation.jsp"/>
 <form action="registration" method="post">
     <jsp:include page="../base/student.jsp"/>
     <input type="submit" value="Создать">

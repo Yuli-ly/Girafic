@@ -23,4 +23,4 @@
 </ul>
 
 <h2>Курсы</h2>
-<jsp:include page="../../content/base/contentList.jsp"/>
+<jsp:include page="../../../content/base/contentList.jsp"/>

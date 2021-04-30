@@ -5,6 +5,7 @@
     <title>Материал</title>
 </head>
 <body>
+<jsp:include page="../../navigation.jsp"/>
 <h1>${Material.title}</h1>
 <p>${Material.description}</p>
 <p>${Material.filling}</p>

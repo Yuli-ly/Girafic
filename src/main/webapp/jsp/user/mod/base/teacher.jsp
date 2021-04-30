@@ -10,4 +10,4 @@
     </li>
 </ul>
 <h2>Доступный контент</h2>
-<jsp:include page="../../content/base/contentList.jsp"/>
+<jsp:include page="../../../content/base/contentList.jsp"/>

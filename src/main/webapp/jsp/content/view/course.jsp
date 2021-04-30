@@ -1,10 +1,5 @@
-<%@ page import="by.girafic.core.contentdata.view.CourseViewData" %>
-<%@ page import="by.girafic.core.contentdata.view.SectionViewData" %>
-<%@ page import="by.girafic.core.contentdata.ContentLinkData" %>
-<%@ page import="by.girafic.core.contentdata.view.ContentViewData" %>
-<%@ page import="by.girafic.core.userdata.UserLinkData" %>
-<%@ page import="by.girafic.controllers.util.JspRequestParser" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--@elvariable id="Course" type="by.girafic.core.contentdata.view.CourseViewData"--%>
 <%--@elvariable id="LoginData" type="by.girafic.core.commonds.LoginData"--%>
 <html>
@@ -12,30 +7,33 @@
     <title>Курс</title>
 </head>
 <body>
+<jsp:include page="../../navigation.jsp"/>
 <h1>${Course.title}</h1>
 <p>${Course.description}</p>
-<%
-    JspRequestParser parser = new JspRequestParser(request);
-    CourseViewData course = parser.takeCourse();
-    for (SectionViewData section : course.sections)
-    {
-        out.println("<h2>");
-        out.println(parser.createLinkToContent(new ContentLinkData(section)));
-        out.println("</h2>");
-        out.println(section.description);
-        out.println("<br>");
-        for(ContentViewData content : section.contents)
-        {
-            out.println(parser.createLinkToContent(new ContentLinkData(content)));
-            out.println("<br>");
-        }
-    }
-    out.println("<h2>Users</h2>");
-    for(UserLinkData user : course.users)
-    {
-        out.println(parser.createLinkToProfile(user));
-        out.println("<br>");
-    }
-%>
+<h2>Содержание</h2>
+<ul>
+    <c:forEach var="Element" items="${Course.sections}">
+        <li>
+            <h3>
+                </he> <a href="${LinkMaker.content(Element.id)}">${Element.title}</a>
+            </h3>
+            <p>${Element.description}</p>
+            <ul>
+                <c:forEach var="C" items="${Element.contents}">
+                    <a href="${LinkMaker.content(C.id)}">${C.title}</a>
+                    <p>${C.description}</p>
+                </c:forEach>
+            </ul>
+        </li>
+    </c:forEach>
+</ul>
+<h2>Пользователи</h2>
+<ul>
+    <c:forEach var="U" items="${Course.users}">
+        <li>
+            <a href="${LinkMaker.user(U.id)}">${U.name}</a>
+        </li>
+    </c:forEach>
+</ul>
 </body>
 </html>

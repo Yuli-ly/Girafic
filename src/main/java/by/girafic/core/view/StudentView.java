@@ -9,6 +9,7 @@ import by.girafic.core.userdata.view.TeacherViewData;
 
 public interface StudentView
 {
+    void showStartPage(StudentViewData student) throws Exception;
     void showProfile(StudentViewData student,boolean mutable) throws Exception;
     void showProfile(TeacherViewData teacher,boolean mutable) throws Exception;
     void showProfile(AdminViewData admin,boolean mutable) throws Exception;

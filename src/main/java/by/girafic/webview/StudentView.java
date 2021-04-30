@@ -20,25 +20,33 @@ public class StudentView implements by.girafic.core.view.StudentView
     {
         this.wrapper = requestWrapper;
     }
+
+    @Override
+    public void showStartPage(StudentViewData student) throws Exception
+    {
+        wrapper.setUser(student,false);
+        wrapper.forward("/jsp/user/view/home/student.jsp");
+    }
+
     @Override
     public void showProfile(StudentViewData student, boolean mutable) throws ServletException, IOException
     {
         wrapper.setUser(student,mutable);
-        wrapper.forward("/jsp/user/view/student.jsp");
+        wrapper.forward("/jsp/user/view/profile/student.jsp");
     }
 
     @Override
     public void showProfile(TeacherViewData teacher,boolean mutable) throws ServletException, IOException
     {
         wrapper.setUser(teacher,mutable);
-        wrapper.forward("/jsp/user/view/teacher.jsp");
+        wrapper.forward("/jsp/user/view/profile/teacher.jsp");
     }
 
     @Override
     public void showProfile(AdminViewData admin,boolean mutable) throws ServletException, IOException
     {
         wrapper.setUser(admin, mutable);
-        wrapper.forward("/jsp/user/view/admin.jsp");
+        wrapper.forward("/jsp/user/view/profile/admin.jsp");
     }
     @Override
     public void showContent(CourseViewData course,boolean mutable) throws ServletException, IOException

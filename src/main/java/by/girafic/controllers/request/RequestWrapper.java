@@ -42,7 +42,58 @@ public class RequestWrapper
         login = getter.getLoginData(request);
         setter.setLoginData(request,login);
         request.setAttribute("path",getPath());
+        request.setAttribute("LinkMaker", new LinkMaker());
     }
+
+    public class LinkMaker
+    {
+        private final String path;
+        private final String lp = "?login=" + login.login + "&password=" + login.password;
+        LinkMaker()
+        {
+            path = getPath();
+        }
+
+        public String home()
+        {
+            return path +"/login"+lp;
+        }
+        public String content(int id)
+        {
+            return path+"/content"+lp+"&id="+id;
+        }
+        public String adminCreation()
+        {
+            return path + "/registration"+lp+"&Type=admin";
+        }
+        public String courseCreation()
+        {
+            return path + "/contentCreation"+lp+"&Type=course";
+        }
+        public String materialCreation()
+        {
+            return path + "/contentCreation"+lp+"&Type=material";
+        }
+        public String sectionCreation()
+        {
+            return path + "/contentCreation"+lp+"&Type=section";
+        }
+        public String studentCreation()
+        {
+            return path + "/registration"+lp+"&Type=student";
+        }
+
+        public String teacherCreation()
+        {
+            return path + "/registration"+lp+"&Type=teacher";
+        }
+        public String user(int id)
+        {
+            return path + "/profile" + lp + "&id="+id;
+        }
+    }
+
+
 
     public LoginData takeLogin()
     {
