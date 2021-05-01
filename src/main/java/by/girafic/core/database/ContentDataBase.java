@@ -17,9 +17,9 @@ public interface ContentDataBase
     SectionViewData getSection(int contentID);
     MaterialViewData getMaterial(int contentID);
     boolean checkContentExistence(int contentID);
-    int createContent(CourseModifyData course);
-    int createContent(SectionModifyData section);
-    int createContent(MaterialModifyData material);
+    int createContent(CourseModifyData course,int userID);
+    int createContent(SectionModifyData section,int userID);
+    int createContent(MaterialModifyData material,int userID);
     int modifyContent(CourseModifyData course, int contentID);
     int modifyContent(SectionModifyData section, int contentID);
     int modifyContent(MaterialModifyData material, int contentID);

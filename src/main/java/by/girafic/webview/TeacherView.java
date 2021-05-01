@@ -31,8 +31,11 @@ public class TeacherView extends StudentView implements by.girafic.core.view.Tea
                                        ContentLinkData[] sections,
                                        UserLinkData[] users) throws ServletException, IOException
     {
+        wrapper.setContent(course);
         wrapper.setModification(true);
         wrapper.setContent(sections);
+        wrapper.setCurrentContent(Arrays.stream(course.sections).boxed().toList());
+        wrapper.setCurrentUsers(Arrays.stream(course.users).boxed().toList());
         wrapper.setUsers(users);
         wrapper.forward("/jsp/content/modification/course.jsp");
     }
@@ -73,10 +76,12 @@ public class TeacherView extends StudentView implements by.girafic.core.view.Tea
     }
 
     @Override
-    public void showCourseForCreation(ContentLinkData[] sections) throws ServletException, IOException
+    public void showCourseForCreation(ContentLinkData[] sections,
+                                      UserLinkData[] users) throws ServletException, IOException
     {
         wrapper.setModification(false);
         wrapper.setContent(sections);
+        wrapper.setUsers(users);
         wrapper.getRequest().setAttribute("type","course");
         wrapper.forward("/jsp/content/creation/course.jsp");
     }

@@ -14,7 +14,6 @@ public interface AdminInteractor extends TeacherInteractor
     void modifyUser(AdminModifyData teacher, int userID) throws Exception;
     void removeUser(int userID) throws Exception;
     void showUserForModification(int userID) throws Exception;
-
     void showStudentForCreation() throws Exception;
     void showTeacherForCreation() throws Exception;
     void showAdminForCreation() throws Exception;

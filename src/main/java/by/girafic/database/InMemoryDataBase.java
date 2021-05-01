@@ -13,16 +13,14 @@ import by.girafic.core.contentdata.view.SectionViewData;
 import by.girafic.core.database.ContentDataBase;
 import by.girafic.core.database.UserDataBase;
 import by.girafic.core.userdata.*;
-import by.girafic.core.userdata.modification.AdminModifyData;
-import by.girafic.core.userdata.modification.StudentModifyData;
-import by.girafic.core.userdata.modification.TeacherModifyData;
-import by.girafic.core.userdata.modification.UserModifyData;
+import by.girafic.core.userdata.modification.*;
 import by.girafic.core.userdata.view.AdminViewData;
 import by.girafic.core.userdata.view.StudentViewData;
 import by.girafic.core.userdata.view.TeacherViewData;
 import by.girafic.core.userdata.view.UserViewData;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class InMemoryDataBase implements ContentDataBase, UserDataBase
@@ -134,25 +132,69 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
         return null;
     }
 
-    @Override
-    public int createContent(CourseModifyData course)
+    private int basicAdd(ContentModifyData data,int userID)
     {
-        content.put(contentAddIndex,course);
+        TeacherModifyData teacher = (TeacherModifyData) users.get(userID);
+        content.put(contentAddIndex,data);
+        teacher.availableContent = Arrays.copyOf(teacher.availableContent,
+                teacher.availableContent.length+1);
+        teacher.availableContent[teacher.availableContent.length-1] = contentAddIndex;
+        users.replace(userID,teacher);
         return contentAddIndex++;
+    }
+    private int sectionAdd(SectionModifyData data,int userID)
+    {
+        TeacherModifyData teacher = (TeacherModifyData) users.get(userID);
+        Set<Integer> current = Arrays.stream(teacher.availableContent).boxed().collect(Collectors.toSet());
+        Set<Integer> sect = Arrays.stream(data.contents).boxed().collect(Collectors.toSet());
+        current.addAll(sect);
+        teacher.availableContent = current.stream().mapToInt(Integer::intValue).toArray();
+        users.replace(userID,teacher);
+        return basicAdd(data,userID);
+    }
+    private void processCourse(CourseModifyData course,int userID,int index)
+    {
+        Arrays.stream(course.users)
+                .forEach(i -> {
+                    ExtendedUserModifyData user = (ExtendedUserModifyData) users.get(i);
+                    Set<Integer> courses = Arrays.stream(user.courses).boxed().collect(Collectors.toSet());
+                    courses.add(index);
+                    user.courses = courses.stream().mapToInt(Integer::intValue).toArray();
+                    users.replace(i,user); });
+        Arrays.stream(course.users)
+                .filter(i->users.get(i).userType==UserType.Teacher)
+                .forEach(i->{
+                    TeacherModifyData teacher = (TeacherModifyData) users.get(i);
+                    Set<Integer> current = Arrays.stream(teacher.availableContent)
+                            .boxed()
+                            .collect(Collectors.toSet());
+                    Arrays.stream(course.sections)
+                            .forEach(j->{
+                                SectionModifyData sect = (SectionModifyData) content.get(j);
+                                current.add(j);
+                                current.addAll(Arrays.stream(sect.contents).boxed().toList());
+                            });
+                    teacher.availableContent=current.stream().mapToInt(Integer::intValue).toArray();
+                    users.replace(i,teacher);
+                });
+    }
+    @Override
+    public int createContent(CourseModifyData course,int userID)
+    {
+        processCourse(course,userID,contentAddIndex);
+        return basicAdd(course,userID);
     }
 
     @Override
-    public int createContent(SectionModifyData section)
+    public int createContent(SectionModifyData section, int userID)
     {
-        content.put(contentAddIndex,section);
-        return contentAddIndex++;
+        return sectionAdd(section,userID);
     }
 
     @Override
-    public int createContent(MaterialModifyData material)
+    public int createContent(MaterialModifyData material, int userID)
     {
-        content.put(contentAddIndex,material);
-        return contentAddIndex++;
+        return basicAdd(material,userID);
     }
 
     @Override
@@ -160,6 +202,7 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     {
         if(content.containsKey(contentID))
         {
+            processCourse(course,contentID,contentID);
             content.replace(contentID,course);
             return contentID;
         }
@@ -410,7 +453,11 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     @Override
     public ContentLinkData[] getAvailableSections(int userID)
     {
-        return null;
+        return Arrays.stream(
+                ((TeacherModifyData) users.get(userID)).availableContent)
+                .filter(i->content.get(i).contentType==ContentType.Section)
+                .mapToObj(i->new ContentLinkData(content.get(i).title,i))
+                .toArray(ContentLinkData[]::new);
     }
 
     @Override

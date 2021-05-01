@@ -24,7 +24,7 @@
     <c:forEach var="Element" items="${Users}">
         <li><label>${Element.name}
             <input type="checkbox"
-                   name="Content"
+                   name="Users"
                    value="${Element.id}"
             <c:if test="${CurrentUsers.contains(Element.id)}">
                    checked

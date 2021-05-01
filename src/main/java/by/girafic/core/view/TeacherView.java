@@ -16,5 +16,5 @@ public interface TeacherView extends StudentView
     void showContentAfterModify(MaterialViewModifyData material) throws Exception;
     void showMaterialForCreation() throws Exception;
     void showSectionForCreation(ContentLinkData[] content) throws Exception;
-    void showCourseForCreation(ContentLinkData[] sections) throws Exception;
+    void showCourseForCreation(ContentLinkData[] sections, UserLinkData[] users) throws Exception;
 }
