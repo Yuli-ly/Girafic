@@ -29,9 +29,30 @@ public class ContentModificationServlet extends HttpServlet
 {
     private final InteractorAccess interactorAccess = GlobalValuesAccess.getValues().interactorAccess;
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-
+        ContentRequestWrapper wrapper = new ContentRequestWrapper(request,response,
+                DefaultLoginSetter.instance,DefaultLoginGetter.instance);
+        LoginData ld = wrapper.takeLogin();
+        if(interactorAccess.checkUserExistence(ld))
+        {
+            TeacherInteractor interactor = switch (interactorAccess.getUserType(ld.login))
+                    {
+                        case Teacher -> interactorAccess.teacherLogin(ld,new TeacherView(wrapper));
+                        default -> throw new IllegalArgumentException("No permission access");
+                    };
+            try
+            {
+                interactor.showContentForModification(wrapper.takeID());
+            }
+            catch (Exception e)
+            {
+                new DefaultView(wrapper).showError("Unknown type of requested content or user ");
+                e.printStackTrace();
+            }
+        }
+        else
+            new DefaultView(wrapper).showError("Invalid username or password");
     }
 
     @Override

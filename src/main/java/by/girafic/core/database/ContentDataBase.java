@@ -26,4 +26,7 @@ public interface ContentDataBase
     ContentLinkData[] getCourses();
     ContentLinkData[] getAllContent();
     void removeContent(int contentID);
+    MaterialModifyData getMaterialForMod(int contentID);
+    SectionModifyData getSectionForMod(int contentID);
+    CourseModifyData getCourseForMod(int contentID);
 }

@@ -14,6 +14,7 @@
   <c:forEach var="Element" items="${Teacher.availableContent}">
     <li>
       <a href="${LinkMaker.content(Element.id)}">${Element.name}</a>
+      <a href="${LinkMaker.contentMod(Element.id)}">Редактировать</a>
     </li>
   </c:forEach>
 </ul>

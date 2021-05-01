@@ -23,4 +23,5 @@ public interface TeacherInteractor extends StudentInteractor
     void showMaterialForCreation() throws Exception;
     void showSectionForCreation() throws Exception;
     void showCourseForCreation() throws Exception;
+    void showContentForModification(int id) throws Exception;
 }

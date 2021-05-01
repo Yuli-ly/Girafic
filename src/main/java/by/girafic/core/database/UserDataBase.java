@@ -35,4 +35,5 @@ public interface UserDataBase
     ContentLinkData[] getAvailableSectionContent(int userID);
     ContentLinkData[] getAvailableSections(int userID);
     UserLinkData[] getAvailableUsers(int userID);
+    UserLinkData[] getAllUsers();
 }

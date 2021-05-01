@@ -82,7 +82,6 @@ public class RequestWrapper
         {
             return path + "/registration"+lp+"&Type=student";
         }
-
         public String teacherCreation()
         {
             return path + "/registration"+lp+"&Type=teacher";
@@ -90,6 +89,14 @@ public class RequestWrapper
         public String user(int id)
         {
             return path + "/profile" + lp + "&id="+id;
+        }
+        public String userMod(int id)
+        {
+            return path+"/userModification?ALogin="+login.login+"&APassword="+login.password+"&id="+id;
+        }
+        public String contentMod(int id)
+        {
+            return path+"/contentModification"+lp+"&id="+id;
         }
     }
 

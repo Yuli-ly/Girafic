@@ -2,6 +2,7 @@ package by.girafic.webview;
 
 import by.girafic.controllers.request.RequestWrapper;
 import by.girafic.core.contentdata.ContentLinkData;
+import by.girafic.core.userdata.UserLinkData;
 import by.girafic.core.userdata.view.AdminViewData;
 import by.girafic.core.userdata.viewmodification.AdminViewModifyData;
 import by.girafic.core.userdata.viewmodification.StudentViewModifyData;
@@ -21,9 +22,10 @@ public class AdminView extends TeacherView implements by.girafic.core.view.Admin
     }
 
     @Override
-    public void showStartPage(AdminViewData admin) throws Exception
+    public void showStartPage(AdminViewData admin, UserLinkData[] users) throws Exception
     {
         wrapper.setUser(admin,true);
+        wrapper.setUsers(users);
         wrapper.forward("/jsp/user/view/home/admin.jsp");
     }
 

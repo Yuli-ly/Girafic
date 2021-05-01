@@ -92,7 +92,9 @@ public class InteractorAccess
         @Override
         public void getStartPage() throws Exception
         {
-            view.showStartPage(userDataBase.getAdmin(userDataBase.getUserID(ld.login)));
+            view.showStartPage(
+                    userDataBase.getAdmin(userDataBase.getUserID(ld.login)),
+                    userDataBase.getAllUsers());
         }
 
         @Override
@@ -336,6 +338,29 @@ public class InteractorAccess
             view.showCourseForCreation(
                     userDataBase.getAvailableSections(userID),
                     userDataBase.getAvailableUsers(userID));
+        }
+
+        @Override
+        final public void showContentForModification(int id) throws Exception
+        {
+            switch (contentDataBase.getContentType(id))
+            {
+
+                case Course -> {
+                    int userID = userDataBase.getUserID(ld.login);
+                    view.showContentAfterModify(
+                            new CourseViewModifyData(id,contentDataBase.getCourseForMod(id)),
+                            userDataBase.getAvailableSections(userID),
+                            userDataBase.getAvailableUsers(userID));
+                }
+                case Section -> view.showContentAfterModify(
+                        new SectionViewModifyData(contentDataBase.getSectionForMod(id),id),
+                        userDataBase.getAvailableSectionContent(
+                                userDataBase.getUserID(ld.login)));
+
+                case Material -> view.showContentAfterModify(
+                        new MaterialViewModifyData(id,contentDataBase.getMaterialForMod(id)));
+            }
         }
     }
 

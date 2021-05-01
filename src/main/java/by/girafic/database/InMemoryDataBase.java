@@ -258,6 +258,24 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     }
 
     @Override
+    public MaterialModifyData getMaterialForMod(int contentID)
+    {
+        return (MaterialModifyData) content.get(contentID);
+    }
+
+    @Override
+    public SectionModifyData getSectionForMod(int contentID)
+    {
+        return (SectionModifyData) content.get(contentID);
+    }
+
+    @Override
+    public CourseModifyData getCourseForMod(int contentID)
+    {
+        return (CourseModifyData) content.get(contentID);
+    }
+
+    @Override
     public boolean checkUserExistence(LoginData ld)
     {
         for(Map.Entry<Integer,UserModifyData> user : users.entrySet())
@@ -468,6 +486,15 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
                         {case Teacher,Student->true;
                             default -> false;})
                 .map(u->new UserLinkData(u.getKey(),u.getValue().fullName))
+                .toArray(UserLinkData[]::new);
+    }
+
+    @Override
+    public UserLinkData[] getAllUsers()
+    {
+        return users.entrySet()
+                .stream()
+                .map(e->{return new UserLinkData(e.getKey(),e.getValue().fullName);})
                 .toArray(UserLinkData[]::new);
     }
 }

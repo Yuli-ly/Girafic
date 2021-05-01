@@ -1,6 +1,7 @@
 package by.girafic.core.view;
 
 import by.girafic.core.contentdata.ContentLinkData;
+import by.girafic.core.userdata.UserLinkData;
 import by.girafic.core.userdata.view.AdminViewData;
 import by.girafic.core.userdata.viewmodification.AdminViewModifyData;
 import by.girafic.core.userdata.viewmodification.StudentViewModifyData;
@@ -8,7 +9,7 @@ import by.girafic.core.userdata.viewmodification.TeacherViewModifyData;
 
 public interface AdminView extends TeacherView
 {
-    void showStartPage(AdminViewData admin) throws Exception;
+    void showStartPage(AdminViewData admin,UserLinkData[] users) throws Exception;
     void showStudentForCreation(ContentLinkData[] courses) throws Exception;
     void showTeacherForCreation(ContentLinkData[] availableContent) throws Exception;
     void showAdminForCreation() throws Exception;
