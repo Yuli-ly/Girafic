@@ -10,5 +10,6 @@
     <jsp:include page="../base/student.jsp"/>
     <input type="submit" value="Изменить">
 </form>
+<jsp:include page="remove.jsp"/>
 </body>
 </html>

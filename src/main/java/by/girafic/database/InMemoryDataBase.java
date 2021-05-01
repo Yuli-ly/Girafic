@@ -152,7 +152,7 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
         users.replace(userID,teacher);
         return basicAdd(data,userID);
     }
-    private void processCourse(CourseModifyData course,int userID,int index)
+    private void processCourse(CourseModifyData course,int index)
     {
         Arrays.stream(course.users)
                 .forEach(i -> {
@@ -181,7 +181,7 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     @Override
     public int createContent(CourseModifyData course,int userID)
     {
-        processCourse(course,userID,contentAddIndex);
+        processCourse(course,contentAddIndex);
         return basicAdd(course,userID);
     }
 
@@ -202,7 +202,7 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     {
         if(content.containsKey(contentID))
         {
-            processCourse(course,contentID,contentID);
+            processCourse(course,contentID);
             content.replace(contentID,course);
             return contentID;
         }
@@ -251,10 +251,67 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
                 .toArray(ContentLinkData[]::new);
     }
 
+    private void removeFromAv(int contentID)
+    {
+        users.keySet().stream()
+                .filter(i->users.get(i).userType==UserType.Teacher)
+                .forEach(i->
+                        {
+                            TeacherModifyData t = (TeacherModifyData) users.get(i);
+                            t.availableContent =
+                                    Arrays.stream(t.availableContent)
+                                            .filter(j->j!=contentID).toArray();
+                            users.replace(i,t);
+                        }
+                );
+        users.keySet().stream()
+                .filter(i->{UserType type = users.get(i).userType;
+                    return type==UserType.Teacher||type==UserType.Student;})
+                .forEach(i->
+                        {
+                            ExtendedUserModifyData e = (ExtendedUserModifyData) users.get(i);
+                            e.courses =
+                                    Arrays.stream(e.courses)
+                                            .filter(j->j!=contentID).toArray();
+                            users.replace(i,e);
+                        }
+                );
+    }
+
     @Override
     public void removeContent(int contentID)
     {
-        content.remove(contentID);
+        ContentModifyData cmd = content.get(contentID);
+        switch (cmd.contentType)
+        {
+
+            case Course ->
+                removeFromAv(contentID);
+            case Section -> {
+                removeFromAv(contentID);
+                content.keySet().stream()
+                        .filter(i->content.get(i).contentType==ContentType.Course)
+                        .forEach(i->{
+                            CourseModifyData course = (CourseModifyData) content.get(i);
+                            course.sections = Arrays.stream(course.sections)
+                                    .filter(j->j!=contentID).toArray();
+                            content.replace(i,course);
+                        });
+            }
+            case Material -> {
+                removeFromAv(contentID);
+                content.keySet()
+                        .stream()
+                        .filter(i->content.get(i).contentType==ContentType.Section)
+                        .forEach(i->{
+                            SectionModifyData sec = (SectionModifyData) content.get(i);
+                            sec.contents = Arrays.stream(sec.contents)
+                                    .filter(j->j!=contentID).toArray();
+                            content.replace(i,sec);
+                        });
+                content.remove(contentID);
+            }
+        }
     }
 
     @Override
@@ -392,10 +449,23 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
         return null;
     }
 
+    private void addToCourses(ExtendedUserModifyData user,int userID)
+    {
+        Arrays.stream(user.courses).forEach(i->
+                {
+                    CourseModifyData course = (CourseModifyData) content.get(i);
+                    Set<Integer> users = Arrays.stream(course.users).boxed().collect(Collectors.toSet());
+                    users.add(userID);
+                    course.users = users.stream().mapToInt(Integer::intValue).toArray();
+                    content.replace(i,course);
+                }
+        );
+    }
     @Override
     public int createUser(StudentModifyData student)
     {
         users.put(userAddIndex,student);
+        addToCourses(student,userAddIndex);
         return userAddIndex++;
     }
 
@@ -403,6 +473,7 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     public int createUser(TeacherModifyData teacher)
     {
         users.put(userAddIndex,teacher);
+        addToCourses(teacher,userAddIndex);
         return userAddIndex++;
     }
 
@@ -413,11 +484,34 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
         return userAddIndex++;
     }
 
+    private void extendedUserMod(ExtendedUserModifyData user,int userID)
+    {
+        List<Integer> current = Arrays.stream(user.courses).boxed().toList();
+        content.keySet().stream()
+                .filter(i->content.get(i).contentType==ContentType.Course)
+                .filter(i->
+                        Arrays.stream(((CourseModifyData) content.get(i)).users)
+                                .boxed().toList().contains(userID))
+                .forEach(i->
+                {
+                    if(!current.contains(i))
+                    {
+                        CourseModifyData course = (CourseModifyData) content.get(i);
+                        Set<Integer> set = Arrays.stream(course.users).boxed().collect(Collectors.toSet());
+                        set.remove(userID);
+                        course.users = set.stream().mapToInt(Integer::intValue).toArray();
+                        content.replace(i,course);
+                    }
+                });
+        addToCourses(user,userID);
+    }
+
     @Override
     public int modifyUser(StudentModifyData student, int userID)
     {
         if(users.containsKey(userID))
         {
+            extendedUserMod(student,userID);
             users.replace(userID,student);
             return userID;
         }
@@ -429,6 +523,7 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     {
         if(users.containsKey(userID))
         {
+            extendedUserMod(teacher,userID);
             users.replace(userID,teacher);
             return userID;
         }
@@ -449,6 +544,19 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     @Override
     public void removeUser(int userID)
     {
+        UserModifyData user = users.get(userID);
+        switch (user.userType)
+        {
+            case Student,Teacher -> content.values()
+                    .stream()
+                    .filter(c->c.contentType==ContentType.Course)
+                    .forEach(c->{
+                        CourseModifyData course = (CourseModifyData) c;
+                        course.users = Arrays.stream(course.users)
+                                .filter(i->i!=userID).toArray();
+                    });
+            default -> {}
+        }
         users.remove(userID);
     }
 
@@ -494,7 +602,7 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     {
         return users.entrySet()
                 .stream()
-                .map(e->{return new UserLinkData(e.getKey(),e.getValue().fullName);})
+                .map(e-> new UserLinkData(e.getKey(),e.getValue().fullName))
                 .toArray(UserLinkData[]::new);
     }
 }

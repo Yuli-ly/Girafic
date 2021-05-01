@@ -9,5 +9,6 @@
     <jsp:include page="../base/teacher.jsp"/>
     <input type="submit" value="Подтвердить">
 </form>
+<jsp:include page="remove.jsp"/>
 </body>
 </html>

@@ -114,7 +114,11 @@ public class RequestWrapper
     {
         return request;
     }
-
+    public boolean deleteAction()
+    {
+        return Optional.ofNullable(request.getParameter("action"))
+                .orElse("").equals("del");
+    }
     private void setBasicUser(UserViewData user, boolean mutable)
     {
         request.setAttribute("User",user);

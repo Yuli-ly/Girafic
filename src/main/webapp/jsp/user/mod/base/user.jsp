@@ -1,11 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--@elvariable id="login" type="java.lang.String"--%>
-<%--@elvariable id="password" type="java.lang.String"--%>
 <%--@elvariable id="User" type="by.girafic.core.userdata.viewmodification.UserViewModifyData"--%>
-<input type="hidden" name="ALogin" value="${login}">
-<input type="hidden" name="APassword" value="${password}">
-<input type="hidden" name="id" value="${User.id}">
+<jsp:include page="input.jsp"/>
 <ul>
     <c:set var="id" scope="request" value="login"/>
     <c:set var="name" scope="request" value="login"/>

@@ -185,9 +185,10 @@ public class InteractorAccess
         }
 
         @Override
-        public void removeUser(int userID)
+        public void removeUser(int userID) throws Exception
         {
             userDataBase.removeUser(userID);
+            getStartPage();
         }
 
         @Override
@@ -313,7 +314,8 @@ public class InteractorAccess
         @Override
         final public void removeContent(int contentID) throws Exception
         {
-
+            contentDataBase.removeContent(contentID);
+            getStartPage();
         }
 
 

@@ -18,6 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @WebServlet("/contentModification")
 @MultipartConfig(
@@ -62,33 +63,47 @@ public class ContentModificationServlet extends HttpServlet
                 DefaultLoginSetter.instance,DefaultLoginGetter.instance);
         LoginData ld = wrapper.takeLogin();
         int id = wrapper.takeID();
-        if(interactorAccess.checkUserExistence(ld) && interactorAccess.checkContentExistence(id))
+        if(wrapper.deleteAction())
         {
-            try
+            if (interactorAccess.checkUserExistence(ld) && interactorAccess.checkContentExistence(id))
             {
-                TeacherInteractor interactor =
-                        switch (interactorAccess.getUserType(ld.login))
-                                {
-                                    case Teacher -> interactorAccess.teacherLogin(ld, new TeacherView(wrapper));
-                                    case Admin -> interactorAccess.adminLogin(ld, new AdminView(wrapper));
-                                    default -> throw new IllegalArgumentException();
-                                };
-                switch (wrapper.takeContentType())
+                try
                 {
-                    case Course -> interactor.modifyContent(wrapper.takeCourse(),id);
-                    case Section -> interactor.modifyContent(wrapper.takeSection(),id);
-                    case Material -> interactor.modifyContent(wrapper.takeMaterial(),id);
+                    interactorAccess.teacherLogin(ld,new TeacherView(wrapper)).removeContent(id);
+                } catch (Exception e)
+                {
+                    e.printStackTrace();
                 }
-            }
-            catch (Exception e)
-            {
-                new DefaultView(wrapper)
-                        .showError("You do not have permission to modify content and " + e.getMessage());
             }
         }
         else
         {
-            new DefaultView(wrapper).showError("Invalid username or password, or the requested content does not exist");
+            if (interactorAccess.checkUserExistence(ld) && interactorAccess.checkContentExistence(id))
+            {
+                try
+                {
+                    TeacherInteractor interactor =
+                            switch (interactorAccess.getUserType(ld.login))
+                                    {
+                                        case Teacher -> interactorAccess.teacherLogin(ld, new TeacherView(wrapper));
+                                        case Admin -> interactorAccess.adminLogin(ld, new AdminView(wrapper));
+                                        default -> throw new IllegalArgumentException();
+                                    };
+                    switch (wrapper.takeContentType())
+                    {
+                        case Course -> interactor.modifyContent(wrapper.takeCourse(), id);
+                        case Section -> interactor.modifyContent(wrapper.takeSection(), id);
+                        case Material -> interactor.modifyContent(wrapper.takeMaterial(), id);
+                    }
+                } catch (Exception e)
+                {
+                    new DefaultView(wrapper)
+                            .showError("You do not have permission to modify content and " + e.getMessage());
+                }
+            } else
+            {
+                new DefaultView(wrapper).showError("Invalid username or password, or the requested content does not exist");
+            }
         }
     }
 

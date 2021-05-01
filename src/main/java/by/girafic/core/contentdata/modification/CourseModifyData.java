@@ -4,8 +4,8 @@ import by.girafic.core.contentdata.ContentType;
 
 public class CourseModifyData extends ContentModifyData
 {
-    public final int[] sections;
-    public final int[] users;
+    public int[] sections;
+    public int[] users;
 
     public CourseModifyData(String title, String description, int[] sections, int[] users)
     {

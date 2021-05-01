@@ -4,7 +4,7 @@ import by.girafic.core.contentdata.ContentType;
 
 public class SectionModifyData extends ContentModifyData
 {
-    public final int[] contents;
+    public int[] contents;
 
     public SectionModifyData(String title,
                              String description,

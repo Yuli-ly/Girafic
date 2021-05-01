@@ -57,21 +57,26 @@ public class UserModificationServlet extends HttpServlet
         wrapper.setID(id);
         try
         {
-        if(interactorAccess.checkUserExistence(ld))
-        {
-            AdminInteractor interactor = interactorAccess.adminLogin(ld, new AdminView(wrapper));
-
-                switch (wrapper.takeUserType())
+            if (wrapper.deleteAction())
+            {
+                interactorAccess.adminLogin(ld,new AdminView(wrapper)).removeUser(id);
+            } else
+            {
+                if (interactorAccess.checkUserExistence(ld))
                 {
-                    case Student -> interactor.modifyUser(wrapper.takeStudentData(), id);
-                    case Teacher -> interactor.modifyUser(wrapper.takeTeacherData(), id);
-                    case Admin -> interactor.modifyUser(wrapper.takeAdminData(), id);
-                }
+                    AdminInteractor interactor = interactorAccess.adminLogin(ld, new AdminView(wrapper));
 
-        }
-        else
-            new DefaultView(wrapper).showError("Invalid username or password");
-        } catch (Exception e)
+                    switch (wrapper.takeUserType())
+                    {
+                        case Student -> interactor.modifyUser(wrapper.takeStudentData(), id);
+                        case Teacher -> interactor.modifyUser(wrapper.takeTeacherData(), id);
+                        case Admin -> interactor.modifyUser(wrapper.takeAdminData(), id);
+                    }
+
+                } else
+                    new DefaultView(wrapper).showError("Invalid username or password");
+            }
+        }catch (Exception e)
         {
             e.printStackTrace();
         }
