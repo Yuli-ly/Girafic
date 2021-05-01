@@ -125,17 +125,27 @@ public class RequestWrapper
     {
         request.setAttribute("Admin",o);
     }
+    private void setBasicContent(Object o)
+    {
+        request.setAttribute("BasicContent",o);
+    }
     private void setMaterial(Object o)
     {
+        setBasicContent(o);
         request.setAttribute("Material",o);
+        request.setAttribute("type","material");
     }
     private void setSection(Object o)
     {
+        setBasicContent(o);
         request.setAttribute("Section",o);
+        request.setAttribute("type","section");
     }
     private void setCourse(Object o)
     {
+        setBasicContent(o);
         request.setAttribute("Course",o);
+        request.setAttribute("type","course");
     }
 
     private void setBasicUser(UserViewModifyData user)
@@ -242,5 +252,9 @@ public class RequestWrapper
     public void setCurrentUsers(List<Integer> list)
     {
         request.setAttribute("CurrentUsers",list);
+    }
+    public void setModification(boolean creation)
+    {
+        request.setAttribute("Modification",creation);
     }
 }

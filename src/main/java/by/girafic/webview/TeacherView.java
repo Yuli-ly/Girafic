@@ -31,6 +31,7 @@ public class TeacherView extends StudentView implements by.girafic.core.view.Tea
                                        ContentLinkData[] sections,
                                        UserLinkData[] users) throws ServletException, IOException
     {
+        wrapper.setModification(true);
         wrapper.setContent(sections);
         wrapper.setUsers(users);
         wrapper.forward("/jsp/content/modification/course.jsp");
@@ -39,6 +40,7 @@ public class TeacherView extends StudentView implements by.girafic.core.view.Tea
     @Override
     public void showContentAfterModify(SectionViewModifyData section, ContentLinkData[] content) throws ServletException, IOException
     {
+        wrapper.setModification(true);
         wrapper.setContent(section);
         wrapper.setCurrentContent(Arrays.stream(section.contents).boxed().toList());
         wrapper.setContent(content);
@@ -48,6 +50,7 @@ public class TeacherView extends StudentView implements by.girafic.core.view.Tea
     @Override
     public void showContentAfterModify(MaterialViewModifyData material) throws ServletException, IOException
     {
+        wrapper.setModification(true);
         wrapper.setContent(material);
         wrapper.forward("/jsp/content/modification/material.jsp");
     }
@@ -55,20 +58,26 @@ public class TeacherView extends StudentView implements by.girafic.core.view.Tea
     @Override
     public void showMaterialForCreation() throws ServletException, IOException
     {
+        wrapper.setModification(false);
+        wrapper.getRequest().setAttribute("type","material");
         wrapper.forward("/jsp/content/creation/material.jsp");
     }
 
     @Override
     public void showSectionForCreation(ContentLinkData[] content) throws ServletException, IOException
     {
+        wrapper.setModification(false);
         wrapper.setContent(content);
+        wrapper.getRequest().setAttribute("type","section");
         wrapper.forward("/jsp/content/creation/section.jsp");
     }
 
     @Override
     public void showCourseForCreation(ContentLinkData[] sections) throws ServletException, IOException
     {
+        wrapper.setModification(false);
         wrapper.setContent(sections);
+        wrapper.getRequest().setAttribute("type","course");
         wrapper.forward("/jsp/content/creation/course.jsp");
     }
 }

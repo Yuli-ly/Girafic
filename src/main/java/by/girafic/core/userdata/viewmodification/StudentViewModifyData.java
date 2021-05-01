@@ -4,7 +4,6 @@ import by.girafic.core.commonds.ModifyConfirmation;
 import static by.girafic.core.commonds.ModifyConfirmation.successful;
 
 import by.girafic.core.contentdata.ContentLinkData;
-import by.girafic.core.userdata.FullName;
 import by.girafic.core.userdata.modification.StudentModifyData;
 
 
@@ -15,7 +14,7 @@ public class StudentViewModifyData extends ExtendedUserViewModifyData
     public final ModifyConfirmation<String> group;
 
     public StudentViewModifyData(int id,
-                                 ModifyConfirmation<FullName> fullName,
+                                 FullName fullName,
                                  ModifyConfirmation<String> login,
                                  ModifyConfirmation<String> password,
                                  ModifyConfirmation<String> mail,

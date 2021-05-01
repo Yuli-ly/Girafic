@@ -2,12 +2,11 @@ package by.girafic.core.userdata.viewmodification;
 
 import by.girafic.core.commonds.ModifyConfirmation;
 import by.girafic.core.userdata.modification.AdminModifyData;
-import by.girafic.core.userdata.FullName;
 
 public class AdminViewModifyData extends UserViewModifyData
 {
     public AdminViewModifyData(int id,
-                               ModifyConfirmation<FullName> fullName,
+                               FullName fullName,
                                ModifyConfirmation<String> login,
                                ModifyConfirmation<String> password,
                                ModifyConfirmation<String> mail,
@@ -21,15 +20,4 @@ public class AdminViewModifyData extends UserViewModifyData
         super(id,data);
     }
 
-    @Override
-    public String toString()
-    {
-        return "AdminViewModifyData{" +
-                "fullName=" + fullName +
-                ", login=" + login +
-                ", password=" + password +
-                ", mail=" + mail +
-                ", faculty=" + faculty +
-                '}';
-    }
 }

@@ -1,39 +1,51 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--@elvariable id="login" type="java.lang.String"--%>
 <%--@elvariable id="password" type="java.lang.String"--%>
 <%--@elvariable id="User" type="by.girafic.core.userdata.viewmodification.UserViewModifyData"--%>
-
 <input type="hidden" name="ALogin" value="${login}">
 <input type="hidden" name="APassword" value="${password}">
 <input type="hidden" name="id" value="${User.id}">
 <ul>
-    <li>
-        <label for="login">Логин:</label>
-        <input type="text" id="login" name="login" value="${User.login.value}">
-    </li>
+    <c:set var="id" scope="request" value="login"/>
+    <c:set var="name" scope="request" value="login"/>
+    <c:set var="title" scope="request" value="Логин"/>
+    <c:set var="modc" scope="request" value="${User.login}"/>
+    <jsp:include page="field.jsp"/>
 
-    <li>
-        <label for="password">Пароль:</label>
-        <input type="text" id="password" name="password" value="${User.password.value}">
-    </li>
-    <li>
-        <label for="name">Имя:</label>
-        <input type="text" id="name" name="Name" value="${User.fullName.value.name}">
-    </li>
-    <li>
-        <label for="surname">Фамилия:</label>
-        <input type="text" id="surname" name="Surname" value="${User.fullName.value.surname}">
-    </li>
-    <li>
-        <label for="patronymic">Отчество:</label>
-        <input type="text" id="patronymic" name="Patronymic" value="${User.fullName.value.patronymic}">
-    </li>
-    <li>
-        <label for="mail">Почта:</label>
-        <input type="email" id="mail" name="Mail" value="${User.mail.value}">
-    </li>
-    <li>
-        <label for="faculty">Факультет:</label>
-        <input type="text" id="faculty" name="Faculty" value="${User.faculty.value}">
-    </li>
+    <c:set var="id" scope="request" value="password"/>
+    <c:set var="name" scope="request" value="password"/>
+    <c:set var="title" scope="request" value="Пароль"/>
+    <c:set var="modc" scope="request" value="${User.password}"/>
+    <jsp:include page="field.jsp"/>
+
+    <c:set var="id" scope="request" value="name"/>
+    <c:set var="name" scope="request" value="Name"/>
+    <c:set var="title" scope="request" value="Имя"/>
+    <c:set var="modc" scope="request" value="${User.fullName.name}"/>
+    <jsp:include page="field.jsp"/>
+
+    <c:set var="id" scope="request" value="surname"/>
+    <c:set var="name" scope="request" value="Surname"/>
+    <c:set var="title" scope="request" value="Фамилия"/>
+    <c:set var="modc" scope="request" value="${User.fullName.surname}"/>
+    <jsp:include page="field.jsp"/>
+
+    <c:set var="id" scope="request" value="patronymic"/>
+    <c:set var="name" scope="request" value="Patronymic"/>
+    <c:set var="title" scope="request" value="Отчество"/>
+    <c:set var="modc" scope="request" value="${User.fullName.patronymic}"/>
+    <jsp:include page="field.jsp"/>
+
+    <c:set var="id" scope="request" value="mail"/>
+    <c:set var="name" scope="request" value="Mail"/>
+    <c:set var="title" scope="request" value="Почта"/>
+    <c:set var="modc" scope="request" value="${User.mail}"/>
+    <jsp:include page="field.jsp"/>
+
+    <c:set var="id" scope="request" value="faculty"/>
+    <c:set var="name" scope="request" value="Faculty"/>
+    <c:set var="title" scope="request" value="Факультет"/>
+    <c:set var="modc" scope="request" value="${User.faculty}"/>
+    <jsp:include page="field.jsp"/>
 </ul>

@@ -5,6 +5,7 @@
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/error.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index.html" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/jsp/content/base/content.jsp" value="file://$PROJECT_DIR$/src/main/webapp/jsp/content/base" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/jsp/content/base/contentList.jsp" value="file://$PROJECT_DIR$/src/main/webapp/jsp/content/base" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/jsp/content/creation/material.jsp" value="file://$PROJECT_DIR$/src/main/webapp/jsp/content/creation" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/jsp/content/creation/section.jsp" value="file://$PROJECT_DIR$/src/main/webapp/jsp/content/creation" />

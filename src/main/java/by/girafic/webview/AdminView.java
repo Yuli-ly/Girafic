@@ -30,6 +30,7 @@ public class AdminView extends TeacherView implements by.girafic.core.view.Admin
     @Override
     public void showStudentForCreation(ContentLinkData[] courses) throws ServletException, IOException
     {
+        wrapper.setModification(false);
         wrapper.setCurrentContent(new ArrayList<>());
         wrapper.setContent(courses);
         wrapper.forward("/jsp/user/mod/creation/student.jsp");
@@ -38,6 +39,7 @@ public class AdminView extends TeacherView implements by.girafic.core.view.Admin
     @Override
     public void showTeacherForCreation(ContentLinkData[] availableContent) throws ServletException, IOException
     {
+        wrapper.setModification(false);
         wrapper.setCurrentContent(new ArrayList<>());
         wrapper.setContent(availableContent);
         wrapper.forward("/jsp/user/mod/creation/teacher.jsp");
@@ -46,12 +48,14 @@ public class AdminView extends TeacherView implements by.girafic.core.view.Admin
     @Override
     public void showAdminForCreation() throws ServletException, IOException
     {
+        wrapper.setModification(false);
         wrapper.forward("/jsp/user/mod/creation/admin.jsp");
     }
 
     @Override
     public void showUserAfterModify(AdminViewModifyData admin) throws ServletException, IOException
     {
+        wrapper.setModification(true);
         wrapper.setUser(admin);
         wrapper.forward("/jsp/user/mod/modification/admin.jsp");
     }
@@ -59,6 +63,7 @@ public class AdminView extends TeacherView implements by.girafic.core.view.Admin
     @Override
     public void showUserAfterModify(StudentViewModifyData student,ContentLinkData[] courses) throws ServletException, IOException
     {
+        wrapper.setModification(true);
         wrapper.setUser(student);
         wrapper.setCurrentContent(Arrays.stream(student.courses).mapToInt(ContentLinkData::getId).boxed().toList());
         wrapper.setContent(courses);
@@ -68,6 +73,7 @@ public class AdminView extends TeacherView implements by.girafic.core.view.Admin
     @Override
     public void showUserAfterModify(TeacherViewModifyData teacher,ContentLinkData[] availableContent) throws ServletException, IOException
     {
+        wrapper.setModification(true);
         wrapper.setUser(teacher);
         wrapper.setCurrentContent(Arrays.stream(teacher.availableContent).mapToInt(ContentLinkData::getId).boxed().toList());
         wrapper.setContent(availableContent);
