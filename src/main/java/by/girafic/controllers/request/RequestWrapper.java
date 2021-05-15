@@ -58,6 +58,10 @@ public class RequestWrapper
         {
             return path +"/login"+lp;
         }
+        public String exit()
+        {
+            return path+"/";
+        }
         public String content(int id)
         {
             return path+"/content"+lp+"&id="+id;
