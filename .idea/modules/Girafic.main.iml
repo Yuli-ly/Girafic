@@ -21,12 +21,12 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: org.glassfish.web:jakarta.servlet.jsp.jstl:2.0.0" level="project" />
     <orderEntry type="library" name="Gradle: jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:2.0.0" level="project" />
     <orderEntry type="library" name="Gradle: jakarta.servlet:jakarta.servlet-api:5.0.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.0.0" level="project" />
     <orderEntry type="library" name="Gradle: jakarta.el:jakarta.el-api:4.0.0" level="project" />
     <orderEntry type="library" name="Gradle: jakarta.xml.bind:jakarta.xml.bind-api:3.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.sun.activation:jakarta.activation:2.0.0" level="project" />
-    <orderEntry type="library" name="Gradle: jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl:2.0.0" level="project" />
   </component>
 </module>
