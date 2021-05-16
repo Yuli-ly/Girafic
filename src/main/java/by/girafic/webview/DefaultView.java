@@ -5,14 +5,8 @@ import jakarta.servlet.ServletException;
 
 import java.io.IOException;
 
-public class DefaultView
+public record DefaultView(RequestWrapper wrapper)
 {
-    private final RequestWrapper wrapper;
-    public DefaultView(RequestWrapper wrapper)
-    {
-        this.wrapper = wrapper;
-    }
-
     public void showError(String message) throws ServletException, IOException
     {
         wrapper.setMessage(message);

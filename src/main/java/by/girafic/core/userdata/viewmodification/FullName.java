@@ -5,9 +5,9 @@ import static by.girafic.core.commonds.ModifyConfirmation.successful;
 
 public class FullName
 {
-    public ModifyConfirmation<String> name;
-    public ModifyConfirmation<String> surname;
-    public ModifyConfirmation<String> patronymic;
+    public final ModifyConfirmation<String> name;
+    public final ModifyConfirmation<String> surname;
+    public final ModifyConfirmation<String> patronymic;
 
     public FullName(ModifyConfirmation<String> name,
                     ModifyConfirmation<String> surname,

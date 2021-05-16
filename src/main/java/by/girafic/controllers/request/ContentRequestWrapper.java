@@ -8,7 +8,6 @@ import by.girafic.core.contentdata.modification.SectionModifyData;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-
 public class ContentRequestWrapper extends RequestWrapper
 {
     public ContentRequestWrapper(HttpServletRequest request,

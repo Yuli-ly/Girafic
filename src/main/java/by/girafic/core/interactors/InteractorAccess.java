@@ -93,20 +93,20 @@ public class InteractorAccess
         public void getStartPage() throws Exception
         {
             view.showStartPage(
-                    userDataBase.getAdmin(userDataBase.getUserID(ld.login)),
+                    userDataBase.getAdmin(userDataBase.getUserID(ld.login())),
                     userDataBase.getAllUsers());
         }
 
         @Override
         public void getContent(int contentID) throws ServletException, IOException
         {
-            defaultInteractor.showContent(view,contentID, ld.login);
+            defaultInteractor.showContent(view,contentID, ld.login());
         }
 
         @Override
         public void getProfile(int userid) throws ServletException, IOException
         {
-            defaultInteractor.showProfile(view,userid, ld.login);
+            defaultInteractor.showProfile(view,userid, ld.login());
         }
 
         private ContentLinkData[] getLinks(int[] content)
@@ -253,13 +253,13 @@ public class InteractorAccess
         @Override
         public void getStartPage() throws Exception
         {
-            view.showStartPage(userDataBase.getTeacher(userDataBase.getUserID(ld.login)));
+            view.showStartPage(userDataBase.getTeacher(userDataBase.getUserID(ld.login())));
         }
 
         @Override
         final public void createContent(CourseModifyData course) throws Exception
         {
-            int userID = userDataBase.getUserID(ld.login);
+            int userID = userDataBase.getUserID(ld.login());
             int contentID = contentDataBase.createContent(course,userID);
             view.showContentAfterModify(
                     new CourseViewModifyData(contentID, course),
@@ -270,14 +270,14 @@ public class InteractorAccess
         @Override
         final public void createContent(MaterialModifyData material) throws Exception
         {
-            int userID = userDataBase.getUserID(ld.login);
+            int userID = userDataBase.getUserID(ld.login());
             int contentID = contentDataBase.createContent(material,userID);
             view.showContentAfterModify(new MaterialViewModifyData(contentID,material));
         }
         @Override
         final public void createContent(SectionModifyData section) throws Exception
         {
-            final int userID = userDataBase.getUserID(ld.login);
+            final int userID = userDataBase.getUserID(ld.login());
             int contentID = contentDataBase.createContent(section,userID);
             view.showContentAfterModify(new SectionViewModifyData(section,contentID),
                     userDataBase.getAvailableSectionContent(userID));
@@ -297,14 +297,14 @@ public class InteractorAccess
             view.showContentAfterModify(
                     new SectionViewModifyData(section,contentID),
                     userDataBase.getAvailableSectionContent(
-                            userDataBase.getUserID(ld.login)));
+                            userDataBase.getUserID(ld.login())));
         }
 
         @Override
         final public void modifyContent(CourseModifyData course, int contentID) throws Exception
         {
             contentDataBase.modifyContent(course,contentID);
-            int userID = userDataBase.getUserID(ld.login);
+            int userID = userDataBase.getUserID(ld.login());
             view.showContentAfterModify(
                     new CourseViewModifyData(contentID, course),
                     userDataBase.getAvailableSections(userID),
@@ -330,13 +330,13 @@ public class InteractorAccess
         {
             view.showSectionForCreation(
                     userDataBase.getAvailableSectionContent(
-                    userDataBase.getUserID(ld.login)));
+                    userDataBase.getUserID(ld.login())));
         }
 
         @Override
         final public void showCourseForCreation() throws Exception
         {
-            int userID = userDataBase.getUserID(ld.login);
+            int userID = userDataBase.getUserID(ld.login());
             view.showCourseForCreation(
                     userDataBase.getAvailableSections(userID),
                     userDataBase.getAvailableUsers(userID));
@@ -349,7 +349,7 @@ public class InteractorAccess
             {
 
                 case Course -> {
-                    int userID = userDataBase.getUserID(ld.login);
+                    int userID = userDataBase.getUserID(ld.login());
                     view.showContentAfterModify(
                             new CourseViewModifyData(id,contentDataBase.getCourseForMod(id)),
                             userDataBase.getAvailableSections(userID),
@@ -358,7 +358,7 @@ public class InteractorAccess
                 case Section -> view.showContentAfterModify(
                         new SectionViewModifyData(contentDataBase.getSectionForMod(id),id),
                         userDataBase.getAvailableSectionContent(
-                                userDataBase.getUserID(ld.login)));
+                                userDataBase.getUserID(ld.login())));
 
                 case Material -> view.showContentAfterModify(
                         new MaterialViewModifyData(id,contentDataBase.getMaterialForMod(id)));
@@ -381,26 +381,33 @@ public class InteractorAccess
         public void getStartPage() throws Exception
         {
             view.showStartPage(
-                    userDataBase.getStudent(userDataBase.getUserID(ld.login)));
+                    userDataBase.getStudent(userDataBase.getUserID(ld.login())));
         }
 
         @Override
         public void getContent(int contentID) throws ServletException, IOException
         {
-            defaultInteractor.showContent(view,contentID, ld.login);
+            defaultInteractor.showContent(view,contentID, ld.login());
         }
 
         @Override
         public void getProfile(int userid) throws ServletException, IOException
         {
-            defaultInteractor.showProfile(view,userid, ld.login);
+            defaultInteractor.showProfile(view,userid, ld.login());
         }
     }
 
-    public InteractorAccess(ContentDataBase contentDataBase, UserDataBase userDataBase)
+    private InteractorAccess(ContentDataBase contentDataBase, UserDataBase userDataBase)
     {
         this.contentDataBase = contentDataBase;
         this.userDataBase = userDataBase;
+    }
+    private static InteractorAccess instance;
+    public static InteractorAccess getInstance(ContentDataBase contentDataBase, UserDataBase userDataBase)
+    {
+        if(instance==null)
+            instance = new InteractorAccess(contentDataBase, userDataBase);
+        return instance;
     }
     public StudentInteractor studentLogin(LoginData ld,StudentView presenter)
     {

@@ -11,7 +11,7 @@ public class DefaultLoginSetter implements LoginSetter
     @Override
     public void setLoginData(HttpServletRequest request, LoginData data)
     {
-        request.setAttribute("login",data.login);
-        request.setAttribute("password",data.password);
+        request.setAttribute("login",data.login());
+        request.setAttribute("password",data.password());
     }
 }

@@ -3,7 +3,6 @@ package by.girafic.controllers.servlets;
 import by.girafic.controllers.request.ContentRequestWrapper;
 import by.girafic.controllers.request.DefaultLoginGetter;
 import by.girafic.controllers.request.DefaultLoginSetter;
-import by.girafic.controllers.util.GlobalValuesAccess;
 import by.girafic.core.commonds.LoginData;
 import by.girafic.core.interactors.InteractorAccess;
 import by.girafic.core.interactors.TeacherInteractor;
@@ -18,7 +17,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.Optional;
 
 @WebServlet("/contentModification")
 @MultipartConfig(
@@ -28,7 +26,7 @@ import java.util.Optional;
 )
 public class ContentModificationServlet extends HttpServlet
 {
-    private final InteractorAccess interactorAccess = GlobalValuesAccess.getValues().interactorAccess;
+    private final InteractorAccess interactorAccess = InteractorAccessFactory.getInteractorAccess();
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -37,7 +35,7 @@ public class ContentModificationServlet extends HttpServlet
         LoginData ld = wrapper.takeLogin();
         if(interactorAccess.checkUserExistence(ld))
         {
-            TeacherInteractor interactor = switch (interactorAccess.getUserType(ld.login))
+            TeacherInteractor interactor = switch (interactorAccess.getUserType(ld.login()))
                     {
                         case Teacher -> interactorAccess.teacherLogin(ld,new TeacherView(wrapper));
                         default -> throw new IllegalArgumentException("No permission access");
@@ -83,7 +81,7 @@ public class ContentModificationServlet extends HttpServlet
                 try
                 {
                     TeacherInteractor interactor =
-                            switch (interactorAccess.getUserType(ld.login))
+                            switch (interactorAccess.getUserType(ld.login()))
                                     {
                                         case Teacher -> interactorAccess.teacherLogin(ld, new TeacherView(wrapper));
                                         case Admin -> interactorAccess.adminLogin(ld, new AdminView(wrapper));

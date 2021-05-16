@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--@elvariable id="Course" type="by.girafic.core.contentdata.view.CourseViewData"--%>
 <%--@elvariable id="LoginData" type="by.girafic.core.commonds.LoginData"--%>
+<%--@elvariable id="LinkMaker" type="by.girafic.controllers.request.RequestWrapper.LinkMaker"--%>
 <html>
 <head>
     <title>Курс</title>
@@ -15,7 +16,7 @@
     <c:forEach var="Element" items="${Course.sections}">
         <li>
             <h3>
-                </he> <a href="${LinkMaker.content(Element.id)}">${Element.title}</a>
+                <a href="${LinkMaker.content(Element.id)}">${Element.title}</a>
             </h3>
             <p>${Element.description}</p>
             <ul>

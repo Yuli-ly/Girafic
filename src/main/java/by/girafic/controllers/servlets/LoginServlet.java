@@ -1,6 +1,5 @@
 package by.girafic.controllers.servlets;
 
-import by.girafic.controllers.util.GlobalValuesAccess;
 import by.girafic.controllers.request.DefaultLoginGetter;
 import by.girafic.controllers.request.DefaultLoginSetter;
 import by.girafic.controllers.request.RequestWrapper;
@@ -24,7 +23,7 @@ import jakarta.servlet.http.HttpServletResponse;
 )
 public class LoginServlet extends HttpServlet
 {
-    final InteractorAccess interactorAccess = GlobalValuesAccess.getValues().interactorAccess;
+    final InteractorAccess interactorAccess = InteractorAccessFactory.getInteractorAccess();
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -37,7 +36,7 @@ public class LoginServlet extends HttpServlet
         {
             if (interactorAccess.checkUserExistence(ld))
             {
-                switch (interactorAccess.getUserType(ld.login))
+                switch (interactorAccess.getUserType(ld.login()))
                 {
                     case Student -> interactorAccess.studentLogin(ld, new StudentView(wrapper)).getStartPage();
                     case Teacher -> interactorAccess.teacherLogin(ld, new TeacherView(wrapper)).getStartPage();

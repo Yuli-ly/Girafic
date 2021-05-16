@@ -6,7 +6,7 @@ import static by.girafic.core.commonds.ModifyConfirmation.*;
 
 public class UserViewModifyData
 {
-    public int id;
+    public final int id;
     public final FullName fullName;
     public final ModifyConfirmation<String> login;
     public final ModifyConfirmation<String> password;

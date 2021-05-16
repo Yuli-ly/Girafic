@@ -1,7 +1,6 @@
 package by.girafic.controllers.servlets;
 
 import by.girafic.controllers.request.DefaultLoginGetter;
-import by.girafic.controllers.util.GlobalValuesAccess;
 import by.girafic.controllers.request.AdminLoginGetter;
 import by.girafic.controllers.request.DefaultLoginSetter;
 import by.girafic.controllers.request.UserRequestWrapper;
@@ -23,7 +22,7 @@ import jakarta.servlet.http.HttpServletResponse;
 )
 public class RegistrationServlet extends HttpServlet
 {
-    private final InteractorAccess interactorAccess = GlobalValuesAccess.getValues().interactorAccess;
+    private final InteractorAccess interactorAccess = InteractorAccessFactory.getInteractorAccess();
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     {

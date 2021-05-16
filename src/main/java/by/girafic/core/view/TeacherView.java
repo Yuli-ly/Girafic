@@ -5,7 +5,6 @@ import by.girafic.core.contentdata.viewmodification.CourseViewModifyData;
 import by.girafic.core.contentdata.viewmodification.MaterialViewModifyData;
 import by.girafic.core.contentdata.viewmodification.SectionViewModifyData;
 import by.girafic.core.userdata.UserLinkData;
-import by.girafic.core.userdata.view.StudentViewData;
 import by.girafic.core.userdata.view.TeacherViewData;
 
 public interface TeacherView extends StudentView

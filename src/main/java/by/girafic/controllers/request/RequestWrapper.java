@@ -48,7 +48,7 @@ public class RequestWrapper
     public class LinkMaker
     {
         private final String path;
-        private final String lp = "?login=" + login.login + "&password=" + login.password;
+        private final String lp = "?login=" + login.login() + "&password=" + login.password();
         LinkMaker()
         {
             path = getPath();
@@ -96,7 +96,7 @@ public class RequestWrapper
         }
         public String userMod(int id)
         {
-            return path+"/userModification?ALogin="+login.login+"&APassword="+login.password+"&id="+id;
+            return path+"/userModification?ALogin="+login.login()+"&APassword="+login.password()+"&id="+id;
         }
         public String contentMod(int id)
         {

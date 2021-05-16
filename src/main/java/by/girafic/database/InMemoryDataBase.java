@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 
 public class InMemoryDataBase implements ContentDataBase, UserDataBase
 {
-
+    private final static InMemoryDataBase instance = new InMemoryDataBase();
     int userAddIndex = 1;
     int contentAddIndex;
 
@@ -37,7 +37,11 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
 
     private final DataAccess access = new DataAccess(new HashMap<>(), new HashMap<>());
 
-    public InMemoryDataBase()
+    public static InMemoryDataBase getInstance()
+    {
+        return instance;
+    }
+    private InMemoryDataBase()
     {
         AdminModifyData admin = new AdminModifyData(UserType.Admin,
                 new FullName("admin", "admin", "admin"),
@@ -274,16 +278,14 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
     }
 
     @Override
-    public int modifyContent(MaterialModifyData material, int contentID)
+    public void modifyContent(MaterialModifyData material, int contentID)
     {
         synchronized (access)
         {
             if (access.content.containsKey(contentID))
             {
                 access.content.replace(contentID, material);
-                return contentID;
             }
-            return -1;
         }
     }
 
@@ -419,7 +421,7 @@ public class InMemoryDataBase implements ContentDataBase, UserDataBase
         {
             for (Map.Entry<Integer, UserModifyData> user : access.users.entrySet())
             {
-                if (user.getValue().login.equals(ld.login) && user.getValue().password.equals(ld.password))
+                if (user.getValue().login.equals(ld.login()) && user.getValue().password.equals(ld.password()))
                     return true;
             }
             return false;

@@ -22,7 +22,7 @@ public interface ContentDataBase
     int createContent(MaterialModifyData material,int userID);
     int modifyContent(CourseModifyData course, int contentID);
     int modifyContent(SectionModifyData section, int contentID);
-    int modifyContent(MaterialModifyData material, int contentID);
+    void modifyContent(MaterialModifyData material, int contentID);
     ContentLinkData[] getCourses();
     ContentLinkData[] getAllContent();
     void removeContent(int contentID);
