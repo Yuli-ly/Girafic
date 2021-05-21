@@ -2,20 +2,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--@elvariable id="Student" type="by.girafic.core.userdata.view.StudentViewData"--%>
 <%--@elvariable id="LinkMaker" type="by.girafic.controllers.request.RequestWrapper.LinkMaker"--%>
-
+<%--@elvariable id="path" type="java.lang.String"--%>
 <jsp:include page="../../../navigation.jsp"/>
-<p>
   <jsp:include page="user.jsp"/>
-  Группа: ${Student.group}<br>
-  Курс: ${Student.course}<br>
-  Средний балл: ${Student.gpa}<br>
-  Кафедра: ${Student.department}<br>
-  Курсы:
-<ul>
+<div class="container">
+  <div class class="info">
+    <p>Группа: ${Student.group}</p>
+    <p>Курс: ${Student.course}</p>
+    <p>Средний балл: ${Student.gpa}</p>
+    <p>Кафедра: ${Student.department}</p>
+
+  </div>
+</div>
+<div class="courses">
+  <div class="cards">
   <c:forEach var="Element" items="${Student.courses}">
-    <li>
+    <div class="card">
+      <img src="${path}/jsp/img/course.png"/>
       <a href="${LinkMaker.content(Element.id)}">${Element.name}</a>
-    </li>
+    </div>
   </c:forEach>
-</ul>
-</p>
+  </div>
+</div>

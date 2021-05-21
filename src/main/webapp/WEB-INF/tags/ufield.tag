@@ -11,7 +11,7 @@
 <%--@elvariable id="Modification" type="bolean"--%>
 <%--@elvariable id="style" type="java.lang.String"--%>
 <%--@elvariable id="modc" type="by.girafic.core.commonds.ModifyConfirmation"--%>
-<li>
+
     <c:choose>
         <c:when test="${modification && modc.success}">
             <c:set var="style" scope="page" value="color:green"/>
@@ -23,9 +23,12 @@
             <c:set var="style" scope="page" value="color:black"/>
         </c:otherwise>
     </c:choose>
+
+<div class="info">
     <label for="${id}">${title}</label>
-    <input id="${id}" name="${name}" style="${style}" value="${modc.value}">
+    <input id="${id}" class="red" name="${name}" style="${style}" value="${modc.value}">
+</div>
+
     <c:if test="${modification && !modc.success}">
         <p>${modc.message}</p>
     </c:if>
-</li>

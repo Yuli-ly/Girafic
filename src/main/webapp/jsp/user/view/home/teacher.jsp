@@ -2,10 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--@elvariable id="LinkMaker" type="by.girafic.controllers.request.RequestWrapper.LinkMaker"--%>
 <%--@elvariable id="Teacher" type="by.girafic.core.userdata.view.TeacherViewData"--%>
-
+<%--@elvariable id="path" type="java.lang.String"--%>
 <html>
 <head>
     <title>Домашняя страницы</title>
+  <link rel="stylesheet" href="${path}/jsp/styles.css">
 </head>
 <body>
 <jsp:include page="../base/teacher.jsp"/>
@@ -18,10 +19,10 @@
     </li>
   </c:forEach>
 </ul>
-<a href="${LinkMaker.courseCreation()}">Создать курс</a>
-<br>
-<a href="${LinkMaker.sectionCreation()}">Создать раздел</a>
-<br>
-<a href="${LinkMaker.materialCreation()}">Создать материал</a>
+<div>
+<button href="${LinkMaker.courseCreation()}" class="btn">Создать курс</button>
+<button href="${LinkMaker.sectionCreation()}" class="btn">Создать раздел</button>
+<button href="${LinkMaker.materialCreation()}" class="btn">Создать материал</button>
+</div>
 </body>
 </html>
